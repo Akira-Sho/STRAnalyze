@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}トップページ | POSII{% endblock %}
+{% block contents %}
+<div class='container'>
+<!--メーカー別商品を並べる-->
+<p>メーカー別</p>
+
+    {% for item in object_list %}
+    <div class="card">
+        <h5 class="card-header">{{ item.racket_name }}</h5>
+        <div class="card-body">
+        
+        <a href="{% url 'timeline:post_list' item.pk %}" class="btn btn-primary">レビュー一覧へ</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

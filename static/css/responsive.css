@@ -1,0 +1,70 @@
+/*画面サイズが800px以下の時、ヘッダーのナビを消す*/
+@media screen and (max-width:800px) {
+    .header-nav {
+         display: none; 
+        }
+ }
+
+ /*画面サイズが800px以上の時、ヘッダーのナビボタンを消す*/
+ @media screen and (min-width: 800px) {
+    .nav-button {
+         display: none;
+     }
+    }
+ 
+/*画面サイズが1200px以上の時、ロゴをセンターに持ってくるが、できない*/
+ @media screen and (min-width: 1200px) {
+ .logo {
+    text-align: center;
+    }
+}
+/*
+@media screen and (max-width: 700px) {
+    .content-info {
+       flex-direction: column;
+       text-align: center;
+       align-items: center;
+       }
+}
+*/
+/*post_listの左コンテンツの文字サイズ 画面サイズが1000pxよりも大きければ40px*/
+
+
+@media screen and (min-width: 400px) {
+    .content-description li {
+        font-size: 25px;
+        margin: 5px  0 2px;
+        padding-bottom: 0px;
+    }
+}
+
+@media screen and (min-width: 300px) {
+    .right-content-info {
+        margin: 10px 0 3px;
+        width: 45%;
+        min-width: 250px;
+        min-height: 100px;
+        }
+}
+
+@media screen and (min-width: 769px) {
+    .content-description li {
+        font-size: 40px;
+        margin: 5px 0 20px;
+    }
+}
+
+@media screen and (min-width: 995px) {
+    .content-description li {
+        font-size: 50px;
+        margin: 10px 0 40px;
+    }
+}
+
+@media screen and (min-width: 1350px) {
+    .content-description li {
+        font-size: 70px;
+        margin: 15px 0 60px;
+    }
+}
+

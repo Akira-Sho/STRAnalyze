@@ -1,0 +1,159 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!--JavaScript-->
+    <script src="{% static 'js/script.js' %}"></script>
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- likes -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" 
+    crossorigin="anonymous">
+    <!--font awesome-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+  
+<body>
+<div class="mask" id="mask"></div>
+<header class="header">
+
+<a class="nav-button" id="nav-button">
+<div></div>
+<div></div>
+<div></div>
+</a>
+
+<nav class="header-drawer-nav" id="header-drawer-nav">
+            <ul>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'timeline:index' %}">home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'accounts:mypage' user.pk %}">mypage</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'account_logout' %}">logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'account_login' %}">login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'account_signup' %}">sign up</a>
+                </li>
+                {% endif %}
+            </ul>
+</nav>
+
+<nav class="header-nav">
+            <ul>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'timeline:index' %}">home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'accounts:mypage' user.pk %}">mypage</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'account_logout' %}">logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'account_login' %}">login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'account_signup' %}">sign up</a>
+                </li>
+                {% endif %}
+            </ul>
+</nav>
+<h1 class="logo"><a href="{% url 'timeline:index' %}">S.R.ANALYZE</a>
+</h1>
+</header>
+    <main role="main" class="container">
+        
+            {% if messages %}
+            <div class="w-75 mx-auto">
+                <ul class="messages pt-3">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class=" h5 alert alert-info"{% endif %}>
+                        {{ message }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% block contents %}{% endblock %}
+        
+    </main>
+    <!-- /.container -->
+    
+    
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<footer class="footer">
+    <nav class="footer-nav">
+            <ul class="footer-ul">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'timeline:index' %}">SRANALYZE</a>
+                </li>
+                
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'timeline:index' %}">SRANALYZE</a>
+                </li>
+            {% endif %}
+            </ul>
+</nav>
+
+</footer>
+<!--script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script-->
+</body>
+<script type="text/javascript">
+    $(document).ready(function(event){
+        $(document).on('click', '#like', function(event){
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'timeline:like' %}",
+                data: {
+                    'post_pk': $(this).attr('name'),
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                dataType: 'json',
+                success: function(response){
+                    selector = document.getElementsByName(response.post_pk);
+                    if(response.liked){
+                        $(selector).html("<i class='fas fa-lg fa-star star-yellow'></i>");
+                    }
+                    else {
+                        $(selector).html("<i class='far fa-lg fa-star star-yellow'></i>");
+                    }
+                    selector2 = document.getElementsByName(response.post_pk + "-count");
+                    $(selector2).text(response.count);
+                }
+            });
+        });
+    });
+  </script>
+</html>

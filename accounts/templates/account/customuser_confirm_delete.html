@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}{{ customuser.username }}{% endblock %}
+{% block contents %}
+<div class="form-content">
+    <h1>{{ customuser.username }}</h1>
+
+    
+    <form method="POST">
+    {% csrf_token %}
+    <p>本当に削除しますか？</p>
+    <div  class="group">
+    <button class="btn btn-outline-danger btn-sm mb-3" type="submit">削除する
+    </button>
+    
+    </form>
+    <a class="btn btn-outline-primary btn-sm mb-3" href="{{request.META.HTTP_REFERER}}">戻る
+    </a>
+    </div>
+    </div>
+    </div>
+{% endblock %}

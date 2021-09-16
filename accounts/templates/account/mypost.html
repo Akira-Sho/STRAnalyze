@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}{{ user.username }}{% endblock %}
+{% block contents %}
+<div class="form-content">
+    <h1>{{ user.username }}</h1>
+    <p class="mt-5"><img src="{% if user.thumbnail %}{{ user.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-photo"> </p>
+    <p class="mt-5">{% if user.description %}{{ user.description | linebreaks }}{% else %}本文はありません。{% endif %}</p>
+    <p class="mt-5">{% if user.age %}{{ user.age | linebreaks }}{% else %}未設定{% endif %}</p>
+    <p class="mt-5">{% if user.gender %}{{ user.gender | linebreaks }}{% else %}未設定{% endif %}</p>
+    <p class="mt-5">{% if user.position %}{{ user.position | linebreaks }}{% else %}未設定{% endif %}</p>
+    <p class="mt-5">{% if user.history %}{{ user.history | linebreaks }}{% else %}未設定{% endif %}</p>
+    <p class="mt-5">{% if user.activity_area  %}{{ user.activity_area  | linebreaks }}{% else %}未設定{% endif %}</p>
+    
+
+    <p><a class="nav-link" href="{% url 'accounts:edit' user.id %}">編集する</a></p>
+    
+
+</div>
+{% endblock %}

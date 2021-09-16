@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}マイページ{% endblock %}
+{% block contents %}
+<h1 class="mt-2 pt-3">いいね済みリスト</h1>
+
+{% if object_list %}
+{% for post in object_list %}
+<div class="card mb-2 text-left w-100">
+  <div class="card-body ">
+    <div class="row">
+      <div class="col-1">
+      <a href="{% url 'accounts:reviewer' post.post.author.id %}" ><img src="{% if post.post.author.thumbnail %}{{ post.post.author.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo"></a>
+      </div><!--col1-->
+
+      <div class="col-10 ml-3">
+        <a href="{% url 'accounts:reviewer' post.post.author.id %}" class="text-secondary">{{ post.post.author }}</a><br>
+        <small class="text-muted text-secondary"><a href="{% url 'timeline:post_list' post.post.product_id.racket_url_name %}">{{ post.post.product_id.racket_name }}</a></small><br>
+        <small class="text-muted">{{ post.post.created_at | date:"Y年n月j日 H時" }}</small>
+      </div><!--col10 ml-3-->
+      </div><!--row-->
+<p>{% if post.post.text %}{{ post.post.text | linebreaks }}{% else %}未記入{% endif %}</p>
+
+
+  {% if post.post.post_photo %}
+  <img class="review-post-photo mb-3" src="{{ post.post.post_photo.url }}">
+  {% endif %}
+   
+    <!--div class="like-outer">
+    {% include 'like.html' %}
+    </div-->
+
+  </div><!--card-body "-->
+
+
+</div><!--card mb-5 text-left w-100  width="150px" height="150px"-->
+{% endfor %}
+
+  <!--ul class="pagination justify-content-center pb-2">
+  {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link text-info" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">&laquo;</a>
+    </li>
+  {% else %}
+    <li class="page-item disabled"><span class="page-link">
+      &laquo;</span></a>
+    </li>
+  {% endif %}
+  {% for i in page_obj.paginator.page_range %}
+  {% if page_obj.number == i %}
+    <li class="page-item disabled"><span class="page-link">{{ i }}</span></li>
+  {% else %}
+    <li class="page-item"><a class="page-link text-info" href="?page={{ i }}">{{ i }}</a></li>
+  {% endif %}
+  {% endfor %}
+  {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link text-info" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+    </li>
+  {% else %}
+    <li class="page-item disabled">
+      <span class="page-link">&raquo;</span>
+    </li>
+  {% endif %}
+  </ul-->
+
+{% else %}
+<p>いいねをしたレビューはありません</p>
+{% endif %}
+
+</main>
+{% endblock %}

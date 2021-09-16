@@ -1,0 +1,11 @@
+{% load static %}
+
+<form method="POST">
+    {% csrf_token %}
+    {% if post.pk in liked_list %}
+        <div id="like" name="{{post.pk}}"><i class="fas fa-lg fa-star star-yellow"></i></div>
+    {% else %}
+        <div id="like" name="{{post.pk}}"><i class="far fa-lg fa-star star-yellow w-25"></i></div>      
+    {% endif %}
+</form>
+<div class="like-count" name="{{post.pk}}-count"> {{ post.like_set.count }} </div>

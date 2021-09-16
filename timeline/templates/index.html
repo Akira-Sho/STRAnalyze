@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}トップページ | POSII{% endblock %}
+{% block contents %}
+<main>
+
+<div class="brand-button">
+<form action="{% url 'timeline:index' %}" method="post">
+    {% csrf_token %}
+    <style>
+    input[type="submit"] {
+      border: 2px solid #000;
+      border-radius: 0;
+      background: #fff;
+      }
+      </style>
+    <input type="submit" name="button_all" value="all"></input>
+    <input type="submit" name="button_yonex" value="yonex"></input>
+    <input type="submit" name="button_mizuno" value="mizuno"></input>
+    <input type="submit" name="button_dunlop" value="dunlop"></input>
+    <input type="submit" name="button_srixon" value="srixon"></input>
+    <input type="submit" name="button_gosen" value="gosen"></input>
+</form>
+</div>
+
+
+<article class="racket-area">
+<div class="racket-container">
+    {% for item in product_data %}
+   <div class="racket-wrap">
+    <!--フレックス親要素-->
+        <div class="racket-box">
+        <a href="{% url 'timeline:post_list' item.racket_url_name %}">
+        {% if item.racket_photo %}
+        <img src="{{ item.racket_photo.url }}" class="racket-photo">
+        {% endif %}
+        <div class="racket-title">
+        <p>{{ item.brand }}<br>{{ item.racket_name }}</p>
+        
+        </div>
+        </a>
+        </div>
+
+        
+
+    </div>
+    
+{% endfor %}
+</div>
+</article>
+
+
+    <ul class="pagination justify-content-center pb-3">
+  {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link text-info" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">&laquo;</a>
+    </li>
+  {% else %}
+    <li class="page-item disabled"><span class="page-link">
+      &laquo;</span></a>
+    </li>
+  {% endif %}
+  {% for i in page_obj.paginator.page_range %}
+  {% if page_obj.number == i %}
+    <li class="page-item disabled"><span class="page-link">{{ i }}</span></li>
+  {% else %}
+    <li class="page-item"><a class="page-link text-info" href="?page={{ i }}">{{ i }}</a></li>
+  {% endif %}
+  {% endfor %}
+  {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link text-info" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+    </li>
+  {% else %}
+    <li class="page-item disabled">
+      <span class="page-link">&raquo;</span>
+    </li>
+  {% endif %}
+  </ul>
+
+
+
+<!--div class="pagination">
+        {% if product_data.has_previous %}
+        <a href="{% url 'timeline:index' %}">&laquo;first</a>
+        <a href="{% url 'timeline:index' %}{{product_data.previous_page_number}}">&laquo;prev</a>
+        {% endif %}
+        <span class="current">
+        [{{product_data}}/{{product_data.paginator.num_pages}}]
+        </span>
+        {% if product_data.has_next %}
+        <a href="{% url 'timeline:index' %}" {{product_data.next_page_number }}>next&raquo;</a>
+        <a href="{% url 'timeline:index' %}" {{product_data.paginator.num_pages  }}>last&raquo;</a>
+        {% endif %}
+        </div-->
+</main>
+{% endblock %}
