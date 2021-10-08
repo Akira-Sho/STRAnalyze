@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load bootstrap4 %}
+{% load widget_tweaks %}
 {% block title %}ログイン | SRANALYZE{% endblock %}
 {% block contents %}
 <div class="form-content">
-    <h1 class="pb-2 pt-3">ログイン</h1>
+    <div class="top-title">ログイン</div>
     <form method="post" action="{% url 'account_login' %}">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button class="btn btn-outline-info btn-sm btn-block" type="submit">ログイン</button>
-    <p class="pt-3 pb-3"><a href="{% url 'account_reset_password' %}" class="text-danger">パスワードをお忘れですか？</a></p>
+        <div class="group">
+        <input class="btn btn-outline-info btn-sm  post-2-button" type="submit" value="ログイン"></input>
+        </div>
+    <p class="pt-3 pb-3"><a href="{% url 'account_reset_password' %}" class="text-danger login-font-size">パスワードをお忘れですか？</a></p>
   </form>
 </div>
 {% endblock %}

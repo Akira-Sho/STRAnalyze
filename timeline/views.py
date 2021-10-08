@@ -11,9 +11,6 @@ from .models import Post, Like,ProductModel
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http.response import JsonResponse
 
-#from django.http import JsonResponse
-
-#LoginRequiredMixin, 
 
 def paginate_queryset(request, queryset, count):
     """Pageオブジェクトを返す。
@@ -58,7 +55,7 @@ def index(request):
         form = BrandSearchForm() #検索されていなければ商品を全て表示
         product_data = ProductModel.objects.all()
     
-    page_count = paginate_queryset(request, product_data, 10)
+    page_count = paginate_queryset(request, product_data, 30)
     
     params = {
         'form' : form,
@@ -72,7 +69,7 @@ def post_list(request,racket_url_name):
     product_data = ProductModel.objects.get(racket_url_name = racket_url_name)#取得したpkと同じ商品の情報を取得
     object_list = Post.objects.filter(product_id__racket_url_name= racket_url_name) 
     object_count = Post.objects.filter(product_id__racket_url_name= racket_url_name).count()
-    page_count = paginate_queryset(request, object_list, 10)
+    page_count = paginate_queryset(request, object_list, 20)
     liked_list = []
     current_user = request.user
     if (current_user.is_authenticated):
@@ -80,7 +77,6 @@ def post_list(request,racket_url_name):
             liked = post.like_set.filter(user=request.user)
             if liked.exists():
                 liked_list.append(post.pk)
-
 
     params = {
         'product_data':product_data,
@@ -122,10 +118,11 @@ def Liked_PostListView(request,pk):
         liked = post.like_set.filter(user=request.user)
         if liked.exists():
             liked_list.append(post.pk)
-    
+    page_count = paginate_queryset(request, like_data, 10)
     params = {
         'object_list' :like_data,
         'liked_list' :liked_list,
+        'page_obj':page_count,
     }
     return render(request, 'liked_post_list.html',params)
     
@@ -136,7 +133,7 @@ def Liked_PostListView(request,pk):
 class MyPostListView(LoginRequiredMixin,generic.ListView):
     template_name = 'mypost_list.html'
     model = Post 
-    paginate_by = 10
+    paginate_by = 15
     
     def get_queryset(self):
         current_user = self.request.user
@@ -155,13 +152,12 @@ def create_view(request,racket_url_name): #レビュー作成関数
             post.product_id =  product_info
             #レビューするの商品pkをpostテーブルのproductカラムに格納
             post.save() 
+            messages.success(request, 'レビューを作成しました。')
             return redirect('timeline:post_list',racket_url_name = racket_url_name)
     else:
         form = PostForm()
     return render(request, 'post_create.html', {'form': form})
     
-    
-
 #投稿編集
 
 class Post_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView): 
@@ -170,7 +166,7 @@ class Post_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
     slug_url_kwarg = "ProductModel__racket_url_name"
     form_class = PostForm
     template_name = 'post_edit.html'
-    #success_message = 'レビューを変更しました。'
+    success_message = 'レビューを変更しました。'
 
 #処理終了後の遷移先指定
     def get_success_url(self):
@@ -181,7 +177,7 @@ class MyPost_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView)
     slug_field = "ProductModel__racket_url_name"
     form_class = PostForm
     template_name = 'mypost_edit.html'
-    #success_message = 'レビューを変更しました。'
+    success_message = 'レビューを変更しました。'
 
 #処理終了後の遷移先指定
 
@@ -196,10 +192,17 @@ class Post_DeleteView(LoginRequiredMixin, generic.DeleteView):
     #slug_url_kwarg = "racket_url_name"
     template_name = 'post_confirm_delete.html'
     #success_url = reverse_lazy('timeline:index')
-    success_message = '削除しました'
     def get_success_url(self):
         return reverse_lazy('timeline:post_list',kwargs={'racket_url_name':self.object.product_id.racket_url_name})
     #投稿削除(mypost_listから)
+    
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.author == request.user: 
+            #取得したユーザーがログインしているユーザーと同じであればif文実行
+            messages.success(self.request, 'レビューを削除しました。')
+        return super().delete(request, *args, **kwargs)
+    
 class MyPost_DeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Post
     slug_field = "racket_url_name"
@@ -223,9 +226,9 @@ class MyPost_DeleteView(LoginRequiredMixin, generic.DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        #if self.object.author == request.user: 
+        if self.object.author == request.user: 
             #取得したユーザーがログインしているユーザーと同じであればif文実行
-            #messages.success(self.request, '削除しました。')
+            messages.success(self.request, 'レビューを削除しました。')
         return super().delete(request, *args, **kwargs)
         
         

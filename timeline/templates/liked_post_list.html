@@ -3,25 +3,31 @@
 {% load bootstrap4 %}
 {% block title %}マイページ{% endblock %}
 {% block contents %}
-<h1 class="mt-2 pt-3">いいね済みリスト</h1>
+<div class="top-title">いいね済みリスト</div>
 
 {% if object_list %}
 {% for post in object_list %}
 <div class="card mb-2 text-left w-100">
-  <div class="card-body ">
-    <div class="row">
+  <div class="card-body post-contents">
+    <div class="row post-rev-sizedown">
       <div class="col-1">
       <a href="{% url 'accounts:reviewer' post.post.author.id %}" ><img src="{% if post.post.author.thumbnail %}{{ post.post.author.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo"></a>
       </div><!--col1-->
 
       <div class="col-10 ml-3">
-        <a href="{% url 'accounts:reviewer' post.post.author.id %}" class="text-secondary">{{ post.post.author }}</a><br>
-        <small class="text-muted text-secondary"><a href="{% url 'timeline:post_list' post.post.product_id.racket_url_name %}">{{ post.post.product_id.racket_name }}</a></small><br>
-        <small class="text-muted">{{ post.post.created_at | date:"Y年n月j日 H時" }}</small>
+        <a href="{% url 'accounts:reviewer' post.post.author.id %}" class="link-secondary text-decoration-underline post-revname-date-text post-revname">{{ post.post.author }}</a><br>
+
+        <div class="link-secondary text-decoration-underline post-revname-date-text post-date-text">
+        <a href="{% url 'timeline:post_list' post.post.product_id.racket_url_name %}" class="link-secondary">{{ post.post.product_id.racket_name }}</a></div><br>
+
+        <div class="text-muted post-revname-date-text mypost-date-text">{{ post.post.created_at | date:"Y年n月j日 H時" }}</div>
       </div><!--col10 ml-3-->
       </div><!--row-->
-<p>{% if post.post.text %}{{ post.post.text | linebreaks }}{% else %}未記入{% endif %}</p>
-
+{% if post.text %}
+<p class="card-text post-contents-text">{{ post.text }}</p>
+{% else %}
+<p class="card-text post-contents-text">未記入</p>
+{% endif %}
 
   {% if post.post.post_photo %}
   <img class="review-post-photo mb-3" src="{{ post.post.post_photo.url }}">
@@ -37,7 +43,7 @@
 </div><!--card mb-5 text-left w-100  width="150px" height="150px"-->
 {% endfor %}
 
-  <!--ul class="pagination justify-content-center pb-2">
+  <ul class="pagination justify-content-center pb-2">
   {% if page_obj.has_previous %}
     <li class="page-item">
       <a class="page-link text-info" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">&laquo;</a>
@@ -63,7 +69,7 @@
       <span class="page-link">&raquo;</span>
     </li>
   {% endif %}
-  </ul-->
+  </ul>
 
 {% else %}
 <p>いいねをしたレビューはありません</p>

@@ -3,32 +3,41 @@
 {% load bootstrap4 %}
 {% block title %}{{ post.username }}{% endblock %}
 {% block contents %}
+<main>
+<div class="top-title">レビュー削除</div>
 
-<h1>レビュー削除</h1>
-
-<div class="card mb-3  mt-1 w-100">
-  <div class="card-body ">
-    <div class="row">
+<div class="card mb-1  w-100">
+  <div class="card-body post-contents">
+    <div class="row post-rev-sizedown">
 
       <div class="col-1">
-        <a href="{% url 'accounts:reviewer' post.author.id %}"><img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo"></a>
+        <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo">
       </div><!--col1-->
 
       <div class="col-10 ml-3">
-        <a href="{% url 'accounts:reviewer' post.author.id %}" class="text-secondary">{{ post.author }}</a><br>
-        <small class="text-muted">{{ post.created_at | date:"n月j日 H時i分" }}</small>
+        <a href="{% url 'accounts:reviewer' post.author.id %}" class="link-secondary text-decoration-underline  post-revname-date-text post-revname">{{ post.author }}</a><br>
+
+        <div class="text-decoration-underline post-revname-date-text post-date-text">
+        <a href="{% url 'timeline:post_list' post.product_id.racket_url_name %}" class="link-secondary">
+        {{ post.product_id.racket_name }}</a></div>
+        <br>
+        
+        <div class="text-muted post-revname-date-text  mypost-date-text">{{ post.created_at | date:"Y年n月j日 H時" }}</div>
       </div><!--col10 ml-3-->
 
       </div><!--row-->
-      <p>{% if post.text %}{{ post.text | linebreaks }}{% else %}未記入{% endif %}</p>
+      {% if post.text %}
+      <p class="card-text post-contents-text">{{ post.text }}</p>
+      {% else %}
+      <p class="card-text post-contents-text">未記入</p>
+      {% endif %}
 
   {% if post.post_photo %}
-  <img class="review_post_photo" src="{{ post.post_photo.url }}">
+  <img class="review-post-photo mb-2" src="{{ post.post_photo.url }}">
   {% endif %}
       </div><!--card-body "-->
 
 </div><!--card mb-5 text-left w-100  width="150px" height="150px"-->
-
 <!--p class="card-text mt-2">{{ post.text | linebreaks }}</p-->
 
 <div class="form-content mb-3">
@@ -36,17 +45,19 @@
     <div class="w-100">
     <form method="POST">
     {% csrf_token %}
-    <p>上記のレビューを本当に削除しますか？</p>
-    <div class="group mt-3 mb-3">
-    <button class="btn btn-outline-danger btn-sm mb-3" type="submit">削除する
-    </button>
+    <p class="post-guid-p">レビューを本当に削除しますか？</p>
+    <div class="group  mb-3">
+    <input class="btn btn-outline-danger btn-sm post-2-button" type="submit" value="削除">
+    </input>
     </form>
-    <a class="btn btn-outline-primary btn-sm mb-3" href="{{request.META.HTTP_REFERER}}">戻る
+    <a class="btn btn-outline-primary btn-sm post-2-button" href="{{request.META.HTTP_REFERER}}">戻る
     </a>
-    </div><!--btn-group-->
+    </div><!--group-->
+    
     </div>
     </div>
     </div><!--form-content-->
+    </main>
 {% endblock %}
 
 <!--div  class="group">

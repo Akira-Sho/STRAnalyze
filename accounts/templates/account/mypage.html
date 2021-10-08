@@ -3,24 +3,32 @@
 {% load bootstrap4 %}
 {% block title %}Profile | {{ object.username }}{% endblock %}
 {% block contents %}
-<div class="profile">
-    <h1>{{ object.username }}</h1>
+<div class="container">
+<div class="row">
+<h1>{{ object.username }}</h1>
+<div class="mb-4"><img src="{% if object.thumbnail %}{{ object.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle mypage-photo"> </div>
+<div class="profile col-sm-8 rounded-1">
+    
     <ul>
-    <li><img src="{% if object.thumbnail %}{{ object.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle"> </li>
-    <li class="description-border">{% if object.description %}{{ object.description  | linebreaks }}{% else %}本文はありません。{% endif %}</li>
-    <li>年齢：{% if object.age %}{{ object.age }}{% else %}未設定{% endif %}</li>
-    <li>性別：{% if object.gender %}{{ object.gender }}{% else %}未設定{% endif %}</li>
-    <li>ポジション：{% if object.position %}{{ object.position  }}{% else %}未設定{% endif %}</li>
-    <li>競技経験年数：{% if object.history %}{{ object.history }}{% else %}未設定{% endif %}</li>
+    <li class="mypage-profile-info">プロフィール</li>
+    <li class="description-border profile-font">
+    {% if object.description %}{{ object.description  | linebreaks }}{% else %}本文はありません。{% endif %}</li>
+    <li class="profile-font">年齢：{% if object.age %}{{ object.age }}{% else %}未設定{% endif %}</li>
+    <li class="profile-font">性別：{% if object.gender %}{{ object.gender }}{% else %}未設定{% endif %}</li>
+    <li class="profile-font">ポジション：{% if object.position %}{{ object.position  }}{% else %}未設定{% endif %}</li>
+    <li class="profile-font">競技経験年数：{% if object.history %}{{ object.history }}{% else %}未設定{% endif %}</li>
     <!--li>活動地域：{% if object.activity_area  %}{{ object.activity_area  | linebreaks }}{% else %}未設定{% endif %}</li-->
     </ul>
+</div>
+<div class="mypage-sidemenu col-sm-4 rounded-1"> 
+    <p class="pt-3 sidemenu-info">メニュー</p>
+    <p><a class="sidemenu-button" href="{% url 'accounts:mypage_edit' object.id %}">プロフ編集</a></p>
+    <p><a class="sidemenu-button" href="{% url 'timeline:mypost_list' object.id %}">投稿済み一覧</a></p>
+    <p><a class="sidemenu-button" href="{% url 'timeline:liked_post_list' object.id %}">いいね済み一覧</a></p>
+    <p><a class="sidemenu-button" href="{% url 'account_reset_password' %}">パスワード変更</a></p>
+    <p><a class="sidemenu-button" href="{% url 'accounts:customuser_confirm_delete' object.id %}">アカウント削除</a></p>
+</div>
 
-    <p><a class="nav-link" href="{% url 'accounts:mypage_edit' object.id %}">編集する</a></p>
-    <p><a class="nav-link" href="{% url 'timeline:mypost_list' object.id %}">投稿済み一覧</a></p>
-    <p><a class="nav-link" href="{% url 'timeline:liked_post_list' object.id %}">いいね済み一覧</a></p>
-    <p><a class="nav-link" href="{% url 'account_reset_password' %}">パスワードを変更する</a></p>
-    <p><a class="nav-link" href="{% url 'accounts:customuser_confirm_delete' object.id %}">アカウント削除</a></p>
-    
-
+</div>
 </div>
 {% endblock %}

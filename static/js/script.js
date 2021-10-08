@@ -5,3 +5,4 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("mask").classList.toggle("active")
     })
 })
+

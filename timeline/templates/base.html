@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <!--JavaScript-->
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- likes -->
@@ -31,6 +33,10 @@
 <body>
 <div class="mask" id="mask"></div>
 <header class="header">
+
+<div class="logo"><a href="{% url 'timeline:index' %}">ヘッダーロゴ(仮)</a>
+</div>
+
 
 <a class="nav-button" id="nav-button">
 <div></div>
@@ -83,24 +89,27 @@
                 {% endif %}
             </ul>
 </nav>
-<h1 class="logo"><a href="{% url 'timeline:index' %}">S.R.ANALYZE</a>
-</h1>
 </header>
-    <main role="main" class="container">
-        
-            {% if messages %}
-            <div class="w-75 mx-auto">
-                <ul class="messages pt-3">
+
+<!--パンクズりすと-->
+{% if messages %}
+            <div class="messages mx-auto">
+                <ul class="messages-list-style">
                     {% for message in messages %}
-                    <li{% if message.tags %} class=" h5 alert alert-info"{% endif %}>
+                    <li{% if message.tags %} class="alert-info d-inline-block messages-font"{% endif %}>
                         {{ message }}
                     </li>
                     {% endfor %}
                 </ul>
             </div>
-            {% endif %}
-            {% block contents %}{% endblock %}
+            
+{% endif %}
+
+    <main role="main" class="container">
         
+            <div class="main-contents">
+            {% block contents %}{% endblock %}
+            </div>
     </main>
     <!-- /.container -->
     
@@ -114,13 +123,19 @@
     <nav class="footer-nav">
             <ul class="footer-ul">
             {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a href="{% url 'timeline:index' %}">SRANALYZE</a>
+                <li class="footer-list">
+                    <a class="footer-font" href="{% url 'timeline:index' %}">SRANALYZE</a>
+                </li>
+                <li class="footer-list">
+                    <a class="footer-font" href="{% url 'timeline:index' %}">仕様</a>
                 </li>
                 
                 {% else %}
-                <li class="nav-item">
-                    <a href="{% url 'timeline:index' %}">SRANALYZE</a>
+                <li class="footer-list">
+                    <a class="footer-font" href="{% url 'timeline:index' %}">SRANALYZE</a>
+                </li>
+                <li class="footer-list">
+                    <a class="footer-font" href="{% url 'timeline:index' %}">仕様</a>
                 </li>
             {% endif %}
             </ul>

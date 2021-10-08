@@ -68,3 +68,377 @@
     }
 }
 
+/*ヘッダー*/
+@media screen and (max-width: 440px) {
+    .header {
+        width: 100%;
+        height: 75px;
+        padding: 10px 0 10px;
+        box-shadow: 0 0 13px 0px #e3e3e3;
+        z-index: 6;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .nav-button {
+        display: block;
+        width: 25px;
+        height: 25px;
+        margin-top: 15px;
+        background-color:whitesmoke;
+        position: fixed;
+        right: 20px;
+        
+        /*margin-top: 30px;
+        margin-right: 30px;*/
+        z-index: 5;
+        box-shadow: 0 0 3px #333;;
+    }
+}
+@media screen and (max-width: 440px) {
+.logo {
+    width: 200px;
+    margin-left: 20px;
+    white-space: nowrap;
+    font-size: 35px;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+    .logo a {
+        display: block;
+        color: #666;
+        width: 100%;
+        align-items: center;
+      }
+    }
+
+@media screen and (max-width: 440px) {
+    .nav-button div {
+        height: 1px;
+        width: 10px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        transition: 0.3s;
+    }
+}
+@media screen and (max-width: 440px) {
+    .nav-button div:nth-of-type(1){
+        transform: translate(-50%,-6px);
+
+    }
+}
+@media screen and (max-width: 440px) {
+    .nav-button div:nth-of-type(3){
+    transform: translate(-50%,6px);
+
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .top-title {
+        font-size: 25px;
+    }
+}
+
+/*indexラケット一覧*/
+@media screen and (max-width: 440px) {
+    .racket-photo {
+        max-width: 100px;
+        max-height: 100px;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .racket-box {
+        /*width: 100%;*/
+        max-width: 135px;
+        max-height: 220px;
+        background-color:gainsboro;
+        }
+
+}
+
+@media screen and (max-width: 768px) {
+    .racket-title {
+        color: black;
+        font-size: 15px; 
+      }
+}
+
+@media screen and (max-width: 480px) {
+    .racket-box {
+        /*width: 100%;*/
+        max-width: 105px;
+        max-height: 140px;
+        background-color:gainsboro;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .racket-title {
+        color: black;
+        font-size: 10px; 
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .racket-box {
+        /*width: 100%;*/
+        max-width: 90px;
+        max-height: 140px;
+        background-color:gainsboro;
+        }
+
+}
+
+@media screen and (max-width: 414px) {
+    .racket-title {
+        color: black;
+        font-size: 10px; 
+    }
+}
+
+@media screen and (max-width: 346px) {
+    .racket-box {
+        /*width: 100%;*/
+        max-width: 80px;
+        max-height: 140px;
+        background-color:gainsboro;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .cp_link a{
+        font-size: 24px;
+        margin-top: 0;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .post-guid-p {
+        font-size: 10px;
+
+    }
+}
+
+@media screen and (max-width: 500px) {
+.page-title {
+    font-size: 18px;
+    margin-bottom: 4px;
+    padding-top: 5px;
+  }
+}
+@media screen and (max-width: 500px) {
+    .post-rev-sizedown {
+        margin-top: -5px;
+    }
+}
+
+
+@media screen and (max-width: 425px) {
+    .post-revname-date-text {
+        font-size: 5px;
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .post-revname-date-text {
+        font-size: 5px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .post-revname {
+        margin-top: 0px;
+        display: block;
+        font-size: 5px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .post-date-text {
+        margin-top: -37px;
+        font-size: 5px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .profile-post-photo {
+        width: 30px;
+        height: 30px;
+        margin-top: -10px;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .post-contents-text {
+        font-size: 12px;
+        
+    }
+}
+@media screen and (max-width: 500px) {
+    .review-post-photo {
+    width: 40%;
+    min-width: 25%;
+    max-height: 600px;
+    margin: 0 0 20px;
+    padding-bottom: 13px;
+   }
+}
+
+@media screen and (max-width: 500px) {
+    .group {
+        margin: -25px 0 0;
+        height: 22px;
+    }
+    .group a {
+        font-size: 2px;
+        }
+    .group input {
+        font-size: 2px;
+    }
+    }
+
+@media screen and (max-width: 500px) {
+    .like-outer {
+        margin:-30px 0 -15px;
+    }
+}
+        
+
+@media screen and (max-width: 500px) {
+    .like-count {
+        margin:0 0 -15px;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .star-yellow {
+        color: #ffd700;
+        padding-top: -40px;
+        width: 20px;
+        height: 20px;
+      }
+}
+
+@media screen and (max-width: 500px) {
+.post-font-size {
+    font-size: 6px;
+    }
+  }
+
+@media screen and (max-width: 500px) {
+  .profile-photo { 
+    width: 50px;
+    height: 50px;
+    object-fit:cover;
+    border-radius:50%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+    .form-group {
+        font-size: 7px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+.form-height {
+    height: 40px;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+.mypage-photo {
+    width: 75px;
+    height: 75px;
+}
+}
+@media screen and (max-width: 600px) {
+    .mypage-profile-info {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .profile-font {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sidemenu-info {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidemenu-button {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sidemenu-button {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+.login-font-size {
+    font-size: 15px;
+}
+}
+
+@media screen and (max-width: 500px) {
+.form-control {
+    font-size: 20px;
+} 
+}
+
+@media screen and (max-width: 720px) {
+    .messages{
+        height: 10px;
+        margin: 0 0 55px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .messages{
+        height: 10px;
+        margin: 0 0 55px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .messages-font {
+        font-size: 15px;
+        padding: 6px 10px;
+    } 
+    }
+
+@media screen and (max-width: 530px) {
+    .messages-font {
+        font-size: 10px;
+        padding: 6px 10px;
+    } 
+}
+
+@media screen and (max-width: 480px) {
+    .footer-list a {
+    font-size: 7px;
+}
+}
+
+

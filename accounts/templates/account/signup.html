@@ -4,11 +4,15 @@
 {% block title %}ユーザー登録 | SRANALYZE{% endblock %}
 {% block contents %}
 <div class="form-content">
-  <h1 class="mb-4">ユーザー登録</h1>
+  <div class="top-title">ユーザー登録</div>
   <form method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
+    <div class="form-group-sign">
     {% bootstrap_form form %}
-     <button class="btn btn-info btn-block" type="submit">登録する</button>
+    </div>
+     <div class="group">
+        <input class="btn btn-outline-info btn-sm  post-2-button mb-3" type="submit" value="登録する"></input>
+        </div>
      
   </form>
 </div>

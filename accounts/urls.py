@@ -9,6 +9,4 @@ urlpatterns = [
     path('reviewer/<int:pk>/',views.ReviewerView.as_view(), name='reviewer'),
     path('customuser_confirm_delete/<int:pk>/',views.Account_DeleteView.as_view(), name='customuser_confirm_delete'),
     path('accounts/signup/', views.SignUpView.as_view(),name='signup'),
-    
-    
 ]

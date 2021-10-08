@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load bootstrap4 %}
-{% block title %}プロフィール | POSII{% endblock %}
+{% load widget_tweaks %}
+{% block title %}プロフィール | STRanalyze{% endblock %}
 {% block contents %}
 <div class="card mb-5 text-center">
   <div class="card-body">
     <div class="row">
+
       <div class="profile-post-photo">
         <img src="{% if user.thumbnail %}{{ user.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo">
       </div>
@@ -17,18 +19,44 @@
           <div class="mt-3">
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          {{ form.as_p }}
+
+          <div class="form-group">
+          <!--div class="input-group-pretend">
+          <span class="imput-group-text" id="photo"></span>
+          </div-->
+          
+        
+        {{ form.text | add_class:'form-control2 post-font-size' }}
+        </div>
+        <div class="mt-3 post-font-size">
+            {{ form.photo | add_class:'form-control2 post-font-size' }}
+
+            <!--label for="photo" class="custom-file-label">投稿画像を選択</label-->
+          </div><!--form-group-->
+
+        <div class="text-center">
+        {% if form.instance.img %}
+        <img src="{{ form.instance.img }}" class="review-post-photo mt-2">
+        {% else %}
+        <img id="mainImage" src="" class="review-post-photo mt-2">
+          {% endif %}
+        </div>
 
           <div  class="group">
-          <button class="btn btn-outline-info btn-sm mb-3" type="submit">投稿する</button>
-          <a class="btn btn-outline-primary btn-sm mb-3" href="{{ request.META.HTTP_REFERER }}">戻る
+          <input class="btn btn-outline-info btn-sm" type="submit" value="保存"></input>
+          <a class="btn btn-outline-primary btn-sm" href="{{ request.META.HTTP_REFERER }}">戻る
           </a>
-          </div>
+          </div><!--group-->
 
       </form>
-      </div>
+      </div><!--mt-3-->
+
     </div>
   </div>
 </div>
 
 {% endblock %}
+{% block js %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+

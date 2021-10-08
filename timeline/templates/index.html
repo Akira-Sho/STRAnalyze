@@ -8,22 +8,15 @@
 <div class="brand-button">
 <form action="{% url 'timeline:index' %}" method="post">
     {% csrf_token %}
-    <style>
-    input[type="submit"] {
-      border: 2px solid #000;
-      border-radius: 0;
-      background: #fff;
-      }
-      </style>
-    <input type="submit" name="button_all" value="all"></input>
-    <input type="submit" name="button_yonex" value="yonex"></input>
-    <input type="submit" name="button_mizuno" value="mizuno"></input>
-    <input type="submit" name="button_dunlop" value="dunlop"></input>
-    <input type="submit" name="button_srixon" value="srixon"></input>
-    <input type="submit" name="button_gosen" value="gosen"></input>
+    
+    <input type="submit" name="button_all" value="ALL"></input><br>
+    <input type="submit" name="button_yonex" value="YONEX"></input>
+    <input type="submit" name="button_mizuno" value="MIZUNO"></input>
+    <input type="submit" name="button_dunlop" value="DUNLOP"></input>
+    <input type="submit" name="button_srixon" value="SRIXON"></input>
+    <input type="submit" name="button_gosen" value="GOZEN"></input>
 </form>
 </div>
-
 
 <article class="racket-area">
 <div class="racket-container">
@@ -41,8 +34,6 @@
         </div>
         </a>
         </div>
-
-        
 
     </div>
     

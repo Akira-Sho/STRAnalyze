@@ -14,7 +14,7 @@ class Post(models.Model):
 	author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
 	product_id = models.ForeignKey('timeline.ProductModel', on_delete=models.CASCADE)
 	slug = models.SlugField(verbose_name="URLスラッグ（英語）",null=True)
-	text = models.TextField(verbose_name='本文',max_length=500, blank=True, null=True)
+	text = models.TextField(verbose_name='本文',max_length=200, blank=True, null=True)
 	photo = models.ImageField(verbose_name='写真', blank=True, null=True, upload_to='images/')
 	post_photo = ImageSpecField(source='photo',processors=[ResizeToFit(1080, 1080)],format='JPEG',options={'quality':60})
 	created_at = models.DateTimeField(auto_now_add=True)
