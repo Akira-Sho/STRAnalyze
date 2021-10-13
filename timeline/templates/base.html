@@ -90,26 +90,20 @@
             </ul>
 </nav>
 </header>
-
-<!--パンクズりすと-->
 {% if messages %}
             <div class="messages mx-auto">
                 <ul class="messages-list-style">
                     {% for message in messages %}
-                    <li{% if message.tags %} class="alert-info d-inline-block messages-font"{% endif %}>
+                    <li {% if message.tags %} class="alert-info d-inline-block messages-font"{% endif %}>
                         {{ message }}
                     </li>
                     {% endfor %}
                 </ul>
             </div>
-            
 {% endif %}
 
     <main role="main" class="container">
-        
-            <div class="main-contents">
             {% block contents %}{% endblock %}
-            </div>
     </main>
     <!-- /.container -->
     

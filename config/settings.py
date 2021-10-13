@@ -59,6 +59,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies" #クッキーで保存
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [

@@ -5,7 +5,7 @@ from imagekit.processors import ResizeToFill, ResizeToFit
 from django.contrib.auth import get_user_model
 from django.contrib.sessions.models import Session
 
-RACKET_POSITION_CHOICES = [('後衛','後衛'),('前衛','前衛'),('両用','両用')] 
+RACKET_POSITION_CHOICES = [('後衛','後衛'),('前衛','前衛'),('前・後衛','前・後衛')] 
 BRAND_CHOICES = [('YONEX','YONEX'),('MIZUNO','MIZUNO'),('DUNLOP','DUNLOP'),('GOSEN','GOSEN'),('SRIXON','SRIXON')] 
 
 CustomUser = get_user_model()
@@ -14,10 +14,10 @@ class Post(models.Model):
 	author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
 	product_id = models.ForeignKey('timeline.ProductModel', on_delete=models.CASCADE)
 	slug = models.SlugField(verbose_name="URLスラッグ（英語）",null=True)
-	text = models.TextField(verbose_name='本文',max_length=200, blank=True, null=True)
+	text = models.TextField(verbose_name='本文',max_length=200,)
 	photo = models.ImageField(verbose_name='写真', blank=True, null=True, upload_to='images/')
 	post_photo = ImageSpecField(source='photo',processors=[ResizeToFit(1080, 1080)],format='JPEG',options={'quality':60})
-	created_at = models.DateTimeField(auto_now_add=True)
+	created_at = models.DateTimeField(default=timezone.now)
 	#必要に応じてlike数を上下させるカラムを追加する
 	class Meta:
     		ordering = ['-created_at']
@@ -25,6 +25,7 @@ class Post(models.Model):
 class Like(models.Model):
 	user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 	post = models.ForeignKey('Post', on_delete=models.CASCADE)
+	session = models.ForeignKey(Session, blank=True, null=True, on_delete=models.SET_NULL)
 	timestamp = models.DateTimeField(default=timezone.now)
 
 	class Meta:
@@ -39,6 +40,7 @@ class ProductModel(models.Model):
     racket_photo = models.ImageField(verbose_name='ラケット写真', blank=True, null=True, upload_to='images/')
     recommend_position = models.CharField(verbose_name='ポジション',max_length=5,choices = RACKET_POSITION_CHOICES)
     release_date = models.DateField(verbose_name='発売日')
+    display = models.BooleanField(default=False,verbose_name='表示')
   
   
   

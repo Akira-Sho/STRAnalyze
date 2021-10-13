@@ -10,7 +10,7 @@
 <div class="content-info">
 
 <div class="left-content-info">
-<img src="{{ product_data.racket_photo.url }}">
+<img src="{% if product_data.racket_photo %}{{ product_data.racket_photo.url}}{% else %}{% static 'images/no_str_image.jpeg' %}{% endif %}">
 </div><!--left-content-info-->
 
 <div class="right-content-info">

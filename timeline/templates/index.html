@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}トップページ | POSII{% endblock %}
+{% block title %}トップページ | STRanalyze{% endblock %}
+
 {% block contents %}
-<main>
+
 
 <div class="brand-button">
 <form action="{% url 'timeline:index' %}" method="post">
@@ -14,7 +15,7 @@
     <input type="submit" name="button_mizuno" value="MIZUNO"></input>
     <input type="submit" name="button_dunlop" value="DUNLOP"></input>
     <input type="submit" name="button_srixon" value="SRIXON"></input>
-    <input type="submit" name="button_gosen" value="GOZEN"></input>
+    <input type="submit" name="button_gosen" value="GOSEN"></input>
 </form>
 </div>
 
@@ -25,9 +26,9 @@
     <!--フレックス親要素-->
         <div class="racket-box">
         <a href="{% url 'timeline:post_list' item.racket_url_name %}">
-        {% if item.racket_photo %}
-        <img src="{{ item.racket_photo.url }}" class="racket-photo">
-        {% endif %}
+        
+
+        <img src="{% if item.racket_photo %}{{ item.racket_photo.url}}{% else %}{% static 'images/no_str_image.jpeg' %}{% endif %}" class="racket-photo">
         <div class="racket-title">
         <p>{{ item.brand }}<br>{{ item.racket_name }}</p>
         

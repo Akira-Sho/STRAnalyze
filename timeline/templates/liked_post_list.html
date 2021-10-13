@@ -23,8 +23,8 @@
         <div class="text-muted post-revname-date-text mypost-date-text">{{ post.post.created_at | date:"Y年n月j日 H時" }}</div>
       </div><!--col10 ml-3-->
       </div><!--row-->
-{% if post.text %}
-<p class="card-text post-contents-text">{{ post.text }}</p>
+{% if post.post.text %}
+<p class="card-text post-contents-text">{{ post.post.text }}</p>
 {% else %}
 <p class="card-text post-contents-text">未記入</p>
 {% endif %}
@@ -33,15 +33,24 @@
   <img class="review-post-photo mb-3" src="{{ post.post.post_photo.url }}">
   {% endif %}
    
-    <!--div class="like-outer">
-    {% include 'like.html' %}
-    </div-->
-
+<div class="like-outer">
+    <form method="POST">
+    {% csrf_token %}
+    {% if post.post.pk in liked_list %}
+        <div id="like" name="{{ post.post.pk}}"><i class="fas fa-lg fa-star star-yellow"></i></div>
+    {% else %}
+        <div id="like" name="{{ post.post.pk}}"><i class="far fa-lg fa-star star-yellow w-25"></i></div>      
+    {% endif %}
+</form>
+<div class="like-count" name="{{ post.post.pk}}-count">{{ post.post.like_set.count }}</div>
+</div>
   </div><!--card-body "-->
 
 
 </div><!--card mb-5 text-left w-100  width="150px" height="150px"-->
 {% endfor %}
+
+
 
   <ul class="pagination justify-content-center pb-2">
   {% if page_obj.has_previous %}

@@ -14,7 +14,7 @@ POSITION_CHOICES = [('後衛','後衛'),('前衛','前衛')]
 
 class CustomUser(AbstractUser):
     email = models.EmailField(verbose_name='メールアドレス')
-    description = models.TextField(verbose_name='プロフィール', null=True, blank=True)
+    description = models.TextField(verbose_name='プロフィール', max_length=120, null=True, blank=True)
     photo = models.ImageField(verbose_name='写真', blank=True, null=True, upload_to='images/')
     thumbnail = ImageSpecField(source='photo',
                                processors=[ResizeToFill(256, 256)],

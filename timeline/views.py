@@ -38,22 +38,22 @@ def index(request):
     if(request.method == 'POST'): #リクエストされたブランドと一致する商品を一覧として表示する
         form = BrandSearchForm(request.POST) #扱うフォームを指定
         if 'button_all' in request.POST: #押されたボタンのnameからラケットを絞り込む
-            product_data = ProductModel.objects.all()
+            product_data = ProductModel.objects.filter(display=True)
         elif 'button_yonex' in request.POST: #押されたボタンのnameからラケットを絞り込む
-            product_data = ProductModel.objects.filter(brand='yonex')
+            product_data = ProductModel.objects.filter(brand='yonex',display=True)
         elif 'button_mizuno' in request.POST:
-            product_data = ProductModel.objects.filter(brand='mizuno')
+            product_data = ProductModel.objects.filter(brand='mizuno',display=True)
         elif 'button_dunlop' in request.POST:
-            product_data = ProductModel.objects.filter(brand='dunlop')
+            product_data = ProductModel.objects.filter(brand='dunlop',display=True)
         elif 'button_srixon' in request.POST:
-            product_data = ProductModel.objects.filter(brand='srixon')
+            product_data = ProductModel.objects.filter(brand='srixon',display=True)
         elif 'button_gosen' in request.POST:
-            product_data = ProductModel.objects.filter(brand='gosen')
+            product_data = ProductModel.objects.filter(brand='gosen',display=True)
         #brand_data = request.POST['brand'] #フォームからポストされてきたデータをbrand_dataに格納
         #product_data = ProductModel.objects.filter(brand = brand_data) #絞り込みの処理
     else:
         form = BrandSearchForm() #検索されていなければ商品を全て表示
-        product_data = ProductModel.objects.all()
+        product_data = ProductModel.objects.filter(display=True)
     
     page_count = paginate_queryset(request, product_data, 30)
     
@@ -77,7 +77,7 @@ def post_list(request,racket_url_name):
             liked = post.like_set.filter(user=request.user)
             if liked.exists():
                 liked_list.append(post.pk)
-
+                
     params = {
         'product_data':product_data,
         'object_list':page_count.object_list,
@@ -99,7 +99,7 @@ def LikeView(request):
         else:
             like.create(post=post, user=current_user)
             liked = True
-    
+                
         context={
             'post_pk': post.pk,
             'liked': liked,
@@ -119,6 +119,7 @@ def Liked_PostListView(request,pk):
         if liked.exists():
             liked_list.append(post.pk)
     page_count = paginate_queryset(request, like_data, 10)
+    
     params = {
         'object_list' :like_data,
         'liked_list' :liked_list,
