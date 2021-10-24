@@ -189,7 +189,6 @@
 
 @media screen and (max-width: 414px) {
     .racket-box {
-        /*width: 100%;*/
         max-width: 90px;
         max-height: 140px;
         background-color:gainsboro;
@@ -206,7 +205,6 @@
 
 @media screen and (max-width: 346px) {
     .racket-box {
-        /*width: 100%;*/
         max-width: 80px;
         max-height: 140px;
         background-color:gainsboro;
@@ -222,120 +220,108 @@
 }
 
 @media screen and (max-width: 500px) {
-    .post-guid-p {
-        font-size: 10px;
-
+    .post-guid-p{
+        font-size: 13px;
     }
 }
 
 @media screen and (max-width: 500px) {
-.page-title {
-    font-size: 18px;
-    margin-bottom: 4px;
-    padding-top: 5px;
-  }
-}
-@media screen and (max-width: 500px) {
-    .post-rev-sizedown {
-        margin-top: -5px;
-    }
-}
-
-
-@media screen and (max-width: 425px) {
-    .post-revname-date-text {
-        font-size: 5px;
-        text-align: left;
+    .page-title {
+        font-size: 18px;
+        margin-bottom: 4px;
+        padding-top: 5px;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .post-revname-date-text {
-        font-size: 5px;
+    .post-area {
+        margin-top: 7px;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .post-info ul {
+        line-height: 60%;
+        padding: 3px 0 0;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .post-revname {
-        margin-top: 0px;
-        display: block;
+    .post-info li {
         font-size: 5px;
     }
 }
 
-@media screen and (max-width: 500px) {
-    .post-date-text {
-        margin-top: -37px;
-        font-size: 5px;
-    }
-}
+
 
 @media screen and (max-width: 500px) {
-    .profile-post-photo {
+    .post-profile-photo {
         width: 30px;
         height: 30px;
-        margin-top: -10px;
     }
 }
 
 
 @media screen and (max-width: 500px) {
-    .post-contents-text {
-        font-size: 12px;
-        
+    .post-contents-text p{
+        font-size: 13px;
+        margin: 3px 0 5px;
     }
 }
+
 @media screen and (max-width: 500px) {
-    .review-post-photo {
-    width: 40%;
-    min-width: 25%;
-    max-height: 600px;
-    margin: 0 0 20px;
-    padding-bottom: 13px;
+    .post-contents-photo {
+        width: 40%;
+        min-width: 25%;
+        max-height: 600px;
+        margin: 0 0 5px;
    }
 }
 
-@media screen and (max-width: 500px) {
-    .group {
-        margin: -25px 0 0;
-        height: 22px;
+@media screen and (max-width: 700px) {
+    .button-area {
+        margin: 0;
     }
-    .group a {
-        font-size: 2px;
-        }
-    .group input {
+    .button-area a {
         font-size: 2px;
     }
+    .button-area input {
+        font-size: 2px;
     }
+}
 
 @media screen and (max-width: 500px) {
-    .like-outer {
-        margin:-30px 0 -15px;
+    .button-area {
+    }
+    .button-area a {
+        font-size: 2px;
+    }
+    .button-area input {
+        font-size: 2px;
     }
 }
         
-
 @media screen and (max-width: 500px) {
-    .like-count {
-        margin:0 0 -15px;
-        font-size: 15px;
+    .like-area p {
+        font-size: 10px;
     }
 }
 
 @media screen and (max-width: 500px) {
     .star-yellow {
         color: #ffd700;
-        padding-top: -40px;
         width: 20px;
         height: 20px;
-      }
+    }
 }
 
+/*post create*/
 @media screen and (max-width: 500px) {
-.post-font-size {
+    .form-post-font {
     font-size: 6px;
     }
-  }
+}
 
 @media screen and (max-width: 500px) {
   .profile-photo { 

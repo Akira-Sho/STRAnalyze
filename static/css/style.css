@@ -30,7 +30,9 @@ a:link, a:visited, a:hover, a:active {
 }
 
 
-
+/* --------------------------------
+ *drawer open
+ * -------------------------------- */
 .mask {
   position: fixed;
   top: 0;
@@ -47,6 +49,7 @@ a:link, a:visited, a:hover, a:active {
 .mask.active {
   visibility: visible;
 }
+
 
 /* --------------------------------
  * header
@@ -73,6 +76,7 @@ a:link, a:visited, a:hover, a:active {
   align-items: center;
 }
 
+/* drawerbutton*/
 .nav-button {
   margin-left: auto;
   display: block;
@@ -103,11 +107,9 @@ a:link, a:visited, a:hover, a:active {
   transform: translate(-50%,-12px);
   transform-origin: 0% 50%;
 }
-
 .nav-button div:nth-of-type(3) {
 transform: translate(-50%,12px);
 transform-origin: 0% 50%;
-
 }
 
 .nav-button.active div:nth-of-type(1) {
@@ -138,8 +140,7 @@ transform-origin: 0% 50%;
   font-size: 30px;
   padding: 90px 45px 60px 0px;
   max-height: 100vh;
-  box-shadow: 0 0 10px #333;
-  
+  box-shadow: 0 0 10px #333; 
 }
 
 .header-drawer-nav ul{
@@ -178,9 +179,11 @@ transform-origin: 0% 50%;
   margin-left: auto;
   margin-top: 10px;
 }
+
 .header-nav .nav-item {
   display: inline-block;
 }
+
 .header-nav .nav-item a {
   display: inline-block;
   width: 150px;
@@ -201,6 +204,9 @@ transform-origin: 0% 50%;
   color: #fff;
 }
 
+/* --------------------------------
+ * main
+ * -------------------------------- */
 main {
   height: auto;
   text-align: center;
@@ -210,23 +216,15 @@ main {
   border-radius: 8px;
 }
 
-.footer{
-  width: 100%;
-}
-
-  
 .brand-button {
   margin: 30px 0 30px;
   padding-top: 10px;
-  /*border: 1px solid black;*/
 }
 .brand-button input {
   border: 0;
-  
   border-bottom: 1px solid black;
   border-radius: 0;
   background:whitesmoke;
-  /*margin-bottom:3px;*/
   transition: 0.15s;
   -webkit-transform: skew(-15deg);
   transform: skew(-15deg);
@@ -246,50 +244,45 @@ main {
   margin-bottom: 10px;
 }
 
-.profile-photo {
-  width: 100px;
-  height: 100px;
-  object-fit:cover;
-	border-radius:50%;
-}
 
-/*indexラケット一覧*/
+
+/*index racket list*/
 .racket-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  .racket-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.racket-box {
   width: 100%;
   background-color:gainsboro;
-  }
-  .racket-box a{
-    width: 100%;
-  }
-  .racket-photo {
-    max-width: 200px;
-    max-height: 200px;
-    width: 100%;
-    height: 100%;
-  }
+}
+.racket-box a{
+  width: 100%;
+}
+.racket-photo {
+  max-width: 200px;
+  max-height: 200px;
+  width: 100%;
+  height: 100%;
+}
 
-  .racket-box:hover{
-    transform:scale(1.1,1.1);
-    transition:0.5s all;
-  }
+.racket-box:hover{
+  transform:scale(1.1,1.1);
+  transition:0.5s all;
+}
 
-  .racket-title {
-     color: black;
-     font-size: 20px; 
-   }
+.racket-title {
+  color: black;
+  font-size: 20px; 
+}
 
    /*ラケット詳細ページ*/
 .content-info {
  display: flex;
  flex-wrap: wrap;
-justify-content: space-around;
-align-items: center;
-text-align: center;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
 }
 
 .content-box {
@@ -324,7 +317,6 @@ min-height: 250px;
   list-style: none;
   width: 100%;
   text-align: center;
-/*text-decoration: underline solid black; */
 }
 
 .cp_link a{
@@ -336,41 +328,115 @@ min-height: 250px;
   color:  orange;
   margin-top: 20px;
 }
+
 .cp_link a:hover {
   transform: scale(1.3);
   color: #F4511E;
 }
 
-.post-rev-sizedown {
-  margin-top: 0;
+.post-guid-p {
+  padding-bottom: 10px;
 }
-.post-revname-date-text {
+
+/*postlist*/
+
+.post-area {
+  position: relative;
+  width: 100%;
+  height: auto;
+  word-wrap: break-word;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin-bottom: 10px;
+  padding: 3px 10px 4px 10px;
+}
+
+.post-header {
+  display: flex;  
+}
+
+.post-profile-photo {
+  width: 70px;
+  height: 70px;
+  margin-top: 5px;
+  border-radius: 50%
+}
+
+.post-info {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+.post-info ul {
+  list-style: none;
+  padding: 5px 0 0 0;
+  line-height: 100%;
+}
+
+.post-info li {
   font-size: 15px;
+  color: #6c757d;
 }
 
-.post-date-text {
-  margin-top: -6px;
+.post-info-link {
+  color: #6c757d;
+  border-bottom: #666666 1px solid;
+  transform: scale(1);
 }
 
-.post-contents {
-  margin-top: -20px;
+.post-info-link:hover {
+  transform: scale(1.2);
+  color: black;
 }
 
-.post-contents-text {
+.post-contents-text p {
   font-size: 17px;
+  margin: 5px 0 10px;
 }
 
-.post-2-button {
-  margin :-15px 0 -20px;
+.post-contents-text-mb0 {
+  margin-bottom: 0;
 }
 
-.like-count {
-  margin:-5px 0 -20px;
+.post-contents-photo {
+  width: 35%;
+  max-height: 500px;
+  margin: 0 0 20px;
+}
+
+.button-area {
+  padding: 0;
+}
+
+.button-area ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+.button-area li {
+  display: inline;
+}
+
+.like-area {
+  padding: 0;
+  max-height: 60px;
+}
+
+.like-area p {
+  font-size: 15px;
+  margin: 0;
 }
 
 .star-yellow {
   color: #ffd700;
-  
+  height: 25px;
+  width: 25px;
 }
 
 .page-title {
@@ -379,7 +445,7 @@ min-height: 250px;
 }
 
 /*投稿済みリスト*/
-.mypost-date-text {
+.post-date-3 {
 margin-top: -37px;
 }
 
@@ -390,6 +456,13 @@ margin-top: -37px;
 
 .profile {
   margin: 40px 0 20px;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  object-fit:cover;
+	border-radius:50%;
 }
 
 .profile h1 {
@@ -430,14 +503,6 @@ margin-top: -37px;
     margin: 5px;
   }
 
-  .profile-post-photo {
-    width: 70px;
-    height: 70px;
-    margin-top: 10px;
-  }
-  
-
-
   .profile-photo { 
     width: 125px;
     height: 125px;
@@ -449,12 +514,6 @@ margin-top: -37px;
   .empty-photo img[src=""] {
     display: none;
   }
-
- .review-post-photo {
-  width: 35%;
-  max-height: 600px;
-  margin: 0 0 20px;
-}
 
   .form-content {
     max-width: 500px;
@@ -476,14 +535,14 @@ margin-top: -37px;
   padding: 10px;
 }
 
-  .form-group {
-    word-break: break-all;
-    text-align: left;
-    margin: 0;
-    font-size: 15px;
-  }
+.form-group {
+  word-break: break-all;
+  text-align: left;
+  margin: 0;
+  font-size: 15px;
+}
 
-.post-font-size {
+.form-post-font {
   font-size: 10px;
 }
 
@@ -570,12 +629,14 @@ margin-top: -37px;
   color: inherit;
   padding: 0px;
 }
+
 .article {
   position: relative;
   margin: 2em 0;
   padding: 25px 10px 7px;
   border: solid 2px #FFC107;
 }
+
 .article .title {
   position: absolute;
   display: inline-block;
@@ -589,23 +650,24 @@ margin-top: -37px;
   color: #ffffff;
   font-weight: bold;
 }
+
 .article p {
   margin: 20px; 
   padding: 0px;
 }
+
 .article p.author {
   font-size: small;
   text-align: right;
   color: lightgray;
 }
 
-.form-control2 {
+.form-post-control {
     display: block;
     width: 100%;
-    padding: .375rem .75rem;
+    padding: .250rem .75rem;
     font-size: 20px;
-    font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.0;
     color: #212529;
     background-color: #fff;
     background-clip: padding-box;
@@ -619,6 +681,10 @@ margin-top: -37px;
 
 .form-label{
   font-size: 8px;
+}
+
+.delete-guid {
+  margin: 5px 0 10px 0;
 }
 
 .profile{
@@ -664,6 +730,10 @@ margin-top: -37px;
 
 .form-group-sign {
   margin-bottom: 50px;
+}
+
+.footer{
+  width: 100%;
 }
 
 .footer-list {

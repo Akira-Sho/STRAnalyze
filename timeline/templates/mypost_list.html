@@ -3,89 +3,52 @@
 {% block title %}マイページ{% endblock %}
 {% block contents %}
 <div class="top-title">投稿済みリスト</div>
-
 {% if object_list %}
-{% for post in object_list %}
-<div class="card mb-1 text-left w-100">
-  <div class="card-body post-contents">
-    <div class="row post-rev-sizedown">
+  {% for post in object_list %}
+    <div class="post-area">
+      <div class="post-header">
+        <div class="post-header-photo">
+          <a href="{% url 'accounts:reviewer' post.author.id %}">
+          <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
+            {% else %}
+              {% static 'images/no_photo.png' %}
+            {% endif %}" class="post-profile-photo">
+          </a>
+        </div>
+        <div class="post-info">
+          <ul>
+            <li ><a class="post-info-link" href="{% url 'accounts:reviewer' post.author.id %}">{{ post.author }}</a></li>
+            <li><a class="post-info-link" href="{% url 'timeline:post_list' post.product_id.racket_url_name %}">{{ post.product_id.racket_name }}</a></li>
+            <li>{{ post.created_at | date:"Y年n月j日 H時" }}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="post-contents-text">
+        {% if post.text %}
+          <p>{{ post.text }}</p>
+        {% else %}
+          <p>未記入</p>
+        {% endif %}
+        </div>
+        {% if post.post_photo %}
+          <img class="post-contents-photo" src="{{ post.post_photo.url }}">
+        {% endif %}
 
-      <div class="col-1">
-        <a href="{% url 'accounts:reviewer' post.author.id %}"><img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo"></a>
-      </div><!--col1-->
-
-      <div class="col-10 ml-3">
-        <a href="{% url 'accounts:reviewer' post.author.id %}" class="link-secondary text-decoration-underline post-revname-date-text post-revname">{{ post.author }}</a>
-        <br>
-        <div class="text-decoration-underline post-revname-date-text post-date-text">
-        <a href="{% url 'timeline:post_list' post.product_id.racket_url_name %}" class="link-secondary">
-        {{ post.product_id.racket_name }}</a></div>
-        <br>
-        <div class="text-muted post-revname-date-text mypost-date-text">{{ post.created_at | date:"Y年n月j日 H時" }}</div>
-      </div><!--col10 ml-3-->
-      </div><!--row-->
-
-
-{% if post.text %}
-<p class="card-text post-contents-text">{{ post.text }}</p>
-{% else %}
-<p class="card-text post-contents-text">未記入</p>
-{% endif %}
-
-  {% if post.post_photo %}
-  <img class="review-post-photo mb-3" src="{{ post.post_photo.url }}">
-  {% endif %}
-  
-    
-    {% if post.author.id == user.id %}
-
-    <div  class="group">
-    <a class="btn btn-outline-info btn-sm mb-1" href="{% url 'timeline:mypost_edit' post.product_id.racket_url_name post.id %}">編集
-    </a>
-    
-    <a class="btn btn-outline-danger btn-sm mb-1" href="{% url 'timeline:mypost_confirm_delete' post.product_id.racket_url_name post.id %}">削除
-    </a>
-</div>
-
-   
-    {% endif %}
-  </div><!--card-body "-->
-
-
-</div><!--card mb-5 text-left w-100  width="150px" height="150px"-->
-{% endfor %}
-
-  <ul class="pagination justify-content-center pb-2">
-  {% if page_obj.has_previous %}
-    <li class="page-item">
-      <a class="page-link text-info" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">&laquo;</a>
-    </li>
-  {% else %}
-    <li class="page-item disabled"><span class="page-link">
-      &laquo;</span></a>
-    </li>
-  {% endif %}
-  {% for i in page_obj.paginator.page_range %}
-  {% if page_obj.number == i %}
-    <li class="page-item disabled"><span class="page-link">{{ i }}</span></li>
-  {% else %}
-    <li class="page-item"><a class="page-link text-info" href="?page={{ i }}">{{ i }}</a></li>
-  {% endif %}
+        {% if post.author.id == user.id %}
+          <div  class="button-area">
+            <ul>
+            <li><a class="btn btn-outline-info btn-sm" href="{% url 'timeline:mypost_edit' post.product_id.racket_url_name post.id %}">編集</a>
+            </li>
+            <li><a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:mypost_confirm_delete' post.product_id.racket_url_name post.id %}">削除</a>
+            </li>
+            </ul>
+          </div>
+        {% endif %}
+      </div>
   {% endfor %}
-  {% if page_obj.has_next %}
-    <li class="page-item">
-      <a class="page-link text-info" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
-    </li>
-  {% else %}
-    <li class="page-item disabled">
-      <span class="page-link">&raquo;</span>
-    </li>
-  {% endif %}
-  </ul>
+ {% include 'pagination.html' %}
 
 {% else %}
-<p>レビューはありません</p>
 {% endif %}
-
 </main>
 {% endblock %}

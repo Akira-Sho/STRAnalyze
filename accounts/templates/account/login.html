@@ -5,14 +5,15 @@
 {% block title %}ログイン | SRANALYZE{% endblock %}
 {% block contents %}
 <div class="form-content">
-    <div class="top-title">ログイン</div>
+  <div class="top-title">ログイン
+  </div>
     <form method="post" action="{% url 'account_login' %}">
-        {% csrf_token %}
-        {% bootstrap_form form %}
+      {% csrf_token %}
+      {% bootstrap_form form %}
         <div class="group">
-        <input class="btn btn-outline-info btn-sm  post-2-button" type="submit" value="ログイン"></input>
+          <input class="btn btn-outline-info btn-sm  post-2-button" type="submit" value="ログイン"></input>
         </div>
-    <p class="pt-3 pb-3"><a href="{% url 'account_reset_password' %}" class="text-danger login-font-size">パスワードをお忘れですか？</a></p>
-  </form>
+      <p class="pt-3 pb-3"><a href="{% url 'account_reset_password' %}" class="text-danger login-font-size">パスワードをお忘れですか？</a></p>
+    </form>
 </div>
 {% endblock %}

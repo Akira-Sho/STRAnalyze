@@ -7,81 +7,51 @@
 
 {% if object_list %}
 {% for post in object_list %}
-<div class="card mb-2 text-left w-100">
-  <div class="card-body post-contents">
-    <div class="row post-rev-sizedown">
-      <div class="col-1">
-      <a href="{% url 'accounts:reviewer' post.post.author.id %}" ><img src="{% if post.post.author.thumbnail %}{{ post.post.author.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo"></a>
-      </div><!--col1-->
-
-      <div class="col-10 ml-3">
-        <a href="{% url 'accounts:reviewer' post.post.author.id %}" class="link-secondary text-decoration-underline post-revname-date-text post-revname">{{ post.post.author }}</a><br>
-
-        <div class="link-secondary text-decoration-underline post-revname-date-text post-date-text">
-        <a href="{% url 'timeline:post_list' post.post.product_id.racket_url_name %}" class="link-secondary">{{ post.post.product_id.racket_name }}</a></div><br>
-
-        <div class="text-muted post-revname-date-text mypost-date-text">{{ post.post.created_at | date:"Y年n月j日 H時" }}</div>
-      </div><!--col10 ml-3-->
-      </div><!--row-->
-{% if post.post.text %}
-<p class="card-text post-contents-text">{{ post.post.text }}</p>
-{% else %}
-<p class="card-text post-contents-text">未記入</p>
-{% endif %}
-
-  {% if post.post.post_photo %}
-  <img class="review-post-photo mb-3" src="{{ post.post.post_photo.url }}">
-  {% endif %}
-   
-<div class="like-outer">
-    <form method="POST">
-    {% csrf_token %}
-    {% if post.post.pk in liked_list %}
-        <div id="like" name="{{ post.post.pk}}"><i class="fas fa-lg fa-star star-yellow"></i></div>
+<div class="post-area">
+  <div class="post-header">
+    <div class="post-header-photo">
+      <a href="{% url 'accounts:reviewer' post.post.author.id %}" >
+        <img src="{% if post.post.author.thumbnail %}{{ post.post.author.thumbnail.url }}
+          {% else %}{% static 'images/no_photo.png' %}
+          {% endif %}" class="post-profile-photo">
+        </a>
+      </div>
+      <div class="post-info">
+        <ul>
+          <li><a class="post-info-link" href="{% url 'accounts:reviewer' post.post.author.id %}" >{{ post.post.author }}</a></li>
+          <li><a class="post-info-link" href="{% url 'timeline:post_list' post.post.product_id.racket_url_name %}" >{{ post.post.product_id.racket_name }}</a></li>
+          <li>{{ post.post.created_at | date:"Y年n月j日 H時" }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="post-contents-text">
+    {% if post.post.text %}
+      <p class="post-contents-text-mb0">{{ post.post.text }}</p>
     {% else %}
-        <div id="like" name="{{ post.post.pk}}"><i class="far fa-lg fa-star star-yellow w-25"></i></div>      
+      <p class="post-contents-text-mb0">未記入</p>
     {% endif %}
-</form>
-<div class="like-count" name="{{ post.post.pk}}-count">{{ post.post.like_set.count }}</div>
+    </div>
+    {% if post.post.post_photo %}
+      <img class="post-contents-photo" src="{{ post.post.post_photo.url }}">
+    {% endif %}
+    <div class="like-area">
+      <form method="POST">
+      {% csrf_token %}
+        {% if post.post.pk in liked_list %}
+          <div id="like" name="{{ post.post.pk}}"><i class="fas fa-lg fa-star star-yellow"></i>
+          </div>
+          {% else %}
+          <div id="like" name="{{ post.post.pk}}"><i class="far fa-lg fa-star star-yellow"></i>
+          </div>      
+          {% endif %}
+      </form>
+    <p name="{{ post.post.pk}}-count">{{ post.post.like_set.count }}</p>
+  </div>
 </div>
-  </div><!--card-body "-->
-
-
-</div><!--card mb-5 text-left w-100  width="150px" height="150px"-->
 {% endfor %}
-
-
-
-  <ul class="pagination justify-content-center pb-2">
-  {% if page_obj.has_previous %}
-    <li class="page-item">
-      <a class="page-link text-info" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">&laquo;</a>
-    </li>
-  {% else %}
-    <li class="page-item disabled"><span class="page-link">
-      &laquo;</span></a>
-    </li>
-  {% endif %}
-  {% for i in page_obj.paginator.page_range %}
-  {% if page_obj.number == i %}
-    <li class="page-item disabled"><span class="page-link">{{ i }}</span></li>
-  {% else %}
-    <li class="page-item"><a class="page-link text-info" href="?page={{ i }}">{{ i }}</a></li>
-  {% endif %}
-  {% endfor %}
-  {% if page_obj.has_next %}
-    <li class="page-item">
-      <a class="page-link text-info" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
-    </li>
-  {% else %}
-    <li class="page-item disabled">
-      <span class="page-link">&raquo;</span>
-    </li>
-  {% endif %}
-  </ul>
+{% include 'pagination.html' %}
 
 {% else %}
-<p>いいねをしたレビューはありません</p>
 {% endif %}
 
 </main>

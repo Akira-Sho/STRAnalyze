@@ -1,170 +1,109 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
-{% block title %}トップページ | STanalyze{% endblock %}
+{% block title %}ポストリスト | STRanalyze{% endblock %}
 {% block contents %}
 <main>
-
-<!--ここにラケットの情報を記述-->
 <div class="content-info">
+  <div class="left-content-info">
+    <img src="{% if product_data.racket_photo %}{{ product_data.racket_photo.url}}
+    {% else %}
+      {% static 'images/no_str_image.jpeg' %}
+    {% endif %}">
+  </div>
 
-<div class="left-content-info">
-<img src="{% if product_data.racket_photo %}{{ product_data.racket_photo.url}}{% else %}{% static 'images/no_str_image.jpeg' %}{% endif %}">
-</div><!--left-content-info-->
-
-<div class="right-content-info">
-
-<div class="content-description">
-<ul>
-<li>{{ product_data.racket_name }}</li>
-<li>{{ product_data.brand }}</li>
-<li>{{ product_data.recommend_position }}</li>
-</ul>
-</div><!--content-description-->
-</div><!-- class="right-content-info-->
-
-</div><!--content-info-->
-
+  <div class="right-content-info">
+    <div class="content-description">
+      <ul>
+        <li>{{ product_data.racket_name }}</li>
+        <li>{{ product_data.brand }}</li>
+        <li>{{ product_data.recommend_position }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 {% if user.is_authenticated %}
   <p class="cp_link"><a href="{% url 'timeline:post_create' product_data.racket_url_name  %}">レビューを投稿する→</a></p>
- {% else %}
-  <p class="postlist-guid-p">ログインすればレビューを投稿できるようになり、投稿したユーザーの情報を確認できます。</p>
- {% endif %}
-
+{% else %}
+  <p class="post-guid-p">ログインすればレビューを投稿できるようになり、投稿したユーザーの情報を確認できます。</p>
+{% endif %}
 
 <p class="post-guid-p">投稿数：{{ object_count }}件</p>
-<!--ここまでは全てcssを適用させている-->
-<!--以下はbootstrapとcssを適用-->
-
 {% if object_list %}
-{% for post in object_list %}
+  {% for post in object_list %}
+    <div class="post-area">
+      <div class="post-header">
+      {% if user.is_authenticated %}
+        <div class="post-header-photo">
+          <a href="{% url 'accounts:reviewer' post.author.id %}">
+          <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
+          {% else %}
+            {% static 'images/no_photo.png' %}
+          {% endif %}" class="post-profile-photo">
+          </a>
+        </div>
+        <div class="post-info">
+          <ul>
+            <li><a class="post-info-link" href="{% url 'accounts:reviewer' post.author.id %}">{{ post.author }}</a></li>
+            <li>{{ post.created_at | date:"Y年n月j日 H時" }}</li>
+          </ul>
+        </div>
+      {% else %}
+        <div class="post-header-photo">
+          <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
+          {% else %}{% static 'images/no_photo.png' %}
+          {% endif %}" class="post-profile-photo">
+        </div>
+        <div class="post-info">
+          <ul>
+            <li>{{ post.author }}</li>
+            <li>{{ post.created_at | date:"Y年n月j日H時" }}</li>
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+      <div class="post-contents-text">
+      {% if post.text %}
+        <p>{{ post.text }}</p>
+      {% else %}
+        <p>未記入</p>
+      {% endif %}
+      </div>
 
-<div class="card mb-1 text-left w-100">
-  <div class="card-body post-contents">
-    <div class="row post-rev-sizedown">
-<!--ログインしているなら-->
-    {% if user.is_authenticated %}
-      <div class="col-1">
-      <a href="{% url 'accounts:reviewer' post.author.id %}"><img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo"></a>
-      </div><!--col1-->
+      {% if post.post_photo %}
+        <img class="post-contents-photo" src="{{ post.post_photo.url }}">
+      {% endif %}
 
-      <div class="col-10 ml-2">
-        <a href="{% url 'accounts:reviewer' post.author.id %}" class="link-secondary text-decoration-underline post-revname-date-text post-revname">{{ post.author }}</a><br>
-        
-        <div class="text-muted post-revname-date-text post-date-text">{{ post.created_at | date:"Y年n月j日 H時" }}</div>
-      </div><!--col10 ml-3-->
-    {% else %}
-    <div class="col-1">
-      <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo">
-      </div><!--col1-->
-
-      <div class="col-10 ml-3">
-        <a class="text-secondary text-decoration-none post-revname-date-text post-revname">{{ post.author }}</a><br>
-        <div class="text-muted post-revname-date-text post-date-text">{{ post.created_at | date:"Y年n月j日H時" }}</div>
-      </div><!--col10 ml-3-->
-    {% endif %}
-      </div><!--row-->
-
-<!--p class="card-text mt-2">{{ post.text | linebreaks }}</p-->
-{% if post.text %}
-<p class="card-text post-contents-text">{{ post.text }}</p>
-{% else %}
-<p class="card-text post-contents-text">未記入</p>
-{% endif %}
-
-  {% if post.post_photo %}
-  <img class="review-post-photo mb-2" src="{{ post.post_photo.url }}">
-  {% endif %}
-
-    {% if user.is_authenticated %}
-    {% if post.author.id == user.id %}
-  
-<div class="group">
-    <a class="btn btn-outline-info btn-sm post-2-button" href="{% url 'timeline:post_edit' product_data.racket_url_name post.pk %}">編集
-    </a>
-    
-    <a class="btn btn-outline-danger btn-sm post-2-button" href="{% url 'timeline:post_confirm_delete' product_data.racket_url_name post.pk %}">削除
-    </a>
-</div>
-
-    {% else %}
-
-<!-- likes -->
-  <div class="like-outer">
-    {% include 'like.html' %}
-  </div>
-        
-    {% endif %}
-    {% endif %}
-  </div><!--card-body "-->
-
-</div><!--card mb-5 text-left w-100  width="150px" height="150px"-->
-{% endfor %}
-
-<!--↓ページネーション-->
-
-  <ul class="pagination justify-content-center pb-2">
-  {% if page_obj.has_previous %}
-    <li class="page-item">
-      <a class="page-link text-info" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">&laquo;</a>
-    </li>
-  {% else %}
-    <li class="page-item disabled"><span class="page-link">
-      &laquo;</span></a>
-    </li>
-  {% endif %}
-  {% for i in page_obj.paginator.page_range %}
-  {% if page_obj.number == i %}
-    <li class="page-item disabled"><span class="page-link">{{ i }}</span></li>
-  {% else %}
-    <li class="page-item"><a class="page-link text-info" href="?page={{ i }}">{{ i }}</a></li>
-  {% endif %}
+      {% if user.is_authenticated %}
+        {% if post.author.id == user.id %}
+        <div class="button-area">
+          <ul>
+            <li><a class="btn btn-outline-info btn-sm" href="{% url 'timeline:post_edit' product_data.racket_url_name post.pk %}">編集</a></li>
+            <li><a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:post_confirm_delete' product_data.racket_url_name post.pk %}">削除</a></li>
+          </ul>
+        </div>
+        {% else %}
+        <div class="like-area">
+          <form method="POST">
+          {% csrf_token %}
+          {% if post.pk in liked_list %}
+            <div id="like" name="{{post.pk}}"><i class="fas fa-lg fa-star star-yellow"></i>
+            </div>
+          {% else %}
+            <div id="like" name="{{post.pk}}"><i class="far fa-lg fa-star star-yellow"></i>
+            </div>      
+          {% endif %}
+          </form>
+          <p name="{{post.pk}}-count">{{ post.like_set.count }}</p>
+        </div>
+        {% endif %}
+      {% endif %}
+    </div>
   {% endfor %}
-  {% if page_obj.has_next %}
-    <li class="page-item">
-      <a class="page-link text-info" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
-    </li>
-  {% else %}
-    <li class="page-item disabled">
-      <span class="page-link">&raquo;</span>
-    </li>
-  {% endif %}
-  </ul>
-
-
+<!--↓ページネーション-->
+{% include 'pagination.html' %}
 {% else %}
-<p class="postlist-guid-p">レビューはありません</p>
 {% endif %}
-
 </main>
-
-<!--script type="text/javascript">
-    $(document).ready(function(event){
-        $(document).on('click', '#like', function(event){
-            event.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'timeline:like' %}",
-                data: {
-                    'post_pk': $(this).attr('name'),
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'},
-                dataType: 'json',
-                success: function(response){
-                    selector = document.getElementsByName(response.post_pk);
-                    if(response.liked){
-                        $(selector).html("<i class='fas fa-lg fa-heart'></i>");
-                    }
-                    else {
-                        $(selector).html("<i class='far fa-lg fa-heart'></i>");
-                    }
-                    selector2 = document.getElementsByName(response.post_pk + "-count");
-                    $(selector2).text(response.count);
-                }
-            });
-        });
-    });
-  </script-->
 
 {% endblock %}

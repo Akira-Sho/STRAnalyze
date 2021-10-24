@@ -4,66 +4,44 @@
 {% block title %}{{ post.username }}{% endblock %}
 {% block contents %}
 <main>
-<div class="top-title">レビュー削除</div>
-
-<div class="card mb-1  w-100">
-  <div class="card-body post-contents">
-    <div class="row post-rev-sizedown">
-
-      <div class="col-1">
-        <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}{% else %}{% static 'images/no_photo.png' %}{% endif %}" class="rounded-circle profile-post-photo">
-      </div><!--col1-->
-
-      <div class="col-10 ml-3">
-        <a href="{% url 'accounts:reviewer' post.author.id %}" class="link-secondary text-decoration-underline  post-revname-date-text post-revname">{{ post.author }}</a><br>
-
-        <div class="text-decoration-underline post-revname-date-text post-date-text">
-        <a href="{% url 'timeline:post_list' post.product_id.racket_url_name %}" class="link-secondary">
-        {{ post.product_id.racket_name }}</a></div>
-        <br>
-        
-        <div class="text-muted post-revname-date-text  mypost-date-text">{{ post.created_at | date:"Y年n月j日 H時" }}</div>
-      </div><!--col10 ml-3-->
-
-      </div><!--row-->
-      {% if post.text %}
-      <p class="card-text post-contents-text">{{ post.text }}</p>
-      {% else %}
-      <p class="card-text post-contents-text">未記入</p>
-      {% endif %}
-
-  {% if post.post_photo %}
-  <img class="review-post-photo mb-2" src="{{ post.post_photo.url }}">
-  {% endif %}
-      </div><!--card-body "-->
-
-</div><!--card mb-5 text-left w-100  width="150px" height="150px"-->
-<!--p class="card-text mt-2">{{ post.text | linebreaks }}</p-->
-
-<div class="form-content mb-3">
-    <div class="row">
-    <div class="w-100">
+<div class="top-title">レビュー削除
+</div>
+<div class="post-area">
+  <div class="post-header">
+    <div class="post-header-photo">
+      <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
+        {% else %}{% static 'images/no_photo.png' %}
+        {% endif %}" class="post-profile-photo">
+    </div>
+    <div class="post-info">
+      <ul>
+        <li><a class="post-info-link" href="{% url 'accounts:reviewer' post.author.id %}">{{ post.author }}</a></li>
+        <li><a class="post-info-link" href="{% url 'timeline:post_list' post.product_id.racket_url_name %}">{{ post.product_id.racket_name }}</a></li>
+        <li>{{ post.created_at | date:"Y年n月j日 H時" }}</li>
+      </ul>
+    </div>
+  </div>
+  
+    {% if post.text %}
+      <p class="post-contents-text">{{ post.text }}</p>
+    {% else %}
+      <p class="post-contents-text">未記入</p>
+    {% endif %}
+    {% if post.post_photo %}
+      <img class="post-contents-photo mb-2" src="{{ post.post_photo.url }}">
+    {% endif %}
+  </div>
+    <div class="delete-guid">
     <form method="POST">
     {% csrf_token %}
-    <p class="post-guid-p">レビューを本当に削除しますか？</p>
-    <div class="group  mb-3">
-    <input class="btn btn-outline-danger btn-sm post-2-button" type="submit" value="削除">
-    </input>
+      <p class="post-guid-p pt-2 pb-3">レビューを本当に削除しますか？</p>
+      <div class="group">
+        <input class="btn btn-outline-danger btn-sm  mb-3" type="submit" value="削除"></input>
+        <a class="btn btn-outline-primary btn-sm  mb-3" href="{{request.META.HTTP_REFERER}}">戻る</a>
+      </div>
+    </div>
     </form>
-    <a class="btn btn-outline-primary btn-sm post-2-button" href="{{request.META.HTTP_REFERER}}">戻る
-    </a>
-    </div><!--group-->
-    
-    </div>
-    </div>
-    </div><!--form-content-->
-    </main>
+  </div>
+</div>
+</main>
 {% endblock %}
-
-<!--div  class="group">
-    <a class="btn btn-outline-danger btn-sm mb-3" href="{% url 'timeline:post_edit' post.id %}">編集
-    </a>
-    
-    <a class="btn btn-outline-info btn-sm mb-3" href="{% url 'timeline:post_confirm_delete' post.id %}">削除
-    </a>
-</div-->
