@@ -4,41 +4,37 @@
 {% load widget_tweaks %}
 {% block title %}レビュー編集 | STRanalyze{% endblock %}
 {% block contents %}
+
 <div class="top-title">レビュー編集
 </div>
-<div class="card mb-5">
-  <div class="card-body">
-    <div class="row">
-      <div class="post-profile-photo">
-        <img src="{% if user.thumbnail %}{{ user.thumbnail.url }}
-        {% else %}{% static 'images/no_photo.png' %}
-        {% endif %}" class="post-profile-photo">
-      </div>
-      <div class="mt-3 text-center">
+<div class="post-area">
+  <img src="{% if user.thumbnail %}{{ user.thumbnail.url }}
+  {% else %}{% static 'images/no_photo.png' %}
+  {% endif %}" class="post-profile-photo">
+    <div class="form-area">
         <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
+        {% csrf_token %}
           <div class="form-group">
             {{ form.text | add_class:'form-post-control form-post-font' }}
           </div>
-          <div class="mt-3 form-post-font">
+          <div class="form-post-font">
             {{ form.photo | add_class:'form-post-control form-post-font' }}
           </div>
-          <div class="text-center">
+          <div class="preview-photo">
             {% if form.instance.img %}
-              <img src="{{ form.instance.img }}" class="post-contents-photo mt-1">
+              <img src="{{ form.instance.img }}" class="post-contents-photo">
             {% else %}
-              <img id="mainImage" src="" class="post-contents-photo mt-1">
+              <img id="mainImage" src="" class="post-contents-photo">
             {% endif %}
           </div>
-
-          <div class="group">
-            <input class="btn btn-outline-info btn-sm" type="submit" value="保存"></input>
-            <a class="btn btn-outline-primary btn-sm" href="{{ request.META.HTTP_REFERER }}">戻る</a>
+          <div class="button-area">
+            <ul>
+              <li><input class="btn btn-outline-info btn-sm" type="submit" value="保存"></input></li>
+              <li><a class="btn btn-outline-primary btn-sm" href="{{ request.META.HTTP_REFERER }}">戻る</a></li>
+            </ul>
           </div>
         </form>
       </div>
-    </div>
-  </div>
 </div>
 
 {% endblock %}

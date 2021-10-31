@@ -3,7 +3,6 @@
 {% load bootstrap4 %}
 {% block title %}{{ post.username }}{% endblock %}
 {% block contents %}
-<main>
 <div class="top-title">レビュー削除
 </div>
 <div class="post-area">
@@ -16,32 +15,33 @@
     <div class="post-info">
       <ul>
         <li><a class="post-info-link" href="{% url 'accounts:reviewer' post.author.id %}">{{ post.author }}</a></li>
-        <li><a class="post-info-link" href="{% url 'timeline:post_list' post.product_id.racket_url_name %}">{{ post.product_id.racket_name }}</a></li>
+        <li><a class="post-info-link" href="{% url 'timeline:post_list' post.product_id.racket_url_name %}">
+        {{ post.product_id.racket_name }}</a></li>
         <li>{{ post.created_at | date:"Y年n月j日 H時" }}</li>
       </ul>
     </div>
   </div>
-  
+  <div class="post-contents-text">
     {% if post.text %}
-      <p class="post-contents-text">{{ post.text }}</p>
+      <p>{{ post.text }}</p>
     {% else %}
-      <p class="post-contents-text">未記入</p>
-    {% endif %}
-    {% if post.post_photo %}
-      <img class="post-contents-photo mb-2" src="{{ post.post_photo.url }}">
+      <p>未記入</p>
     {% endif %}
   </div>
-    <div class="delete-guid">
-    <form method="POST">
-    {% csrf_token %}
-      <p class="post-guid-p pt-2 pb-3">レビューを本当に削除しますか？</p>
-      <div class="group">
-        <input class="btn btn-outline-danger btn-sm  mb-3" type="submit" value="削除"></input>
-        <a class="btn btn-outline-primary btn-sm  mb-3" href="{{request.META.HTTP_REFERER}}">戻る</a>
-      </div>
-    </div>
-    </form>
-  </div>
+  {% if post.post_photo %}
+    <img class="post-contents-photo" src="{{ post.post_photo.url }}">
+  {% endif %}
 </div>
-</main>
+<div class="delete-area">
+  <form method="POST">
+  {% csrf_token %}
+    <p>レビューを本当に削除しますか？</p>
+    <div class="button-area">
+      <ul>
+        <li><input class="btn btn-outline-danger btn-sm" type="submit" value="削除"></input></li>
+        <li><a class="btn btn-outline-primary btn-sm" href="{{request.META.HTTP_REFERER}}">戻る</a></li>
+      </ul>
+    </div>
+  </form>
+</div>
 {% endblock %}

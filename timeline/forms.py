@@ -6,11 +6,12 @@ class PostForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(PostForm, self). __init__(*args,**kwargs)
+        self.fields['photo'].widget.clear_checkbox_label= '←画像を削除する'
         """
         for field in self.fields.values():
                 field.widget.attrs['class'] = 'form-control'
         """
-    #photo = forms.ImageField(widget=forms.ClearableFileInput())
+    photo = forms.ImageField(widget=forms.ClearableFileInput())
     class Meta:
         model = Post
         fields = ('text','photo',)

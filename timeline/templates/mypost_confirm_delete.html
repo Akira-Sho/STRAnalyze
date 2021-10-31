@@ -5,43 +5,44 @@
 {% block contents %}
 <div class="top-title">レビュー削除
 </div>
-<div class="card  mb-1 w-100">
-  <div class="card-body post-area">
-    <div class="row post-area-sizedown">
-      <div class="col-1">
-        <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
-        {% else %}{% static 'images/no_photo.png' %}
-        {% endif %}" class="rounded-circle post-profile-photo">
-      </div>
-      <div class="col-10 ml-3">
-        <a href="{% url 'accounts:reviewer' post.author.id %}" class="link-secondary text-decoration-underline  post-name-date post-name">{{ post.author }}</a><br>
-        <div class="text-decoration-underline post-name-date post-date">
-          <a href="{% url 'timeline:post_list' post.product_id.racket_url_name %}" class="link-secondary">
-          {{ post.product_id.racket_name }}</a>
-        </div><br>
-        <div class="text-muted post-name-date  post-date-3">{{ post.created_at | date:"Y年n月j日 H時" }}
-        </div>
-      </div><!--col10 ml-3-->
-    </div><!--row-->
-    {% if post.text %}
-      <p class="card-text post-contents-text">{{ post.text }}</p>
-    {% else %}
-      <p class="card-text post-contents-text">未記入</p>
-    {% endif %}
-
-    {% if post.post_photo %}
-      <img class="post-contents-photo mb-2" src="{{ post.post_photo.url }}">
-    {% endif %}
+<div class="post-area">
+  <div class="post-header">
+    <div class="post-header-photo">
+      <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
+      {% else %}{% static 'images/no_photo.png' %}
+      {% endif %}" class="post-profile-photo">
+    </div>
+    <div class="post-info">
+      <ul>
+        <li><a class="post-info-link" href="{% url 'accounts:reviewer' post.author.id %}">
+        {{ post.author }}</a></li>
+        <li><a class="post-info-link" href="{% url 'timeline:post_list' post.product_id.racket_url_name %}">
+        {{ post.product_id.racket_name }}</a></li>
+        <li>{{ post.created_at | date:"Y年n月j日 H時" }}</li>
+      </ul>
     </div>
   </div>
-    <form method="POST">
-    {% csrf_token %}
-      <p class="post-guid-p">上記のレビューを本当に削除しますか？</p>
-      <div class="group">
-      <input class="btn btn-outline-danger btn-sm mb-3" type="submit" value="削除"></input>
-      <a class="btn btn-outline-primary btn-sm mb-3" href="{{request.META.HTTP_REFERER}}">戻る</a>
-      </div>
-    </form>
+  <div class="post-contents-text">
+    {% if post.text %}
+      <p>{{ post.text }}</p>
+    {% else %}
+      <p>未記入</p>
+    {% endif %}
   </div>
+  {% if post.post_photo %}
+    <img class="post-contents-photo" src="{{ post.post_photo.url }}">
+  {% endif %}
+</div>
+<div class="delete-area">
+  <form method="POST">
+  {% csrf_token %}
+    <p>レビューを本当に削除しますか？</p>
+    <div class="button-area">
+      <ul>
+        <li><input class="btn btn-outline-danger btn-sm" type="submit" value="削除"></input></li>
+        <li><a class="btn btn-outline-primary btn-sm" href="{{request.META.HTTP_REFERER}}">戻る</a></li>
+      </ul>
+    </div>
+  </form>
 </div>
 {% endblock %}

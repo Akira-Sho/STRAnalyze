@@ -1,72 +1,17 @@
 /*画面サイズが800px以下の時、ヘッダーのナビを消す*/
-@media screen and (max-width:800px) {
+@media screen and (max-width:810px) {
     .header-nav {
          display: none; 
         }
  }
 
  /*画面サイズが800px以上の時、ヘッダーのナビボタンを消す*/
- @media screen and (min-width: 800px) {
+ @media screen and (min-width: 811px) {
     .nav-button {
          display: none;
      }
     }
  
-/*画面サイズが1200px以上の時、ロゴをセンターに持ってくるが、できない*/
- @media screen and (min-width: 1200px) {
- .logo {
-    text-align: center;
-    }
-}
-/*
-@media screen and (max-width: 700px) {
-    .content-info {
-       flex-direction: column;
-       text-align: center;
-       align-items: center;
-       }
-}
-*/
-/*post_listの左コンテンツの文字サイズ 画面サイズが1000pxよりも大きければ40px*/
-
-
-@media screen and (min-width: 400px) {
-    .content-description li {
-        font-size: 25px;
-        margin: 5px  0 2px;
-        padding-bottom: 0px;
-    }
-}
-
-@media screen and (min-width: 300px) {
-    .right-content-info {
-        margin: 10px 0 3px;
-        width: 45%;
-        min-width: 250px;
-        min-height: 100px;
-        }
-}
-
-@media screen and (min-width: 769px) {
-    .content-description li {
-        font-size: 40px;
-        margin: 5px 0 20px;
-    }
-}
-
-@media screen and (min-width: 995px) {
-    .content-description li {
-        font-size: 50px;
-        margin: 10px 0 40px;
-    }
-}
-
-@media screen and (min-width: 1350px) {
-    .content-description li {
-        font-size: 70px;
-        margin: 15px 0 60px;
-    }
-}
 
 /*ヘッダー*/
 @media screen and (max-width: 440px) {
@@ -127,13 +72,11 @@
 @media screen and (max-width: 440px) {
     .nav-button div:nth-of-type(1){
         transform: translate(-50%,-6px);
-
     }
 }
 @media screen and (max-width: 440px) {
     .nav-button div:nth-of-type(3){
     transform: translate(-50%,6px);
-
     }
 }
 
@@ -160,14 +103,13 @@
         max-height: 220px;
         background-color:gainsboro;
         }
-
 }
 
 @media screen and (max-width: 768px) {
     .racket-title {
         color: black;
         font-size: 15px; 
-      }
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -192,7 +134,7 @@
         max-width: 90px;
         max-height: 140px;
         background-color:gainsboro;
-        }
+    }
 
 }
 
@@ -211,11 +153,85 @@
     }
 }
 
-@media screen and (max-width: 414px) {
-    .cp_link a{
-        font-size: 24px;
+@media screen and (max-width: 767px) {
+    .left-content {
+        margin: 10px 0 0;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    .right-content {
+        margin-top: 20px;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 439px) {
+    .right-content {
+        background-color: #e3e3e3;
+        margin: 0;
+        min-height: 50px;
+    }
+}
+
+@media screen and (min-width: 300px) {
+    .right-content {
+        width: 45%;
+        min-width: 200px;
+        min-height: 50px;
+        }
+}
+
+
+/*700px以上の時*/
+@media screen and (min-width: 700px) {
+    .right-content li {
+        font-size: 40px;
+        margin: 5px 0 20px;
+    }
+}
+
+/*700px以下の時*/
+@media screen and (max-width: 700px) {
+    .right-content li {
+        font-size: 30px;
+        margin: 5px  0 20px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .right-content li {
+        font-size: 25px;
+        margin: 5px 0 15px;
+    }
+}
+
+@media screen and (max-width: 439px) {
+    .right-content li {
+        font-size: 12px;
+        margin: 3px 0 3px;
+        padding-bottom: 0px;
+    }
+}
+
+@media screen and (max-width: 539px) {
+    .review-link {
+        padding: 10px 0 10px 0;
+    }
+}
+
+@media screen and (max-width: px) {
+    .review-link a{
         margin-top: 0;
         padding: 0;
+    }
+}
+
+@media screen and (max-width: 439px) {
+    .review-link a{
+        font-size: 22px;
+        margin-top: 0;
     }
 }
 
@@ -230,6 +246,13 @@
         font-size: 18px;
         margin-bottom: 4px;
         padding-top: 5px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .post-count {
+        font-size: 15px;
+        padding: 0;
     }
 }
 
@@ -252,8 +275,6 @@
         font-size: 5px;
     }
 }
-
-
 
 @media screen and (max-width: 500px) {
     .post-profile-photo {
@@ -357,9 +378,9 @@
     }
 }
 
-@media screen and (max-width: 600px) {
-    .profile-font {
-        font-size: 15px;
+@media screen and (max-width: 500px) {
+    .profile li {
+        font-size: 13px;
     }
 }
 
@@ -394,14 +415,14 @@
 }
 
 @media screen and (max-width: 720px) {
-    .messages{
+    .messages {
         height: 10px;
         margin: 0 0 55px;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .messages{
+    .messages {
         height: 10px;
         margin: 0 0 55px;
     }
@@ -426,5 +447,3 @@
     font-size: 7px;
 }
 }
-
-

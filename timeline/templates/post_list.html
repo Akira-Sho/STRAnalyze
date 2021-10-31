@@ -1,34 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}ポストリスト | STRanalyze{% endblock %}
+{% block title %}投稿リスト | STRanalyze{% endblock %}
 {% block contents %}
-<main>
+
 <div class="content-info">
-  <div class="left-content-info">
+  <div class="left-content">
     <img src="{% if product_data.racket_photo %}{{ product_data.racket_photo.url}}
     {% else %}
       {% static 'images/no_str_image.jpeg' %}
     {% endif %}">
   </div>
-
-  <div class="right-content-info">
-    <div class="content-description">
+  <div class="right-content">
       <ul>
         <li>{{ product_data.racket_name }}</li>
         <li>{{ product_data.brand }}</li>
         <li>{{ product_data.recommend_position }}</li>
       </ul>
-    </div>
   </div>
 </div>
 
 {% if user.is_authenticated %}
-  <p class="cp_link"><a href="{% url 'timeline:post_create' product_data.racket_url_name  %}">レビューを投稿する→</a></p>
+  <div class="review-link"><a href="{% url 'timeline:post_create' product_data.racket_url_name  %}">レビューを投稿する→</a></div>
 {% else %}
-  <p class="post-guid-p">ログインすればレビューを投稿できるようになり、投稿したユーザーの情報を確認できます。</p>
+  <div class="post-guid-p">ログインすればレビューを投稿できるようになり、投稿したユーザーの情報を確認できます。</div>
 {% endif %}
 
-<p class="post-guid-p">投稿数：{{ object_count }}件</p>
+<div class="post-count">投稿数：{{ object_count }}件
+</div>
 {% if object_list %}
   {% for post in object_list %}
     <div class="post-area">
@@ -104,6 +102,4 @@
 {% include 'pagination.html' %}
 {% else %}
 {% endif %}
-</main>
-
 {% endblock %}

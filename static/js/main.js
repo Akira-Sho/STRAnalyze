@@ -8,7 +8,6 @@
 //        ? count.classList.remove('text-danger')
 //        : count.classList.add('text-danger');
 //    })
-
     window.onload = (() => {
         let img = document.getElementById('id_photo');
         let mainImage = document.getElementById('mainImage');

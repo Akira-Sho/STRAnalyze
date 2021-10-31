@@ -209,11 +209,12 @@ transform-origin: 0% 50%;
  * -------------------------------- */
 main {
   height: auto;
-  text-align: center;
-  max-width: 1800px;
-  margin: 20px;
+  width: 100%;
+  max-width: 700px;
+  margin: 20px auto 20px;
   background-color: whitesmoke;
   border-radius: 8px;
+  text-align: center;
 }
 
 .brand-button {
@@ -243,7 +244,6 @@ main {
   border-bottom: 1px solid black;
   margin-bottom: 10px;
 }
-
 
 
 /*index racket list*/
@@ -290,36 +290,41 @@ main {
   text-align: center;
 }
 
-.left-content-info {
+.left-content {
 margin: 10px 0 10px;
 width: 45%;
-min-width: 250px;
-min-height: 250px;
+min-width: 200px;
+min-height: 200px;
 }
 
-.left-content-info img {
+.left-content img {
   width: 100%;
 }
 
-.right-content-info {
+.right-content {
 margin: 10px 0 10px;
 width: 45%;
-min-width: 250px;
-min-height: 250px;
+min-width: 200px;
+height: auto;
+text-align: center;
 }
 
-.content-description ul {
+.right-content ul {
   padding :0 10px 0 15px;
+  margin-bottom: 0;
 }
 
-.content-description li{
+.right-content li{
   display: block;
   list-style: none;
   width: 100%;
-  text-align: center;
 }
 
-.cp_link a{
+.review-link {
+  padding: 0;
+}
+
+.review-link a{
   display: inline-block;
   font-size: 30px;
 	padding: 5px;
@@ -329,7 +334,7 @@ min-height: 250px;
   margin-top: 20px;
 }
 
-.cp_link a:hover {
+.review-link a:hover {
   transform: scale(1.3);
   color: #F4511E;
 }
@@ -338,18 +343,28 @@ min-height: 250px;
   padding-bottom: 10px;
 }
 
+.post-count {
+  padding: 0;
+  font-size: 25px;
+}
+
 /*postlist*/
+.auter-flame {
+  margin: 20px;
+}
 
 .post-area {
   position: relative;
   width: 100%;
+  max-width: 1000px;
   height: auto;
+  margin: 0 auto;
   word-wrap: break-word;
   background-color: #fff;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
   margin-bottom: 10px;
-  padding: 3px 10px 4px 10px;
+  padding: 3px 0 4px 0;
 }
 
 .post-header {
@@ -465,8 +480,8 @@ margin-top: -37px;
 	border-radius:50%;
 }
 
-.profile h1 {
-  padding: 30px;
+.profile-font {
+  font-size: 16px;
 }
 
 .profile ul {
@@ -476,7 +491,7 @@ margin-top: -37px;
 
 .profile li {
   margin: 10px;
-  
+  font-size: 22px;
 }
 
   .messages {
@@ -511,15 +526,30 @@ margin-top: -37px;
     margin-bottom: 15px;
   }
 
-  .empty-photo img[src=""] {
-    display: none;
-  }
+.preview-photo {
+  margin-top: 20px;
+}
 
-  .form-content {
-    max-width: 500px;
-    margin: auto;
-    min-height: 200px;
-  }
+.preview-photo img[src=""] {
+  display: none;
+}
+
+.form-area {
+  margin-top: 10px;
+}
+
+.form-content {
+  max-width: 500px;
+  margin: auto;
+  min-height: 200px;
+}
+
+.form-group {
+  word-break: break-all;
+  text-align: left;
+  margin: 10px 0 0 0;
+  font-size: 15px;
+}
   
   .form-group label {
    text-align: left;
@@ -528,18 +558,10 @@ margin-top: -37px;
   
   .form-group .form-check label {
     display: inline-block;
-  }
-  
-  
+  } 
+
 .container h1 {
   padding: 10px;
-}
-
-.form-group {
-  word-break: break-all;
-  text-align: left;
-  margin: 0;
-  font-size: 15px;
 }
 
 .form-post-font {
@@ -683,8 +705,17 @@ margin-top: -37px;
   font-size: 8px;
 }
 
-.delete-guid {
+.delete-area {
   margin: 5px 0 10px 0;
+}
+
+.delete-area p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.delete-area .button-area ul{
+  padding-bottom: 13px;
 }
 
 .profile{
