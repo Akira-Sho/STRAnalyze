@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load bootstrap4 %}
-{% block title %}{{ customuser.username }}{% endblock %}
+{% block title %} 投稿者情報 | STRANALYZE {% endblock %}
 {% block contents %}
-<div class="top-title">{{ object.username }}
+<div class="top-title">投稿者情報
 </div>
-<div class="post-area">
+<div class="contents-box">
+<h1>{{ object.username }}</h1>
     <div class="profile">
-        <ul>
-            <li><img src="{% if object.thumbnail %}{{ object.thumbnail.url }}
+        <div><img src="
+            {% if object.thumbnail %}{{ object.thumbnail.url }}
             {% else %}{% static 'images/no_photo.png' %}
-            {% endif %}" class="profile-photo"></li>
-            <li class="description-border">{% if object.description %}{{ object.description }}
+            {% endif %}" class="profile-photo">
+        </div>
+        <div class="description-border profile-text de-margin">{% if object.description %}{{ object.description }}
             {% else %}本文はありません。
-            {% endif %}</li>
-            <li>年齢：{% if object.age %}{{ object.age }}
+            {% endif %}
+        </div>
+        <ul>
+            <li>年齢：
+            {% if object.age %}{{ object.age }}
             {% else %}未設定
             {% endif %}</li>
             <li>性別：{% if object.gender %}{{ object.gender }}

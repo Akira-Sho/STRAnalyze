@@ -218,9 +218,10 @@ main {
 }
 
 .brand-button {
-  margin: 30px 0 30px;
-  padding-top: 10px;
+  padding: 20px 0 20px;
+  font-size: 18px;
 }
+
 .brand-button input {
   border: 0;
   border-bottom: 1px solid black;
@@ -247,39 +248,49 @@ main {
 
 
 /*index racket list*/
-.racket-container {
+.item-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.racket-box {
-  width: 100%;
-  background-color:gainsboro;
-}
-.racket-box a{
-  width: 100%;
-}
-.racket-photo {
-  max-width: 200px;
-  max-height: 200px;
-  width: 100%;
-  height: 100%;
+
+.item-box {
+  width: calc(25% - 15px); /* margin padding分を引く */
+  height: calc(25% - 15px);
+	margin: 3px 3px 15px ;
+  padding-bottom: 0 0 10px 0;
+  border-radius: 5px;
+  box-shadow:  #405BC4 1px 1px, 
+			rgba(63, 55, 131, 0.3) 3px 3px, 
+			rgba(86, 82, 136, 0.2) 5px 5px  5px 5px, 
+			rgba(28, 26, 143, 0.1) 7px 7px;
 }
 
-.racket-box:hover{
+.item-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.item-box:hover{
   transform:scale(1.1,1.1);
   transition:0.5s all;
 }
 
-.racket-title {
+.item-title {
+  text-align: left;
+  padding-left: 3px;
   color: black;
-  font-size: 20px; 
+  background-color: #cce;
+  font-size: 10px; 
+  border-radius: 5px;
 }
+
 
    /*ラケット詳細ページ*/
 .content-info {
- display: flex;
- flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   text-align: center;
@@ -295,10 +306,16 @@ margin: 10px 0 10px;
 width: 45%;
 min-width: 200px;
 min-height: 200px;
+box-shadow:
+rgba(63, 55, 131, 0.3) 3px 3px, 
+rgba(86, 82, 136, 0.2) 5px 5px 5px 5px, 
+rgba(28, 26, 143, 0.1) 7px 7px;
 }
 
 .left-content img {
   width: 100%;
+  height: 100%;
+  border-radius: 5px;
 }
 
 .right-content {
@@ -318,6 +335,7 @@ text-align: center;
   display: block;
   list-style: none;
   width: 100%;
+  text-shadow: gray 2px 2px 3px;
 }
 
 .review-link {
@@ -340,7 +358,8 @@ text-align: center;
 }
 
 .post-guid-p {
-  padding-bottom: 10px;
+  padding: 10px 0 10px;
+  color: orange;
 }
 
 .post-count {
@@ -353,7 +372,7 @@ text-align: center;
   margin: 20px;
 }
 
-.post-area {
+.contents-box {
   position: relative;
   width: 100%;
   max-width: 1000px;
@@ -374,8 +393,8 @@ text-align: center;
 .post-profile-photo {
   width: 70px;
   height: 70px;
-  margin-top: 5px;
-  border-radius: 50%
+  margin: 5px 0 0 7px;
+  border-radius: 50%;
 }
 
 .post-info {
@@ -465,23 +484,38 @@ margin-top: -37px;
 }
 
 /*投稿画面*/
+.mypage-info{
+  font-size: 30px;
+  padding-top: 13px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid black;
+}
+
 .review-area {
   display:inline-block; 
 }
 
+/*投稿者情報*/
 .profile {
-  margin: 40px 0 20px;
+  margin: 30px 0 20px;
+  background-color: white;
 }
 
-.profile-photo {
-  width: 100px;
-  height: 100px;
-  object-fit:cover;
-	border-radius:50%;
-}
-
-.profile-font {
+.profile-text {
   font-size: 16px;
+  text-align: left;
+  padding-left: 5px;
+  min-height: 50px;
+}
+
+.description-border {
+  border:6px silver double;
+  border-radius: 10px;
+}
+
+.de-margin {
+  padding: 0 10px 5px;
+  margin: 5px 10px 5px;
 }
 
 .profile ul {
@@ -491,7 +525,65 @@ margin-top: -37px;
 
 .profile li {
   margin: 10px;
+  padding-left: 15px;
   font-size: 22px;
+  text-align: left;
+  border-bottom: silver 1px solid;
+}
+
+
+/*マイページ*/
+.mypage-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%
+}
+
+.mypage-sidemenu {
+  margin: 20px 0 20px;
+  background-color: #e8e8e8;
+  font-size: 20px;
+  text-align: center;
+  display: block;
+}
+
+.mypage-sidemenu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.mypage-sidemenu a {
+  padding-top: 15px;
+  display: inline-block;
+  color: black;
+}
+
+.mypage-sidemenu a:hover {
+  font-weight: bold;
+  color: black;
+}
+
+.mypage-sidemenu a::after {
+  content: '';
+  display: block;
+  width: 0;
+  margin: 6px auto 0;
+  border-bottom: 1px solid black;
+  transition: width 0.3s ease-in-out;
+}
+
+
+
+.mypage-sidemenu a:hover::after {
+  width: 100%;
+}
+
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  object-fit:cover;
+	border-radius:50%;
 }
 
   .messages {
@@ -535,7 +627,7 @@ margin-top: -37px;
 }
 
 .form-area {
-  margin-top: 10px;
+  margin: 10px 0 10px;
 }
 
 .form-content {
@@ -546,7 +638,6 @@ margin-top: -37px;
 
 .form-group {
   word-break: break-all;
-  text-align: left;
   margin: 10px 0 0 0;
   font-size: 15px;
 }
@@ -573,12 +664,10 @@ margin-top: -37px;
   margin-bottom: 20px;
 }
 
-.description-border {
-  border:6px silver double;
-  border-radius: 10px;
-  }
 
-
+.color-black {
+  color: black;
+}
   
 .select-btn  {
   border: 2px solid #000;
@@ -592,7 +681,10 @@ margin-top: -37px;
   background: #000;
 }
 
-.content-opacity {
+.login-pass-link {
+  color: red;
+  font-size: 20px;
+  padding: 5px 0 5px;
 }
 
 .footer-nav {
@@ -686,8 +778,9 @@ margin-top: -37px;
 
 .form-post-control {
     display: block;
-    width: 100%;
+    width: 90%;
     padding: .250rem .75rem;
+    margin: 0 auto;
     font-size: 20px;
     line-height: 1.0;
     color: #212529;
@@ -718,49 +811,15 @@ margin-top: -37px;
   padding-bottom: 13px;
 }
 
-.profile{
-  background-color: white;
-  padding-right: 10px;
-}
 
-.mypage-photo {
-  width: 150px;
-  height: 150px;
-}
 
-.mypage-profile-info{
-  font-size: 30px;
-  padding-top: 13px;
-  border-bottom: 1px solid black;
-}
-
-.sidemenu-info {
-  font-size: 30px;
-  border-bottom: 1px solid black;
-}
-
-.mypage-sidemenu {
-  margin: 20px 0 20px;
-  background-color: #e8e8e8;
-  font-size: 20px;
-  text-align: center;
-  display: block;
-}
-
-.mypage-sidemenu a {
-  padding: 5px;
-  color: #666666;
-  transition: 0.15s;
-}
-
-.mypage-sidemenu a:hover{
-  color: black;
-  background-color: white;
-  border: none;
-}
 
 .form-group-sign {
   margin-bottom: 50px;
+}
+
+.formerror-message {
+  text-align: left;
 }
 
 .footer{

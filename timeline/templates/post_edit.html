@@ -2,12 +2,12 @@
 {% load static %}
 {% load bootstrap4 %}
 {% load widget_tweaks %}
-{% block title %}レビュー編集 | STRanalyze{% endblock %}
+{% block title %}レビュー編集 | STRANALYZE{% endblock %}
 {% block contents %}
 
 <div class="top-title">レビュー編集
 </div>
-<div class="post-area">
+<div class="contents-box">
   <img src="{% if user.thumbnail %}{{ user.thumbnail.url }}
   {% else %}{% static 'images/no_photo.png' %}
   {% endif %}" class="post-profile-photo">

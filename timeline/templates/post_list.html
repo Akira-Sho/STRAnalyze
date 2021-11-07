@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}投稿リスト | STRanalyze{% endblock %}
+{% block title %}投稿リスト | STRANALYZE{% endblock %}
 {% block contents %}
 
 <div class="content-info">
@@ -22,14 +22,14 @@
 {% if user.is_authenticated %}
   <div class="review-link"><a href="{% url 'timeline:post_create' product_data.racket_url_name  %}">レビューを投稿する→</a></div>
 {% else %}
-  <div class="post-guid-p">ログインすればレビューを投稿できるようになり、投稿したユーザーの情報を確認できます。</div>
+  <div class="post-guid-p">ログインすればレビューを投稿できるようになります。</div>
 {% endif %}
 
 <div class="post-count">投稿数：{{ object_count }}件
 </div>
 {% if object_list %}
   {% for post in object_list %}
-    <div class="post-area">
+    <div class="contents-box">
       <div class="post-header">
       {% if user.is_authenticated %}
         <div class="post-header-photo">

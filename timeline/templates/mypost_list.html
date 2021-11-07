@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}マイページ{% endblock %}
+{% block title %}投稿済みリスト | STRANALYZE{% endblock %}
 {% block contents %}
-<div class="top-title">投稿済みリスト</div>
+<div class="top-title">投稿済みリスト
+</div>
 {% if object_list %}
   {% for post in object_list %}
-    <div class="post-area">
+    <div class="contents-box">
       <div class="post-header">
         <div class="post-header-photo">
           <a href="{% url 'accounts:reviewer' post.author.id %}">
@@ -50,5 +51,5 @@
 
 {% else %}
 {% endif %}
-</main>
+
 {% endblock %}

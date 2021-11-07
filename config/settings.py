@@ -117,6 +117,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_FORMS = {
+    'login' : 'accounts.forms.MyLoginForm',
+    'signup' : 'accounts.forms.SignupForm',
+    'password_reset_from_key' : 'accounts.forms.MyPasswordResetFromKeyForm',
+    'password_reset' : 'accounts.forms.MyPasswordResetForm',
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

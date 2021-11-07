@@ -2,9 +2,11 @@
 {% load static %}
 {% load bootstrap4 %}
 {% load widget_tweaks %}
-{% block title %}新規投稿 | STRanalyze{% endblock %}
+{% block title %}レビュー投稿 | STRANALYZE{% endblock %}
 {% block contents %}
-<div class="post-area">
+<div class="top-title">レビュー投稿
+</div>
+<div class="contents-box">
   <img src="{% if user.thumbnail %}{{ user.thumbnail.url }}
     {% else %}{% static 'images/no_photo.png' %}
     {% endif %}" class="post-profile-photo">

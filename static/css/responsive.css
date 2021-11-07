@@ -86,73 +86,45 @@
     }
 }
 
-/*indexラケット一覧*/
-@media screen and (max-width: 440px) {
-    .racket-photo {
-        max-width: 100px;
-        max-height: 100px;
-        width: 100%;
-        height: 100%;
+/*index*/
+@media screen and (max-width: 500px) {
+    .brand-button {
+        padding: 10px 0 10px;
+        font-size: 10px;
     }
 }
 
-@media screen and (max-width: 768px) {
-    .racket-box {
-        /*width: 100%;*/
-        max-width: 135px;
-        max-height: 220px;
-        background-color:gainsboro;
-        }
-}
-
-@media screen and (max-width: 768px) {
-    .racket-title {
-        color: black;
-        font-size: 15px; 
+@media screen and (max-width: 400px) {
+    .brand-button {
+        font-size: 7px;
     }
 }
 
-@media screen and (max-width: 480px) {
-    .racket-box {
-        /*width: 100%;*/
-        max-width: 105px;
-        max-height: 140px;
-        background-color:gainsboro;
-    }
-
-}
-
-@media screen and (max-width: 480px) {
-    .racket-title {
-        color: black;
-        font-size: 10px; 
+@media screen and (max-width: 340px) {
+    .brand-button {
+        font-size: 4px;
     }
 }
 
-@media screen and (max-width: 414px) {
-    .racket-box {
-        max-width: 90px;
-        max-height: 140px;
-        background-color:gainsboro;
-    }
-
-}
-
-@media screen and (max-width: 414px) {
-    .racket-title {
-        color: black;
-        font-size: 10px; 
+@media screen and (max-width: 450px) {
+    .item-box {
+        width: calc(33% - 6px);
+        height: calc(33% - 6px);
+	    margin: 2px;
+	    padding: 1px;
+        
     }
 }
 
-@media screen and (max-width: 346px) {
-    .racket-box {
-        max-width: 80px;
-        max-height: 140px;
-        background-color:gainsboro;
+
+
+@media screen and (max-width: 450px) {
+    .item-title {
+        font-size: 8px; 
     }
 }
 
+/*post-list*/
 @media screen and (max-width: 767px) {
     .left-content {
         margin: 10px 0 0;
@@ -379,6 +351,9 @@
 }
 
 @media screen and (max-width: 500px) {
+    .profile{
+        margin: 10px 0 10px;
+    }
     .profile li {
         font-size: 13px;
     }
@@ -388,6 +363,12 @@
     .sidemenu-info {
         font-size: 20px;
     }
+}
+
+@media screen and (max-width: 500px) {
+.mypage-sidemenu li {
+    
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -405,7 +386,7 @@
 @media screen and (max-width: 600px) {
 .login-font-size {
     font-size: 15px;
-}
+    }
 }
 
 @media screen and (max-width: 500px) {

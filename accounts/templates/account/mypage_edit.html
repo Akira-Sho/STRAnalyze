@@ -3,32 +3,29 @@
 {% load static %}
 {% load widget_tweaks %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-{% block title %}プロフィール | STRanalyze{% endblock %}
+{% block title %}プロフィール編集 | STRANALYZE{% endblock %}
 {% block contents %}
-<div class="container">
-        <div class="top-title">プロフィール</div>
-            <div class="card">
-                <div class="card-body">
-                    <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="form-group">
-          <!--div class="input-group-pretend">
+
+<div class="top-title">プロフィール編集</div>
+<div class="contents-box">
+  <div class="form-area">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+        <!--div class="form-group">
+          <div class="input-group-pretend">
           <span class="imput-group-text" id="photo"></span>
           </div-->
-        <div class="form-group ">
+        <div class="form-group">
          <label>ユーザーネーム</label>
-        {{ form.username | add_class:'form-control2 form-height post-font-size' }}
+        {{ form.username | add_class:'form-post-control form-post-font' }}
         </div>
          
-        <div class="custom-file mt-3 mb-2" id="customFile">
+         <div class="form-group">
+        
         <label>プロフィール画像</label><br>
-            {{ form.photo | add_class:'form-control2 custom-file-input post-font-size' }}
-
-            <!--label for="photo" class="custom-file-label">投稿画像を選択</label-->
-
-            </div>
-          </div><!--form-group-->
-        <div class="text-center empty-photo">
+            {{ form.photo | add_class:'form-post-control form-post-font' }}
+          </div>
+        <div class="preview-photo">
         {% if form.instance.img %}
         <img src="{{ form.instance.img }}" class="profile-photo">
         {% else %}
@@ -38,32 +35,36 @@
         
         <div class="form-group">
         <label>自己紹介文</label>
-        {{ form.description | add_class:'form-control2 post-font-size ' }}
+        {{ form.description | add_class:'form-post-control form-post-font' }}
         </div>
-        <div class="form-group mt-3">
+        <div class="form-group">
         <label>年齢</label>
-        {{ form.age | add_class:'form-control2 form-height post-font-size' }}
+        {{ form.age | add_class:'form-post-control form-post-font' }}
         </div>
         <div class="form-group">
         <label>性別</label>
-        {{ form.gender | add_class:'form-control2 form-height post-font-size' }}
+        {{ form.gender | add_class:'form-post-control form-post-font' }}
         </div>
         <div class="form-group">
         <label>ポジション</label>
-        {{ form.position | add_class:'form-control2 form-height post-font-size' }}
+        {{ form.position | add_class:'form-post-control form-post-font' }}
         </div>          
         <div class="form-group">
         <label>競技経験年数</label>
-        {{ form.history | add_class:'form-control2 form-height post-font-size' }}
+        {{ form.history | add_class:'form-post-control form-post-font' }}
         </div>  
-                    <div  class="group mt-2 mb-1">
-                    <input class="btn btn-outline-info btn-sm post-2-button" type="submit" value="保存"></input>
-                    <a class="btn btn-outline-primary btn-sm post-2-button" href="{{ request.META.HTTP_REFERER }}">戻る
-                    </a>
-                    </div>
-                    </form>
-                </div>
-            </div>
+
+        <div  class="button-area mt-1">
+        <ul>
+            <li><input class="btn btn-outline-info btn-sm" type="submit" value="保存"></input></li>
+          <li><a class="btn btn-outline-primary btn-sm" href="{{ request.META.HTTP_REFERER }}">戻る
+          </a></li>
+          </ul>
+          </div>
+          </div>
+          </form>
+          </div>
+        </div>
 </div>
 {% endblock %}
 {% block js %}
