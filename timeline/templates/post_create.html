@@ -20,10 +20,11 @@
         {{ form.photo | add_class:'form-post-control form-post-font' }}
       </div>
       <div class="preview-photo">
-        {% if form.instance.img %}
-          <img src="{{ form.instance.img }}" class="post-contents-photo">
-        {% else %}
+        {% if form.instance.photo %}
           <img id="mainImage" src="" class="post-contents-photo">
+        {% else %}
+          <img id="mainImage" src="{{ form.instance.photo }}" class="post-contents-photo">
+          
         {% endif %}
       </div>
       <div class="button-area">

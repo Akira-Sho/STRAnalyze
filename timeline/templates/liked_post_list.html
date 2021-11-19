@@ -19,7 +19,7 @@
       <div class="post-info">
         <ul>
           <li><a class="post-info-link" href="{% url 'accounts:reviewer' post.post.author.id %}" >{{ post.post.author }}</a></li>
-          <li><a class="post-info-link" href="{% url 'timeline:post_list' post.post.product_id.racket_url_name %}" >{{ post.post.product_id.racket_name }}</a></li>
+          <li><a class="post-info-link" href="{% url 'timeline:post_list' post.post.item.item_url_name %}" >{{ post.post.item.item_name }}</a></li>
           <li>{{ post.post.created_at | date:"Y年n月j日 H時" }}</li>
         </ul>
       </div>

@@ -3,12 +3,13 @@
 {% load bootstrap4 %}
 {% block title %}{{ customuser.username }}{% endblock %}
 {% block contents %}
-<div class="top-title">{{ customuser.username }}</div>
+<div class="top-title">{{ customuser.username }}
+</div>
 <div class="contents-box">
-<div class="form-area">
-    <form method="POST">
-    {% csrf_token %}
-    <div class="post-guid-p color-black">アカウントを本当に削除しますか？</div>
+    <div class="form-area">
+        <form method="POST">
+        {% csrf_token %}
+    <div class="post-guid-p text-danger">アカウントを本当に削除しますか？</div>
     <div  class="button-area">
     <input class="btn btn-outline-danger btn-sm" type="submit" value="削除する">
     </input>

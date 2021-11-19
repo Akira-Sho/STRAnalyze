@@ -5,14 +5,10 @@ from . import settings
 from accounts import views
 from django.views.generic import RedirectView
 
-
-
 urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('admincontroll/', admin.site.urls),
     path('', include('timeline.urls')),
-    #path('', include("django.contrib.auth.urls")),
     path('accounts/', include('allauth.urls')),
-    
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

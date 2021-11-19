@@ -17,14 +17,16 @@
           <div class="form-group">
             {{ form.text | add_class:'form-post-control form-post-font' }}
           </div>
-          <div class="form-post-font">
+          <div class="form-group">
             {{ form.photo | add_class:'form-post-control form-post-font' }}
           </div>
           <div class="preview-photo">
-            {% if form.instance.img %}
-              <img src="{{ form.instance.img }}" class="post-contents-photo">
-            {% else %}
+            {% if form.instance.photo %}
               <img id="mainImage" src="" class="post-contents-photo">
+            
+            {% else %}
+              <img  src="" class="post-contents-photo">
+              
             {% endif %}
           </div>
           <div class="button-area">

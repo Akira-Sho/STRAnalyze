@@ -45,7 +45,7 @@ class Account_DeleteView(LoginRequiredMixin,generic.DeleteView):
     success_url = reverse_lazy('timeline:index')
     
     def delete(self,request,*args,**kwargs):
-        messages.success(self.request, "退会しました。")
+        messages.success(self.request, "退会処理が完了しました。")
         return super().delete(request,*args,**kwargs)
 
 

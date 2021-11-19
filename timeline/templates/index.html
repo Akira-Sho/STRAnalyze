@@ -14,20 +14,24 @@
   </form>
 </div>
 
-  <div class="item-container">
-  {% for item in product_data %}
-      <div class="item-box">
-        <a href="{% url 'timeline:post_list' item.racket_url_name %}">
-          <img src="{% if item.racket_photo %}{{ item.racket_photo.url}}
-          {% else %}{% static 'images/no_str_image.jpeg' %}
-          {% endif %}" class="item-photo">
-          <div class="item-title">
-            {{ item.brand }}<br>{{ item.racket_name }}
-          </div>
-        </a>
-      </div>
-  {% endfor %}
+<div class="item-container">
+  {% for item in item_data %}
+  <div class="item-box">
+    <a href="{% url 'timeline:post_list' item.item_url_name %}">
+    <img src="
+      {% if item.item_photo %}{{ item.item_photo.url}}
+      {% else %}{% static 'images/no_str_image.jpeg' %}
+      {% endif %}" class="item-photo">
+    <div class="item-title">
+      <ul>
+        <li>{{ item.item_name }}</li>
+        <li>{{ item.brand_name }}</li>
+      </ul>
+    </div>
+    </a>
   </div>
+  {% endfor %}
+</div>
 
 {% include 'pagination.html' %}
 {% endblock %}

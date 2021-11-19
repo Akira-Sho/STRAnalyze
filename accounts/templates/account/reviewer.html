@@ -24,7 +24,8 @@
             {% endif %}</li>
             <li>性別：{% if object.gender %}{{ object.gender }}
             {% else %}未設定{% endif %}</li>
-            <li>現在のポジション：{% if object.position %}{{ object.position }}
+            <li>現在のポジション：
+            {% if object.position %}{{ object.position }}
             {% else %}未設定
             {% endif %}</li>
             <li>競技経験年数：{% if object.history %}{{ object.history }}

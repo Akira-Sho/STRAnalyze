@@ -26,5 +26,20 @@ function likes(event, user_pk, post_pk) {
     } else {
         location.href=myurl.login;
     }
-
 }
+
+/*
+関数作成 event,ユーザーpk、ポストpk
+ユーザーpkを参照
+if user_pkに値が入っているなら次の行の処理にすすむ、なら最後の行
+feachメソッドでユーザーpk、ポストpkを取得。
+    (リクエストやレスポンスなどを行えるまたはサーバー上のデータを取得できる
+        通信方法はpost、コンテンツタイプはjson、js cookie libraryでcsrfトークンを取得
+javascriptからのリクエストをjson文字列に変換？？？
+//非同期処理 時間がかかる処理が完了する前に別の処理が実行される仕組み
+thenは
+response.json()は、メソッドであり、responseを完全に読み取る
+引数=>{関数の本体}
+
+
+*/

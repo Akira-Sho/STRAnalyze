@@ -12,7 +12,7 @@ CustomUser = get_user_model()
 
 class Post(models.Model):
 	author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
-	product_id = models.ForeignKey('timeline.ProductModel', on_delete=models.CASCADE)
+	item = models.ForeignKey('timeline.Item', on_delete=models.CASCADE)
 	slug = models.SlugField(verbose_name="URLスラッグ（英語）",null=True)
 	text = models.TextField(verbose_name='本文',max_length=200,)
 	photo = models.ImageField(verbose_name='写真', blank=True, null=True, upload_to='images/')
@@ -25,21 +25,21 @@ class Post(models.Model):
 class Like(models.Model):
 	user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 	post = models.ForeignKey('Post', on_delete=models.CASCADE)
-	session = models.ForeignKey(Session, blank=True, null=True, on_delete=models.SET_NULL)
-	timestamp = models.DateTimeField(default=timezone.now)
+	timestamp = models.DateTimeField(verbose_name='日付',default=timezone.now)
 
 	class Meta:
 		unique_together = ('user', 'post')
+		ordering = ['-timestamp']
 
   
-class ProductModel(models.Model):
-    racket_name = models.CharField(verbose_name='ラケット名',max_length=30)
-    racket_url_name = models.CharField(verbose_name='ラケットurl表示名',max_length=30)
-    slug = models.SlugField(verbose_name="URLスラッグ（英語）",null=True)
-    brand = models.CharField(verbose_name='ブランド',max_length=30,choices = BRAND_CHOICES)
-    racket_photo = models.ImageField(verbose_name='ラケット写真', blank=True, null=True, upload_to='images/')
-    recommend_position = models.CharField(verbose_name='ポジション',max_length=5,choices = RACKET_POSITION_CHOICES)
-    release_date = models.DateField(verbose_name='発売日')
+class Item(models.Model):
+    item_name = models.CharField(verbose_name='アイテム名',blank=False,null=False,max_length=30)
+    item_url_name = models.CharField(verbose_name='アイテムurl表示名',max_length=30,default=False)
+    slug = models.SlugField(verbose_name="URL表示名",null=True)
+    brand_name = models.CharField(verbose_name='ブランド名',max_length=20,choices = BRAND_CHOICES,default=False)
+    item_photo = models.ImageField(verbose_name='アイテム画像', blank=True, null=True, upload_to='images/')
+    item_position = models.CharField(verbose_name='ポジション',max_length=5,choices = RACKET_POSITION_CHOICES,default=False)
+    release_date = models.DateField(verbose_name='発売月')
     display = models.BooleanField(default=False,verbose_name='表示')
   
   

@@ -30,6 +30,9 @@
  footer,header,hgroup,menu,nav,section {
      display:block;
  }
+ p {
+     margin-bottom: 0;
+ }
  nav ul {
      list-style:none;
  }

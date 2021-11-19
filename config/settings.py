@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'f&#t+jlzm!)$k642@l0p5fi-93(m#%vrvs$krxzcm-9jhhkg6='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#Falseにする理由は、普段は Trueにしておく。一時的に本番環境と同じ設定にするため
+
 DEBUG = True
 
 #ALLOWED_HOSTS = ['stranalyze.com','www.stranalyze.com',env('IP_ADDLESS')]

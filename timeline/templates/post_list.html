@@ -5,27 +5,29 @@
 
 <div class="content-info">
   <div class="left-content">
-    <img src="{% if product_data.racket_photo %}{{ product_data.racket_photo.url}}
+    <img src="{% if item_data.item_photo %}{{ item_data.item_photo.url}}
     {% else %}
       {% static 'images/no_str_image.jpeg' %}
     {% endif %}">
   </div>
   <div class="right-content">
       <ul>
-        <li>{{ product_data.racket_name }}</li>
-        <li>{{ product_data.brand }}</li>
-        <li>{{ product_data.recommend_position }}</li>
+        <li>{{ item_data.item_name }}</li>
+        <li>{{ item_data.brand_name }}</li>
+        <li>{{ item_data.item_position }}</li>
       </ul>
   </div>
 </div>
 
 {% if user.is_authenticated %}
-  <div class="review-link"><a href="{% url 'timeline:post_create' product_data.racket_url_name  %}">レビューを投稿する→</a></div>
+  <p class="review-link"><a href="{% url 'timeline:post_create' item_data.item_url_name  %}">レビューを投稿する→</a></p>
 {% else %}
-  <div class="post-guid-p">ログインすればレビューを投稿できるようになります。</div>
+  <p class="post-guid-p color-orange">ログインすればレビューを投稿できるようになります。</p>
 {% endif %}
 
-<div class="post-count">投稿数：{{ object_count }}件
+
+
+<div class="post-count">投稿数：{{ post_count }}件
 </div>
 {% if object_list %}
   {% for post in object_list %}
@@ -76,8 +78,8 @@
         {% if post.author.id == user.id %}
         <div class="button-area">
           <ul>
-            <li><a class="btn btn-outline-info btn-sm" href="{% url 'timeline:post_edit' product_data.racket_url_name post.pk %}">編集</a></li>
-            <li><a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:post_confirm_delete' product_data.racket_url_name post.pk %}">削除</a></li>
+            <li><a class="btn btn-outline-info btn-sm" href="{% url 'timeline:post_edit' item_data.item_url_name post.pk %}">編集</a></li>
+            <li><a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:post_confirm_delete' item_data.item_url_name post.pk %}">削除</a></li>
           </ul>
         </div>
         {% else %}
