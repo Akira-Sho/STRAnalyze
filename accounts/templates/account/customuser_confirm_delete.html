@@ -3,20 +3,21 @@
 {% load bootstrap4 %}
 {% block title %}{{ customuser.username }}{% endblock %}
 {% block contents %}
-<div class="top-title">{{ customuser.username }}
-</div>
-<div class="contents-box">
-    <div class="form-area">
+<h1 class="top-title">{{ customuser.username }}
+</h1>
+<article class="contents-box">
+    <article class="form-area">
         <form method="POST">
         {% csrf_token %}
-    <div class="post-guid-p text-danger">アカウントを本当に削除しますか？</div>
-    <div  class="button-area">
-    <input class="btn btn-outline-danger btn-sm" type="submit" value="削除する">
-    </input>
-    <a class="btn btn-outline-primary btn-sm" href="{{request.META.HTTP_REFERER}}">戻る
-    </a>
-    </form>
-    </div>
-    </div>
-    </div>
+            <div class="guid-text text-danger">アカウントを本当に削除しますか？
+            </div>
+            <nav class="button-area">
+                <ul>
+                    <li><input class="btn btn-outline-danger btn-sm" type="submit" value="削除する"></input></li>
+                    <li><a class="btn btn-outline-primary btn-sm" href="{{request.META.HTTP_REFERER}}">戻る</a></li>
+                </ul>
+            </nav>
+        </form>
+    </article>
+</article>
 {% endblock %}

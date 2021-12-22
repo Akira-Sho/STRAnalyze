@@ -3,54 +3,80 @@
 {% load bootstrap4 %}
 {% block title %}いいね済みリスト | STRANALYZE{% endblock %}
 {% block contents %}
-<div class="top-title">いいね済みリスト
-</div>
+<h1 class="top-title">いいね済みリスト
+</h1>
 {% if object_list %}
 {% for post in object_list %}
-<div class="contents-box">
-  <div class="post-header">
+<article class="contents-box">
+  <article class="post-header">
     <div class="post-header-photo">
       <a href="{% url 'accounts:reviewer' post.post.author.id %}" >
-        <img src="{% if post.post.author.thumbnail %}{{ post.post.author.thumbnail.url }}
+        <img src="
+          {% if post.post.author.thumbnail %}{{ post.post.author.thumbnail.url }}
           {% else %}{% static 'images/no_photo.png' %}
-          {% endif %}" class="post-profile-photo">
-        </a>
-      </div>
-      <div class="post-info">
+          {% endif %}" >
+      </a>
+    </div>
+    <article>
+      <nav class="post-header-info">
         <ul>
-          <li><a class="post-info-link" href="{% url 'accounts:reviewer' post.post.author.id %}" >{{ post.post.author }}</a></li>
-          <li><a class="post-info-link" href="{% url 'timeline:post_list' post.post.item.item_url_name %}" >{{ post.post.item.item_name }}</a></li>
+          <li><a href="{% url 'accounts:reviewer' post.post.author.id %}" >{{ post.post.author }}</a></li>
+          <li><a href="{% url 'timeline:post_list' post.post.item.slug %}" >{{ post.post.item.item_name }}</a></li>
           <li>{{ post.post.created_at | date:"Y年n月j日 H時" }}</li>
         </ul>
-      </div>
-    </div>
-    <div class="post-contents-text">
-    {% if post.post.text %}
-      <p class="post-contents-text-mb0">{{ post.post.text }}</p>
-    {% else %}
-      <p class="post-contents-text-mb0">未記入</p>
+      </nav>
+    </article>
+  </article>
+  <article class="post-contents">
+    {% if post.post.text %}<p class="post-contents-text-mb0">{{ post.post.text }}</p>
+    {% else %}<p class="post-contents-text-mb0">未記入</p>
     {% endif %}
-    </div>
     {% if post.post.post_photo %}
-      <img class="post-contents-photo" src="{{ post.post.post_photo.url }}">
+      <img src="{{ post.post.post_photo.url }}">
     {% endif %}
-    <div class="like-area">
-      <form method="POST">
-      {% csrf_token %}
-        {% if post.post.pk in liked_list %}
-          <div id="like" name="{{ post.post.pk}}"><i class="fas fa-lg fa-star star-yellow"></i>
-          </div>
-          {% else %}
-          <div id="like" name="{{ post.post.pk}}"><i class="far fa-lg fa-star star-yellow"></i>
-          </div>      
-          {% endif %}
-      </form>
+  </article>
+  <article class="like-area">
+    <form method="POST" action="{% url 'timeline:like' %}">
+    {% csrf_token %}
+      {% if post.post.pk in liked_list %}
+        <fieldset id="like" name="{{ post.post.pk}}"><i class="fas fa-lg fa-star star-yellow"></i>
+        </fieldset>
+      {% else %}
+        <fieldset id="like" name="{{ post.post.pk}}"><i class="far fa-lg fa-star star-yellow"></i>
+        </fieldset>      
+      {% endif %}
+    </form>
     <p name="{{ post.post.pk}}-count">{{ post.post.like_set.count }}</p>
-  </div>
-</div>
+  </article>
+</article>
 {% endfor %}
 {% include 'pagination.html' %}
-
 {% else %}
+<p class="guid-text">お気に入りした投稿はありません。</p>
 {% endif %}
+<script type="text/javascript">
+  $(document).ready(function(event){
+    $(document).on('click', '#like', function(event){
+        event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'timeline:like' %}",
+                data: {
+                    'post_pk': $(this).attr('name'),
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                dataType: 'json',
+                success: function(response){
+                selector = document.getElementsByName(response.post_pk);
+                if(response.liked){
+                    $(selector).html("<i class='fas fa-lg fa-star star-yellow'></i>");
+                }else{
+                    $(selector).html("<i class='far fa-lg fa-star star-yellow'></i>");
+                }
+                selector2 = document.getElementsByName(response.post_pk + "-count");
+                $(selector2).text(response.count);
+            }
+        });
+    });
+});
+</script>
 {% endblock %}

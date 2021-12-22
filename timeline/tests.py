@@ -1,3 +1,9 @@
 from django.test import TestCase
+from .models import Post,Item,Like
 
-# Create your tests here.
+
+#models
+
+#forms
+#views
+#template

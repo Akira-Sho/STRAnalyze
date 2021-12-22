@@ -3,34 +3,42 @@
 {% load bootstrap4 %}
 {% block title %}マイページ | {{ object.username }}{% endblock %}
 {% block contents %}
-<div class="container">
+<article class="container">
     <div class="row">
-        <h1>{{ object.username }}</h1>
-        <div class="mb-4">
-            <img src="{% if object.thumbnail %}{{ object.thumbnail.url }}
-            {% else %}{% static 'images/no_photo.png' %}
-            {% endif %}" class="rounded-circle mypage-photo">
+        <h1 class="top-title">{{ object.username }}</h1>
+        <div class="mypage-image-email">
+            <img src="
+                {% if object.thumbnail %}{{ object.thumbnail.url }}
+                {% else %}{% static 'images/no_photo.png' %}
+                {% endif %}" >
+            <p>{{ object.email }}</p>
         </div>
-        <div class="profile col-sm-8 rounded-1">
-                <div class="mypage-info">プロフィール</div>
-                <div class="description-border profile-text"> {% if object.description %}{{ object.description  | linebreaks }}{% else %}本文はありません。{% endif %}</div>
+        <article class="profile col-sm-8 rounded-1">
+            <h2 class="mypage-heading">プロフィール</h2>
+            <div class="description-border profile-text"> 
+                {% if object.description %}{{ object.description  | linebreaks }}
+                {% else %}本文はありません。
+                {% endif %}
+            </div>                
             <ul>
                 <li class="profile-font">年齢：{% if object.age %}{{ object.age }}{% else %}未設定{% endif %}</li>
                 <li class="profile-font">性別：{% if object.gender %}{{ object.gender }}{% else %}未設定{% endif %}</li>
                 <li class="profile-font">ポジション：{% if object.position %}{{ object.position  }}{% else %}未設定{% endif %}</li>
                 <li class="profile-font">競技経験年数：{% if object.history %}{{ object.history }}{% else %}未設定{% endif %}</li>
-            </ul>
-        </div>
-        <div class="mypage-sidemenu col-sm-4 rounded-1"> 
-            <div class="mypage-info">メニュー</div>
-            <ul>
-            <li><a class="sidemenu-button" href="{% url 'accounts:mypage_edit' object.id %}">プロフ編集</a></li>
-            <li><a class="sidemenu-button" href="{% url 'timeline:mypost_list' object.id %}">投稿済み一覧</a></li>
-            <li><a class="sidemenu-button" href="{% url 'timeline:liked_post_list' object.id %}">いいね済み一覧</a></li>
-            <li><a class="sidemenu-button" href="{% url 'account_reset_password' %}">パスワード変更</a></li>
-            <li><a class="sidemenu-button" href="{% url 'accounts:customuser_confirm_delete' object.id %}">アカウント削除</a></li>
-            </ul>
-        </div>  
+            </ul>            
+        </article>
+        <article class="mypage-sidemenu col-sm-4 rounded-1"> 
+            <h2 class="mypage-heading">メニュー</h2>
+            <nav>
+                <ul>
+                    <li><a class="sidemenu-button" href="{% url 'accounts:mypage_edit' object.id %}">プロフ編集</a></li>
+                    <li><a class="sidemenu-button" href="{% url 'timeline:mypost_list' object.id %}">投稿済み一覧</a></li>
+                    <li><a class="sidemenu-button" href="{% url 'timeline:liked_post_list' object.id %}">いいね済み一覧</a></li>
+                    <li><a class="sidemenu-button" href="{% url 'account_reset_password' %}">パスワード変更</a></li>
+                    <li><a class="sidemenu-button" href="{% url 'accounts:customuser_confirm_delete' object.id %}">アカウント削除</a></li>
+                </ul>
+            </nav>
+        </article>  
     </div>
-</div>
+</article>
 {% endblock %}

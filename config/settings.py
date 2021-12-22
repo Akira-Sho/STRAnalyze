@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
     'django.contrib.sites',
     'widget_tweaks',
     'allauth',
@@ -67,7 +68,6 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-                os.path.join(BASE_DIR, 'templates'), #必要ない説
                 os.path.join(BASE_DIR, 'templates', 'allauth')
                  ],
         'APP_DIRS': True,
@@ -184,8 +184,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT= 180
 FRONTEND_URL = "http://localhost:8000"
-
-
+SILENCED_SYSTEM_CHECKS = ["auth.W004"]
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO','https')
 #SECURE_SSL_REDIRECT = True

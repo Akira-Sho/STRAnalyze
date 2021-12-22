@@ -3,45 +3,41 @@
 {% load bootstrap4 %}
 {% block title %}レビュー削除 | STRANALYZE{% endblock %}
 {% block contents %}
-<div class="top-title">レビュー削除
-</div>
-<div class="contents-box">
-  <div class="post-header">
-    <div class="post-header-photo">
-      <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
-        {% else %}{% static 'images/no_photo.png' %}
-        {% endif %}" class="post-profile-photo">
-    </div>
-    <div class="post-info">
+<h1 class="top-title">レビュー削除
+</h1>
+<article class="contents-box">
+  <article class="post-header">
+    <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
+      {% else %}{% static 'images/no_photo.png' %}
+      {% endif %}">
+    <nav class="post-header-info">
       <ul>
-        <li><a class="post-info-link" href="{% url 'accounts:reviewer' post.author.id %}">{{ post.author }}</a></li>
-        <li><a class="post-info-link" href="{% url 'timeline:post_list' post.item.item_url_name %}">
+        <li><a href="{% url 'accounts:reviewer' post.author.id %}">{{ post.author }}</a></li>
+        <li><a href="{% url 'timeline:post_list' post.item.slug %}">
         {{ post.item.item_name }}</a></li>
         <li>{{ post.created_at | date:"Y年n月j日 H時" }}</li>
       </ul>
-    </div>
-  </div>
-  <div class="post-contents-text">
-    {% if post.text %}
-      <p>{{ post.text }}</p>
-    {% else %}
-      <p>未記入</p>
+    </nav>
+  </article>
+  <article class="post-contents">
+    {% if post.text %}<p>{{ post.text }}</p>
+    {% else %}<p>未記入</p>
     {% endif %}
-  </div>
-  {% if post.post_photo %}
-    <img class="post-contents-photo" src="{{ post.post_photo.url }}">
-  {% endif %}
-</div>
-<div class="delete-area">
+    {% if post.post_photo %}
+      <img src="{{ post.post_photo.url }}">
+    {% endif %}
+  </article>
+</article>
+<article class="delete-area">
   <form method="POST">
   {% csrf_token %}
     <p>レビューを本当に削除しますか？</p>
-    <div class="button-area">
+    <nav class="button-area">
       <ul>
         <li><input class="btn btn-outline-danger btn-sm" type="submit" value="削除"></input></li>
         <li><a class="btn btn-outline-primary btn-sm" href="{{request.META.HTTP_REFERER}}">戻る</a></li>
       </ul>
-    </div>
+    </nav>
   </form>
-</div>
+</article>
 {% endblock %}

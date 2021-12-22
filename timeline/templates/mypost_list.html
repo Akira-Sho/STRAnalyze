@@ -2,54 +2,52 @@
 {% load static %}
 {% block title %}投稿済みリスト | STRANALYZE{% endblock %}
 {% block contents %}
-<div class="top-title">投稿済みリスト
-</div>
+<h1 class="top-title">投稿済みリスト
+</h1>
 {% if object_list %}
   {% for post in object_list %}
-    <div class="contents-box">
-      <div class="post-header">
-        <div class="post-header-photo">
-          <a href="{% url 'accounts:reviewer' post.author.id %}">
-          <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
-            {% else %}
-              {% static 'images/no_photo.png' %}
-            {% endif %}" class="post-profile-photo">
-          </a>
-        </div>
-        <div class="post-info">
+    <article class="contents-box">
+      <article class="post-header">
+        <a href="{% url 'accounts:reviewer' post.author.id %}">
+          <img src="
+            {% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
+            {% else %}{% static 'images/no_photo.png' %}
+            {% endif %}" >
+        </a>
+        <nav class="post-header-info">
           <ul>
-            <li ><a class="post-info-link" href="{% url 'accounts:reviewer' post.author.id %}">{{ post.author }}</a></li>
-            <li><a class="post-info-link" href="{% url 'timeline:post_list' post.item.item_url_name %}">{{ post.item.item_name }}</a></li>
+            <li><a href="{% url 'accounts:reviewer' post.author.id %}">{{ post.author }}</a></li>
+            <li><a href="{% url 'timeline:post_list' post.item.slug %}">{{ post.item.item_name }}</a></li>
             <li>{{ post.created_at | date:"Y年n月j日 H時" }}</li>
           </ul>
-        </div>
-      </div>
-      <div class="post-contents-text">
-        {% if post.text %}
-          <p>{{ post.text }}</p>
-        {% else %}
-          <p>未記入</p>
+        </nav>
+      </article>
+      <article class="post-contents">
+        {% if post.text %}<p>{{ post.text }}</p>
+        {% else %}<p>未記入</p>
         {% endif %}
-        </div>
         {% if post.post_photo %}
           <img class="post-contents-photo" src="{{ post.post_photo.url }}">
         {% endif %}
-
+      </article>
+      <article>
         {% if post.author.id == user.id %}
-          <div  class="button-area">
+          <nav class="button-area">
             <ul>
-            <li><a class="btn btn-outline-info btn-sm" href="{% url 'timeline:mypost_edit' post.item.item_url_name post.id %}">編集</a>
-            </li>
-            <li><a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:mypost_confirm_delete' post.item.item_url_name post.id %}">削除</a>
-            </li>
+              <li>
+                <a class="btn btn-outline-info btn-sm" href="{% url 'timeline:mypost_edit' post.item.slug post.id %}">編集</a>
+              </li>
+              <li>
+                <a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:mypost_confirm_delete' post.item.slug post.id %}">削除</a>
+              </li>
             </ul>
-          </div>
+          </nav>
         {% endif %}
-      </div>
+      </article>
+    </article>
   {% endfor %}
- {% include 'pagination.html' %}
-
+{% include 'pagination.html' %}
 {% else %}
+<p class="guid-text">投稿はありません。</p>
 {% endif %}
-
 {% endblock %}

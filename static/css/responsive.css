@@ -1,107 +1,74 @@
 /*ヘッダー*/
 @media screen and (max-width: 500px) {
     .header {
-        width: 100%;
         height: 50px;
-        padding: 10px 0 10px;
-        box-shadow: 0 0 13px 0px #e3e3e3;
-        z-index: 6;
-    }
-}
-
-@media screen and (max-width: 440px) {
-    .header {
-        padding: 10px 0 10px;
-        box-shadow: 0 0 13px 0px #e3e3e3;
-        z-index: 6;
-    }
-}
-
-/*画面サイズが810px以下*/
-@media screen and (max-width:810px) {
-    .header-nav {
-         display: none; 
-        }
- }
-
- /*画面サイズが811px以上*/
- @media screen and (min-width: 811px) {
-    .nav-button {
-         display: none;
-     }
-    }
-
-@media screen and (max-width: 500px) {
-    .nav-button {
-        display: block;
-        width: 25px;
-        height: 25px;
-        margin-top: 3px;
-        background-color:whitesmoke;
-        position: fixed;
-        right: 20px;
-        z-index: 5;
-        box-shadow: 0 0 3px #333;;
     }
 }
 
 @media screen and (max-width: 500px) {
     .logo {
-        width: 200px;
+        margin:0 0 30px 20px;
         font-size: 20px;
-        margin-left: 20px;
-        white-space: nowrap;
-        font-size: 20px;
-        margin-bottom: 30px;
     }
 }
 
-@media screen and (max-width: 440px) {
-.logo {
-    margin-bottom: 30px;
-  }
-  .logo a {
-    display: block;
-    color: #666;
-    width: 100%;
-    align-items: center;
-  }
+/*画面サイズが811px以下*/
+@media screen and (max-width:830px) {
+    .header-nav {
+         display: none; 
+    }
+}
+
+ /*画面サイズが812px以上*/
+ @media screen and (min-width: 831px) {
+    .drawer-open-button {
+         display: none;
+    }
 }
 
 @media screen and (max-width: 500px) {
-    .nav-button div {
-        height: 1px;
+    .drawer-open-button {
+        width: 30px;
+        height: 30px;
+        margin-top: 3px;
+        right: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .scroll-top {
+        right: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .drawer-open-button div {
         width: 10px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        transition: 0.3s;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .nav-button div:nth-of-type(1){
+    .drawer-open-button div:nth-of-type(1){
         transform: translate(-50%,-6px);
     }
 }
 
 @media screen and (max-width: 500px) {
-    .nav-button div:nth-of-type(3){
+    .drawer-open-button div:nth-of-type(3){
     transform: translate(-50%,6px);
     }
 }
-@media screen and (max-width: 425px) {
+
+@media screen and (max-width: 500px) {
     .header-drawer-nav {
         padding: 50px 45px 30px 0px;
         height: 55%;
     }
-
-    .header-drawer-nav .nav-item a  {
+    .header-drawer-nav a  {
         width: 100px;
         height: 21px;
         font-size: 20px;
         line-height: 20px;
-        
     }
 }
 
@@ -114,8 +81,9 @@
 
 @media screen and (max-width: 500px) {
     .brand-button {
-        padding: 10px 0 10px;
+        padding: 10px 0;
         font-size: 10px;
+        font-weight: 300;
     }
 }
 
@@ -172,7 +140,7 @@
 /*post-list*/
 @media screen and (max-width: 767px) {
     .left-content {
-        margin: 10px 0 0;
+        margin-top: 10px;
     }
 }
 
@@ -195,17 +163,16 @@
         margin: 0;
         min-height: 50px;
         background-image: 
-    linear-gradient(#ffffff 1.5px, 
-    transparent 1.5px ),
-    linear-gradient(to right,
-    #ffffff 1.5px, rgb(230, 230, 235) 1.5px);
-  background-size: 10px 10px;
+            linear-gradient(#ffffff 1.5px, 
+                transparent 1.5px ),
+            linear-gradient(to right,
+            #ffffff 1.5px, rgb(230, 230, 235) 1.5px);
+        background-size: 10px 10px;
     }
 }
 
 @media screen and (min-width: 300px) {
     .right-content {
-        width: 45%;
         min-width: 200px;
         min-height: 40px;
     }
@@ -244,7 +211,7 @@
 
 @media screen and (max-width: 539px) {
     .review-link {
-        padding: 10px 0 10px 0;
+        padding: 10px 0;
         margin-top: 0;
     }
 }
@@ -263,24 +230,15 @@
 }
 
 @media screen and (max-width: 500px) {
-    .post-guid-p{
+    .guid-text {
         font-size: 13px;
         font-weight: 300;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .page-title {
-        font-size: 18px;
-        margin-bottom: 4px;
-        padding-top: 5px;
-    }
-}
-
-@media screen and (max-width: 500px) {
     .post-count {
         font-size: 15px;
-        padding: 0;
     }
 }
 
@@ -290,38 +248,32 @@
     }
 }
 
-/*省略可能？*/
 @media screen and (max-width: 500px) {
-    .post-info ul {
-        line-height: 60%;
-        padding: 3px 0 0;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .post-info li {
-        font-size: 5px;
-        font-weight: 300;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .post-profile-photo {
+    .post-header img {
         width: 30px;
         height: 30px;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .post-contents-text p{
+    .post-header-info ul {
+        line-height: 60%;
+    }
+    .post-header-info li {
+        font-size: 5px;
+        font-weight: 300;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .post-contents p {
         font-size: 13px;
         margin: 7px 5px 5px;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .post-contents-photo {
-        width: 40%;
+    .post-contents img {
         min-width: 25%;
         max-height: 600px;
         margin: 0 0 5px;
@@ -333,19 +285,19 @@
         margin: 0;
     }
     .button-area a {
-        font-size: 2px;
+        font-size: 15px;
     }
     .button-area input {
-        font-size: 2px;
+        font-size: 15px;
     }
 }
 
 @media screen and (max-width: 500px) {
     .button-area a {
-        font-size: 2px;
+        font-size: 15px;
     }
     .button-area input {
-        font-size: 2px;
+        font-size: 15px;
     }
 }
         
@@ -357,64 +309,46 @@
 
 @media screen and (max-width: 500px) {
     .star-yellow {
-        color: #ffd700;
         width: 20px;
         height: 20px;
     }
 }
 
-/*post create*/
-@media screen and (max-width: 500px) {
-    .form-post-font {
-    font-size: 6px;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .profile-photo { 
-        width: 50px;
-        height: 50px;
-        object-fit:cover;
-        border-radius:50%;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .form-group {
-        font-size: 7px;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .form-height {
-        height: 40px;
-        margin-bottom: 15px;
-    }
-}
-/*post create*/
+/*delete*/
 @media screen and (max-width: 500px) {
     .delete-area p {
         font-size: 15px;
     }
 }
 
-/*マイページ*/
+
+/*mypage*/
 @media screen and (max-width: 500px) {
-    .mypage-photo {
+    .profile-photo {
         width: 75px;
         height: 75px;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .mypage-profile-info {
+    .mypage-heading {
         font-size: 20px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .mypage-image-email img{
+        width: 75px;
+        height: 75px;
+    }
+    .mypage-image-email p {
+        font-size: 17px;
+        margin: 5px 0;
     }
 }
 
 @media screen and (max-width: 500px) {
     .profile{
-        margin: 10px 0 10px;
+        margin: 10px 0;
     }
     .profile li {
         font-size: 13px;
@@ -422,42 +356,58 @@
 }
 
 @media screen and (max-width: 600px) {
-    .sidemenu-info {
+    .mypage-sidemenu {
         font-size: 20px;
     }
 }
 
-@media screen and (max-width: 500px) {
-.mypage-sidemenu li {
-    
-  }
-}
-
 @media screen and (max-width: 768px) {
-    .sidemenu-button {
+    .mypage-sidemenu a {
         font-size: 15px;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .sidemenu-button {
+    .mypage-sidemenu a {
         font-size: 12px;
     }
 }
 
-@media screen and (max-width: 600px) {
-.login-font-size {
-    font-size: 15px;
+
+/*form*/
+@media screen and (max-width: 500px) {
+    .form-group a {
+        font-size: 7px;
+        margin: 5px;
     }
 }
 
 @media screen and (max-width: 500px) {
-.form-control {
-    font-size: 20px;
+    .form-post-font {
+        font-size: 6px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .form-control {
+        font-size: 20px;
     } 
 }
 
-/*メッセージ*/
+@media screen and (max-width: 600px) {
+    .login-font-size {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .errorlist ,.nonfield{
+        font-size: 10px;
+    } 
+}
+
+
+/*message*/
 @media screen and (max-width: 720px) {
     .messages {
         height: 10px;
@@ -486,9 +436,19 @@
     } 
 }
 
-/*フッター*/
-@media screen and (max-width: 480px) {
-    .footer-list a {
-    font-size: 7px;
+/*pagination*/
+@media screen and (max-width: 550px) {
+    .page-item a,span {
+        font-size: 15px;
+        padding: 8px;
+    }
 }
+
+/*footer*/
+@media screen and (max-width: 480px) {
+    .footer-nav a {
+    width: 70px;
+    height: 20px;
+    font-size: 7px;
+    }
 }

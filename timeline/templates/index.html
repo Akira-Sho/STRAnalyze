@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}ホーム | STRANALYZE{% endblock %}
 {% block contents %}
-<div class="brand-button">
+<article class="brand-button">
   <form action="{% url 'timeline:index' %}" method="post">
   {% csrf_token %}
     <input type="submit" name="button_all" value="ALL"></input><br>
@@ -12,26 +12,26 @@
     <input type="submit" name="button_srixon" value="SRIXON"></input>
     <input type="submit" name="button_gosen" value="GOSEN"></input>
   </form>
-</div>
-
-<div class="item-container">
+</article>
+<article class="item-container">
   {% for item in item_data %}
-  <div class="item-box">
-    <a href="{% url 'timeline:post_list' item.item_url_name %}">
-    <img src="
-      {% if item.item_photo %}{{ item.item_photo.url}}
-      {% else %}{% static 'images/no_str_image.jpeg' %}
-      {% endif %}" class="item-photo">
-    <div class="item-title">
-      <ul>
-        <li>{{ item.item_name }}</li>
-        <li>{{ item.brand_name }}</li>
-      </ul>
-    </div>
-    </a>
-  </div>
+    <section class="item-box">
+      <a href="{% url 'timeline:post_list' item.slug %}">
+        <img src="
+          {% if item.item_photo %}{{ item.item_photo.url}}
+          {% else %}{% static 'images/no_str_image.jpeg' %}
+          {% endif %}" 
+          class="item-photo"
+        >
+        <nav class="item-title">
+          <ul>
+            <li>{{ item.item_name }}</li>
+            <li>{{ item.brand_name }}</li>
+          </ul>
+        </nav>
+      </a>
+    </section>
   {% endfor %}
-</div>
-
+</article>
 {% include 'pagination.html' %}
 {% endblock %}
