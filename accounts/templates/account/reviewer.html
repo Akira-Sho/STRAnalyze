@@ -9,9 +9,7 @@
         <img src="
             {% if object.thumbnail %}{{ object.thumbnail.url }}
             {% else %}{% static 'images/no_photo.png' %}
-            {% endif %}"
-            class="profile-photo"
-        >
+            {% endif %}">
         <p class="description-border profile-text de-margin">
             {% if object.description %}{{ object.description }}
             {% else %}本文はありません。

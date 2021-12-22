@@ -23,6 +23,7 @@ def paginate_queryset(request, queryset, count):
         paginate_count = paginator.page(paginator.num_pages)
     return paginate_count
 
+
 def Index(request):
     if(request.method == 'POST'):
         form = BrandSearchForm(request.POST)
@@ -73,6 +74,7 @@ def Post_List_View(request,slug):
     }
     return render(request, 'post_list.html',params)
 
+
 @login_required
 def LikeView(request):
     if request.method =="POST":
@@ -93,6 +95,7 @@ def LikeView(request):
         }    
     if request.is_ajax():
         return JsonResponse(context)
+
 
 @login_required
 def Liked_PostListView(request,pk):
@@ -121,6 +124,7 @@ class MyPost_List_View(LoginRequiredMixin,generic.ListView):
     
     def get_queryset(self):
         return Post.objects.filter(author = self.request.user.id)
+
 
 @login_required
 def Post_Create_View(request,slug): #レビュー作成関数
@@ -171,6 +175,7 @@ class Post_DeleteView(LoginRequiredMixin, generic.DeleteView):
         if self.object.author == request.user: 
             messages.success(self.request, 'レビューを削除しました。')
         return super().delete(request, *args, **kwargs)
+    
     
 class MyPost_DeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Post

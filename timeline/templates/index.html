@@ -20,9 +20,7 @@
         <img src="
           {% if item.item_photo %}{{ item.item_photo.url}}
           {% else %}{% static 'images/no_str_image.jpeg' %}
-          {% endif %}" 
-          class="item-photo"
-        >
+          {% endif %}">
         <nav class="item-title">
           <ul>
             <li>{{ item.item_name }}</li>

@@ -12,17 +12,9 @@ class SignUpView(generic.CreateView):
     success_url = reverse_lazy('accounts:login')
     template_name = 'accounts/signup.html'
     
-    
-class MypageView(LoginRequiredMixin,generic.ListView):
-    model = CustomUser 
-    template_name = 'index.html'    
-    
 class MypageView(LoginRequiredMixin, generic.DetailView):
     model = CustomUser
-    #slug_field = "username"
-    #slug_url_kwarg = "username"
     template_name = 'account/mypage.html'
-
 
 class Mypage_Edit(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView): 
     model = CustomUser
@@ -37,7 +29,6 @@ class Mypage_Edit(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
 class ReviewerView(LoginRequiredMixin,generic.DetailView):
     model = CustomUser
     template_name = 'account/reviewer.html'
-
 
 class Account_DeleteView(LoginRequiredMixin,generic.DeleteView):
     model = CustomUser

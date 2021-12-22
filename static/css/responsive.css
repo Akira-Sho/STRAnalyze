@@ -1,4 +1,4 @@
-/*ヘッダー*/
+/*header*/
 @media screen and (max-width: 500px) {
     .header {
         height: 50px;
@@ -12,14 +12,12 @@
     }
 }
 
-/*画面サイズが811px以下*/
 @media screen and (max-width:830px) {
     .header-nav {
          display: none; 
     }
 }
 
- /*画面サイズが812px以上*/
  @media screen and (min-width: 831px) {
     .drawer-open-button {
          display: none;
@@ -324,7 +322,7 @@
 
 /*mypage*/
 @media screen and (max-width: 500px) {
-    .profile-photo {
+    .profile img {
         width: 75px;
         height: 75px;
     }
@@ -405,7 +403,6 @@
         font-size: 10px;
     } 
 }
-
 
 /*message*/
 @media screen and (max-width: 720px) {

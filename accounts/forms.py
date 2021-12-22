@@ -14,8 +14,7 @@ from timeline.widget import Image_Preview
 class MyLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-#認証URLを作成するために必要。settingsのFRONTEDの後にuidとtokenをつなげる。
+
 def get_activate_url(user):
     uid = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)

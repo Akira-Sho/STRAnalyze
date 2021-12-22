@@ -4,7 +4,7 @@
             <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
             <label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
         {% endif %}<br>
-            {{ widget.input_text }}:
+    {{ widget.input_text }}:
 {% endif %}
 <input type="{{ widget.type }}" name="{{ widget.name }}"
     {% include "django/forms/widgets/attrs.html" %} 
@@ -12,29 +12,3 @@
 {% if widget.include_preview %}
     <br><img src="" id="{{ widget.name }}-preview"  class="default-preview-img">
 {% endif %}
-
-<!--やっと全体が見えてきた。
-    get_contextを触れば、画像投稿フォームを改変させられる説ある
-    id属性に、widgetの文字があるということは、photo-previewはpreview.jsと繋がりがある
-構成・・・
-現在と、選択した画像urlのリンク
-チェックボックスの横にチェックボックスラベル
-変更: という文字
-ファイルを選択ボタン タイプはfile、nameにphoto,includeのattr.htmlにクラスが指定されている。
-ボタンの横、画像を選択していればパスを表示
-
-
-それぞれget_contextから送られてくる値・・・
-widget.is_initial...値が初期値とみなされるかどうかをboolで返す
-initial_text...画像urlそのもののテキスト
-value.url...
-value...
-if not widget.required 項目が入力必須かどうか
-checbox_name...
-checkbox_id...
-clear_checkbox_label
-input_text...
-type...
-name...フィールド名
-
--->
