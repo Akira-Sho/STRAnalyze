@@ -66,15 +66,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(default=False)
 
     objects = MyUserManager()
-    
+
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
     def get_username(self):
         return self.username
-    
+
     def __str__(self):
-            return f"{self.pk} {self.username}"
-    
+        return self.username
+
     class Meta:
         verbose_name_plural = 'CustomUser'

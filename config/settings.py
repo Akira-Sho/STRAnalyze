@@ -27,9 +27,7 @@ SECRET_KEY = 'f&#t+jlzm!)$k642@l0p5fi-93(m#%vrvs$krxzcm-9jhhkg6='
 
 DEBUG = True
 
-#ALLOWED_HOSTS = ['stranalyze.com','www.stranalyze.com',env('IP_ADDLESS')]
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['stranalyze.com','www.stranalyze.com','localhost','35.74.156.134']
 
 # Application definition
 
@@ -60,7 +58,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies" #クッキーで保存
 
 ROOT_URLCONF = 'config.urls'
 
@@ -90,9 +87,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.mysql',
-        'NAME':'config',
-        'USER':'root',
-        'PASSWORD':'pythonakira',
+        'NAME':'stranalyze',
+        'USER':'awsuser',
+        'PASSWORD':'pythonakira9',
         'HOST':'localhost',
         'PORT':'3306',
     }
@@ -147,7 +144,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
+#STATICFILES_DIRS = [
+#    BASE_DIR /'static'
+#]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -181,6 +181,7 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 DEFAULT_FROM_EMAIL = 'kamimu0501@icloud.com'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT= 180
 FRONTEND_URL = "http://localhost:8000"

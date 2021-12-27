@@ -17,7 +17,7 @@ class Post(models.Model):
 	created_at = models.DateTimeField(default=timezone.now)
  
 	def __str__(self):
-    	    return f"{self.pk} {self.author.username} {self.item.item_name}"
+    	    return f"{self.author.username} {self.item.item_name}"
 
 	class Meta:
     		ordering = ['-created_at']
