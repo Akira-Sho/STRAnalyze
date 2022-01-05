@@ -77,11 +77,9 @@
               <form method="POST">
                 {% csrf_token %}
                 {% if post.pk in liked_list %}
-                  <fieldset id="like" name="{{post.pk}}"><i class="fas fa-lg fa-star star-yellow"></i>
-                  </fieldset>
+                  <i class="fas fa-lg fa-star star-yellow" id="like" name="{{post.pk}}" ></i>
                 {% else %}
-                  <fieldset id="like" name="{{post.pk}}"><i class="far fa-lg fa-star star-yellow"></i>
-                  </fieldset>
+                  <i class="far fa-lg fa-star star-yellow" id="like" name="{{post.pk}}" ></i>
                 {% endif %}
               </form>
               <p name="{{post.pk}}-count">{{ post.like_set.count }}</p>

@@ -6,13 +6,13 @@
 <article class="container">
     <div class="row">
         <h1 class="top-title">{{ object.username }}</h1>
-        <div class="mypage-image-email">
+        <article>
             <img src="
                 {% if object.thumbnail %}{{ object.thumbnail.url }}
                 {% else %}{% static 'images/no_photo.png' %}
-                {% endif %}" >
-            <p>{{ object.email }}</p>
-        </div>
+                {% endif %}" class="mypage-photo">
+            <p class="mypage-email">{{ object.email }}</p>
+        </article>
         <article class="profile col-sm-8 rounded-1">
             <h2 class="mypage-heading">プロフィール</h2>
             <div class="description-border profile-text"> 

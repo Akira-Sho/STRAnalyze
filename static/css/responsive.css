@@ -7,8 +7,7 @@
 
 @media screen and (max-width: 500px) {
     .logo {
-        margin:0 0 30px 20px;
-        font-size: 20px;
+        font-size: 0.9rem;
     }
 }
 
@@ -18,7 +17,7 @@
     }
 }
 
- @media screen and (min-width: 831px) {
+@media screen and (min-width: 831px) {
     .drawer-open-button {
          display: none;
     }
@@ -28,7 +27,6 @@
     .drawer-open-button {
         width: 30px;
         height: 30px;
-        margin-top: 3px;
         right: 20px;
     }
 }
@@ -65,7 +63,7 @@
     .header-drawer-nav a  {
         width: 100px;
         height: 21px;
-        font-size: 20px;
+        font-size: 0.8rem;
         line-height: 20px;
     }
 }
@@ -73,64 +71,61 @@
 /*index*/
 @media screen and (max-width: 500px) {
     .top-title {
-        font-size: 25px;
+        font-size: 1rem;
     }
 }
 
 @media screen and (max-width: 500px) {
     .brand-button {
+	width: 90%;
+	height:auto;
+	margin:0 auto;
         padding: 10px 0;
-        font-size: 10px;
+        font-size: 0.6rem;
         font-weight: 300;
     }
 }
 
+
 @media screen and (max-width: 400px) {
     .brand-button {
-        font-size: 7px;
+        font-size: 0.6rem;
     }
 }
 
 @media screen and (max-width: 340px) {
     .brand-button {
-        font-size: 4px;
+        font-size: 0.5rem;
     }
 }
+
 
 @media screen and (max-width: 450px) {
     .item-box {
         width: calc(33% - 4px);
         height: calc(33% - 4px);
-	    margin: 2px 2px 13px;
-	    padding: 1px;
+	margin: 2px 2px 13px;
+	padding: 1px;
     }
 }
 
 @media screen and (max-width: 600px) {
     .item-title li {
-        font-size: 8px; 
+        font-size: 0.5rem; 
     }
 }
 
 @media screen and (max-width: 500px) {
-    .item-title li {
-        font-size: 5px; 
-        font-weight: 300;
+    .item-title li { 
+        font-weight: 400;
     }
 }
 
-@media screen and (max-width: 450px) {
-    .item-title li {
-        font-size: 3px;
-    }
-}
+
 
 @media screen and (max-width: 375px) {
     .item-title ul {
         padding: 1px;
-    }
-    .item-title li {
-        font-weight: 300;
     }
 }
 
@@ -179,29 +174,29 @@
 /*700px以上の時*/
 @media screen and (min-width: 700px) {
     .right-content li {
-        font-size: 33px;
-        margin: 15px 0 15px;
+        font-size: 1.6rem;
+        margin: 15px 0;
     }
 }
 
 /*700px以下の時*/
 @media screen and (max-width: 700px) {
     .right-content li {
-        font-size: 30px;
+        font-size: 1.4rem;
         margin: 5px  0 10px;
     }
 }
 
 @media screen and (max-width: 550px) {
     .right-content li {
-        font-size: 25px;
+        font-size: 1.1rem;
         margin: 5px 0 10px;
     }
 }
 
 @media screen and (max-width: 439px) {
     .right-content li {
-        font-size: 15px;
+        font-size: 0.7rem;
         margin: 3px 0 3px;
         padding-bottom: 0px;
     }
@@ -222,21 +217,21 @@
 
 @media screen and (max-width: 439px) {
     .review-link a{
-        font-size: 22px;
+        font-size: 1rem;
         margin-top: 0;
     }
 }
 
 @media screen and (max-width: 500px) {
     .guid-text {
-        font-size: 13px;
+        font-size: 0.8rem;
         font-weight: 300;
     }
 }
 
 @media screen and (max-width: 500px) {
     .post-count {
-        font-size: 15px;
+        font-size: 0.8rem;
     }
 }
 
@@ -255,17 +250,17 @@
 
 @media screen and (max-width: 500px) {
     .post-header-info ul {
-        line-height: 60%;
+        line-height: 70%;
     }
     .post-header-info li {
-        font-size: 5px;
+        font-size: 0.5rem;
         font-weight: 300;
     }
 }
 
 @media screen and (max-width: 500px) {
     .post-contents p {
-        font-size: 13px;
+        font-size: 0.8rem;
         margin: 7px 5px 5px;
     }
 }
@@ -283,25 +278,25 @@
         margin: 0;
     }
     .button-area a {
-        font-size: 15px;
+        font-size: 0.8rem;
     }
     .button-area input {
-        font-size: 15px;
+        font-size: 0.8rem;
     }
 }
 
 @media screen and (max-width: 500px) {
     .button-area a {
-        font-size: 15px;
+        font-size: 0.6rem;
     }
     .button-area input {
-        font-size: 15px;
+        font-size: 0.6rem;
     }
 }
         
 @media screen and (max-width: 500px) {
     .like-area p {
-        font-size: 10px;
+        font-size: 0.6rem;
     }
 }
 
@@ -315,7 +310,7 @@
 /*delete*/
 @media screen and (max-width: 500px) {
     .delete-area p {
-        font-size: 15px;
+        font-size: 0.7rem;
     }
 }
 
@@ -330,16 +325,16 @@
 
 @media screen and (max-width: 600px) {
     .mypage-heading {
-        font-size: 20px;
+        font-size: 1rem;
     }
 }
 @media screen and (max-width: 500px) {
-    .mypage-image-email img{
+    .mypage-photo {
         width: 75px;
         height: 75px;
     }
-    .mypage-image-email p {
-        font-size: 17px;
+    .mypage-email {
+        font-size: 0.8rem;
         margin: 5px 0;
     }
 }
@@ -349,7 +344,7 @@
         margin: 10px 0;
     }
     .profile li {
-        font-size: 13px;
+        font-size: 0.7rem;
     }
 }
 
@@ -361,13 +356,13 @@
 
 @media screen and (max-width: 768px) {
     .mypage-sidemenu a {
-        font-size: 15px;
+        font-size: 0.7rem;
     }
 }
 
 @media screen and (max-width: 600px) {
     .mypage-sidemenu a {
-        font-size: 12px;
+        font-size: 0.6rem;
     }
 }
 
@@ -375,32 +370,32 @@
 /*form*/
 @media screen and (max-width: 500px) {
     .form-group a {
-        font-size: 7px;
+        font-size: 0.7rem;
         margin: 5px;
     }
 }
 
 @media screen and (max-width: 500px) {
     .form-post-font {
-        font-size: 6px;
+        font-size: 0.6rem;
     }
 }
 
 @media screen and (max-width: 500px) {
     .form-control {
-        font-size: 20px;
+        font-size: 0.5rem;
     } 
 }
 
 @media screen and (max-width: 600px) {
     .login-font-size {
-        font-size: 15px;
+        font-size: 0.7rem;
     }
 }
 
 @media screen and (max-width: 425px) {
     .errorlist ,.nonfield{
-        font-size: 10px;
+        font-size: 0.5rem;
     } 
 }
 
@@ -421,22 +416,21 @@
 
 @media screen and (max-width: 720px) {
     .messages-font {
-        font-size: 15px;
+        font-size: 0.8rem;
         padding: 6px 10px;
     } 
     }
 
 @media screen and (max-width: 530px) {
     .messages-font {
-        font-size: 10px;
-        padding: 6px 10px;
+        font-size: 0.7rem;
     } 
 }
 
 /*pagination*/
 @media screen and (max-width: 550px) {
     .page-item a,span {
-        font-size: 15px;
+        font-size: 0.8rem;
         padding: 8px;
     }
 }
@@ -446,6 +440,6 @@
     .footer-nav a {
     width: 70px;
     height: 20px;
-    font-size: 7px;
+    font-size: 0.6rem;
     }
 }

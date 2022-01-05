@@ -17,7 +17,7 @@
     {% endif %}
     {% for link_page in page_obj.paginator.page_range %}
     {% if link_page == page_obj.number %}
-    <li class="page-item disabled active">
+    <li class="page-item disabled">
       <a class="page-link disabled">
         {{ link_page }}
       </a>
