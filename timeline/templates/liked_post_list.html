@@ -24,6 +24,10 @@
           <li>{{ post.post.created_at | date:"Y年n月j日 H時" }}</li>
         </ul>
       </nav>
+      {% if post.edited == True %}
+      <div class="post-edited-text">（編集済み）
+      </div>
+      {% endif %}
     </article>
   </article>
   <article class="post-contents">

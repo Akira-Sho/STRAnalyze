@@ -11,23 +11,27 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import environ
+
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+env = environ.Env(DEBUG=(bool,False))
+env.read_env(os.path.join(BASE_DIR,'.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'f&#t+jlzm!)$k642@l0p5fi-93(m#%vrvs$krxzcm-9jhhkg6='
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['stranalyze.com','www.stranalyze.com','localhost','35.74.156.134']
+ALLOWED_HOSTS = ['stranalyze.com','www.stranalyze.com','localhost',env('IP_ADDLESS')]
 
 # Application definition
 
@@ -87,10 +91,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.mysql',
-        'NAME':'stranalyze',
-        'USER':'awsuser',
-        'PASSWORD':'pythonakira9',
-        'HOST':'localhost',
+        'NAME':env('DB_NAME_SQL'),
+        'USER':env('DB_USER_SQL'),
+        'PASSWORD':env('DB_PASSWORD_SQL'),
+        'HOST':env('DB_HOST_SQL'),
         'PORT':'3306',
     }
 }
@@ -178,13 +182,19 @@ LOGIN_REDIRECT_URL = 'timeline:index'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
-DEFAULT_FROM_EMAIL = 'kamimu0501@icloud.com'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = env('EMAIL_BACKEND')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+DEFAULT_FROM_EMAIL = 'stranalyze.noreply@gmail.com'
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT= 180
-FRONTEND_URL = "http://localhost:8000"
+FRONTEND_URL = "https://stranalyze.com"
+
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 

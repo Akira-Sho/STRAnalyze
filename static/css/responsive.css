@@ -259,6 +259,12 @@
 }
 
 @media screen and (max-width: 500px) {
+    .post-edited-text{
+        font-size: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
     .post-contents p {
         font-size: 0.8rem;
         margin: 7px 5px 5px;

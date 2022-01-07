@@ -43,18 +43,18 @@ def Index(request):
         form = BrandSearchForm()
         item_data = Item.objects.filter(display=True)
     paginate_count = paginate_queryset(request, item_data, 30)
-    
+
     params = {
         'form' : form,
         'item_data' :  paginate_count.object_list,
         'page_obj' :  paginate_count,
     }
-    return render(request, 'index.html', params)    
+    return render(request, 'index.html', params)
 
 
-def Post_List_View(request,slug): 
+def Post_List_View(request,slug):
     item_data = Item.objects.get(slug = slug)
-    post_object_list = Post.objects.filter(item__slug = slug) 
+    post_object_list = Post.objects.filter(item__slug = slug)
     post_count = post_object_list.count()
     paginate_count = paginate_queryset(request, post_object_list, 10)
     liked_list = []
@@ -64,7 +64,7 @@ def Post_List_View(request,slug):
             liked = post.like_set.filter(user=request.user)
             if liked.exists():
                 liked_list.append(post.pk)
-                
+
     params = {
         'item_data':item_data,
         'object_list':paginate_count.object_list,
@@ -87,12 +87,12 @@ def LikeView(request):
         else:
             like.create(post=post, user=current_user)
             liked = True
-        
+
         context={
             'post_pk': post.pk,
             'liked': liked,
             'count': post.like_set.count(),
-        }    
+        }
     if request.is_ajax():
         return JsonResponse(context)
 
@@ -106,16 +106,16 @@ def Liked_PostListView(request,pk):
         liked = post.like_set.filter(user=request.user)
         if liked.exists():
             liked_list.append(post.pk)
-            
+
     paginate_count = paginate_queryset(request, like_data, 30)
-    
+
     params = {
         'object_list' :like_data,
         'liked_list' :liked_list,
         'page_obj':paginate_count,
     }
     return render(request, 'liked_post_list.html',params)
-    
+
 
 class MyPost_List_View(LoginRequiredMixin,generic.ListView):
     template_name = 'mypost_list.html'
@@ -148,7 +148,13 @@ class Post_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
     form_class = PostForm
     template_name = 'post_edit.html'
     success_message = 'レビューを変更しました。'
-    
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.edited = "True"
+        post.save()
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy('timeline:post_list',kwargs={'slug':self.object.item.slug})
 
@@ -160,10 +166,16 @@ class MyPost_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView)
     template_name = 'mypost_edit.html'
     success_message = 'レビューを変更しました。'
 
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.edited = "True"
+        post.save()
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy('timeline:mypost_list',kwargs={'pk':self.request.user.pk})
-       
-       
+
+
 class Post_DeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Post
     slug_field = "slug"

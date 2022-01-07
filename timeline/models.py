@@ -10,19 +10,19 @@ BRAND_CHOICES = [('YONEX','YONEX'),('MIZUNO','MIZUNO'),('DUNLOP','DUNLOP'),('GOS
 class Post(models.Model):
 	author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
 	item = models.ForeignKey('timeline.Item', on_delete=models.CASCADE)
-	slug = models.SlugField(verbose_name="URL表示名",null=True)
 	text = models.TextField(verbose_name='本文',max_length=200,)
 	photo = models.ImageField(verbose_name='写真', blank=True, null=True, upload_to='images/')
 	post_photo = ImageSpecField(source='photo',processors=[ResizeToFit(1080, 1080)],format='JPEG',options={'quality':60})
 	created_at = models.DateTimeField(default=timezone.now)
- 
+	edited = models.BooleanField(default=False,verbose_name='編集済み')
+
 	def __str__(self):
     	    return f"{self.author.username} {self.item.item_name}"
 
 	class Meta:
     		ordering = ['-created_at']
 
- 
+
 class Like(models.Model):
 	user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
 	post = models.ForeignKey('Post', on_delete=models.CASCADE)
