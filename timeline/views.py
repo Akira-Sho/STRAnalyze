@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import PostForm,BrandSearchForm
+from .forms import PostForm,BrandSearchForm,ContactForm
 from .models import Post, Like,Item
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -42,7 +42,7 @@ def Index(request):
     else:
         form = BrandSearchForm()
         item_data = Item.objects.filter(display=True)
-    paginate_count = paginate_queryset(request, item_data, 30)
+    paginate_count = paginate_queryset(request, item_data, 15)
 
     params = {
         'form' : form,
@@ -51,6 +51,8 @@ def Index(request):
     }
     return render(request, 'index.html', params)
 
+def Site_Information(request):
+    return render(request, 'site_information.html')
 
 def Post_List_View(request,slug):
     item_data = Item.objects.get(slug = slug)
@@ -201,4 +203,15 @@ class MyPost_DeleteView(LoginRequiredMixin, generic.DeleteView):
         if self.object.author == request.user: 
             messages.success(self.request, 'レビューを削除しました。')
         return super().delete(request, *args, **kwargs)
-   
+
+class ContactFormView(LoginRequiredMixin,SuccessMessageMixin,generic.FormView):
+    template_name = 'contact_form.html'
+    form_class = ContactForm
+    success_message = 'お問い合わせ内容を送信しました。'
+    
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('timeline:index')

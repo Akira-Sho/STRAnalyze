@@ -65,9 +65,30 @@
                         <li><a href="{% url 'account_login' %}">login</a></li>
                         <li><a href="{% url 'account_signup' %}">sign up</a></li>
                     {% endif %}
-                </ul>
-            </nav>    
+                    </ul>
+		    <div class="sns-area">
+                        <a href="https://twitter.com/STRanalyze" class="color-blue">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        <a href="https://www.instagram.com/stranalyze_official/" class="color-orange">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                    </div>
+                </nav>    
         </header>
+	<div class="site-information-area">
+            {% if request.path != "/site_information/" %}
+                <a href="{% url 'timeline:site_information' %}" class="site-information-link bgleft"><span>サイト案内ページ</span></a>
+            {% endif %}
+            <div class="sns-area">
+                <a href="https://twitter.com/STRanalyze" class="color-blue">
+                    <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                <a href="https://www.instagram.com/stranalyze_official/" class="color-orange">
+                    <i class="fab fa-instagram  fa-lg"></i>
+                </a>
+            </div>
+        </div>
     <!--message-->
         {% if messages %}
             <nav class="messages mx-auto">
@@ -92,10 +113,9 @@
                 <ul class="footer-ul">
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'timeline:index' %}">home</a></li>
-                        <li><a href="{% url 'timeline:index' %}">仕様</a></li>
+                        <li><a href="{% url 'timeline:contact_form' %}">お問い合わせ</a></li>
                     {% else %}
                         <li><a href="{% url 'timeline:index' %}">home</a></li>
-                        <li><a href="{% url 'timeline:index' %}">仕様</a></li>
                     {% endif %}
                 </ul>
             </nav>

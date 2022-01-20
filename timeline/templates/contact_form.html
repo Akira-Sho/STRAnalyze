@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+{% block title %}コンタクトフォーム | STRANALYZE{% endblock %}
+{% block contents %}
+<h1 class="top-title">コンタクトフォーム</h1>
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <form method="POST">{% csrf_token %}
+          {{ form.as_p }}
+          <nav class="button-area">
+            <ul>
+              <li><input class="btn btn-outline-info btn-sm" type="submit" value="送信"></input></li>
+              <li><a class="btn btn-outline-primary btn-sm" href="{{request.META.HTTP_REFERER}}">戻る</a></li>
+            </ul>
+          </nav>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

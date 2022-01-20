@@ -133,9 +133,9 @@ a:link, a:visited, a:hover, a:active {
 .header-drawer-nav {
   background-color: #fff;
   width: 100%;
-  height: 50%;
-  max-height: 50vh;
-  padding: 90px 45px 60px 0px;
+  height: 60%;
+  max-height: 80vh;
+  padding: 90px 45px 60px 45px;
   position: fixed;
   font-size: 1.1rem;
   top: 0;
@@ -143,7 +143,7 @@ a:link, a:visited, a:hover, a:active {
   opacity: 0.5;
   box-shadow: 0 0 10px #333;
   transition: 0.3s; 
-  outline: 2px solid silver;
+  outline: 4px silver inset;
   outline-offset: -7px;
   visibility: hidden;
   z-index: 2;
@@ -153,7 +153,8 @@ a:link, a:visited, a:hover, a:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  padding: 0;
+  height: 60%;
 }
 
 .header-drawer-nav li {
@@ -168,11 +169,11 @@ a:link, a:visited, a:hover, a:active {
   right: 0;
 }
 
-.header-drawer-nav a {
+.header-drawer-nav li a {
   display: inline-block;
   width: 150px;
   height: 30px;
-  margin: 15px 0 10px;
+  margin: 15px;
   padding-bottom: 2px;
   line-height: 30px;
   border-radius: 8px;
@@ -183,12 +184,24 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .header-drawer-nav .drawer-open a,
-.header-drawer-nav a:hover,
-.header-drawer-nav a:active {
+.header-drawer-nav li a:hover,
+.header-drawer-nav li a:active {
   background-color: #d03c56;
   color: #fff;
 }
 
+.sns-area {
+  text-align: center;
+}
+
+.sns-area a {
+  margin: 10px;
+  transition: 0.2s;
+}
+
+.sns-area a:hover {
+  color: black;
+}
 
 /*ドロワーメニュー開閉*/
  .drawer-open-mask {
@@ -206,6 +219,68 @@ a:link, a:visited, a:hover, a:active {
   visibility: visible; 
 }
 
+/*サイト案内ページリンク*/
+.site-information-area {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.site-information-link {
+  position: relative;
+  background-color: silver;
+  width: fit-content;
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.1rem;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  outline: none;   
+  transition: ease .2s;
+}
+
+.site-information-link span {
+  position: relative;
+  z-index: 3;
+  color:white;
+}
+
+.site-information-link:hover span{
+  color:#fff;
+}
+
+.bgleft:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background:#333;
+  width: 100%;
+  height: 100%;
+  transition: transform .6s cubic-bezier(0.8, 0, 0.2, 1) 0s;
+  transform: scale(0, 1);
+  transform-origin: right top;
+}
+
+.bgleft:hover:before{
+  transform-origin:left top;
+  transform:scale(1, 1);
+}
+
+.color-red {
+  color: red;
+}
+
+.color-blue {
+  color: #0099FF;
+}
+
+.color-orange {
+  color: #E4A972;
+}
 
 /* --------------------------------
  *main
@@ -280,6 +355,7 @@ main {
 
 .brand-button input:hover,
 .brand-button input:active {
+  color: white;
   background: #6600FF;
   border: 0;
   opacity: 0.5;
@@ -344,6 +420,18 @@ main {
 .pagination ul {
   margin: 0 auto;
   z-index: 5;
+}
+
+/*site_information*/
+.site-information-message {
+  margin: 7px;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.site-information-message li {
+  line-height: 0.9rem;
+  margin-bottom: 15px;
 }
 
 /*post_list*/
@@ -619,7 +707,7 @@ rgba(28, 26, 143, 0.1) 7px 7px;
 }
 
 .description-border {
-  border:6px silver double;
+  border:6px silver inset;
   border-radius: 10px;
 }
 

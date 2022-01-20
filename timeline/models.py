@@ -20,7 +20,7 @@ class Post(models.Model):
     	    return f"{self.author.username} {self.item.item_name}"
 
 	class Meta:
-    		ordering = ['-created_at']
+            ordering = ['-created_at']
 
 
 class Like(models.Model):
@@ -44,3 +44,6 @@ class Item(models.Model):
 
     def __str__(self):
             return f"{self.pk} {self.item_name}"
+
+    class Meta:
+	    ordering = ['-release_date']

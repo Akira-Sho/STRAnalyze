@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 500px) {
     .header-drawer-nav {
-        padding: 50px 45px 30px 0px;
+        padding: 50px 45px 20px;
         height: 55%;
     }
     .header-drawer-nav a  {
@@ -67,6 +67,17 @@
         line-height: 20px;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .site-information-link {
+        font-size: 0.5rem;
+        padding: 3px;
+    }
+    .sns-icon {
+        margin: 5px;
+    }
+}
+
 
 /*index*/
 @media screen and (max-width: 500px) {
@@ -126,6 +137,19 @@
 @media screen and (max-width: 375px) {
     .item-title ul {
         padding: 1px;
+    }
+}
+
+
+/*site_information*/
+@media screen and (max-width: 550px) {
+    .site-information-message {
+        margin: 5px;
+        font-size: 0.6rem;
+    }
+    .site-information-message {
+        line-height: 0.6rem;
+        margin-bottom: 10px;
     }
 }
 
@@ -444,8 +468,9 @@
 /*footer*/
 @media screen and (max-width: 480px) {
     .footer-nav a {
-    width: 70px;
+    width: 120px;
     height: 20px;
     font-size: 0.6rem;
+    padding: 0;
     }
 }

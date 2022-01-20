@@ -20,7 +20,9 @@
 {% if user.is_authenticated %}
   <p class="review-link"><a href="{% url 'timeline:post_create' item_data.slug  %}">レビューを投稿する→</a></p>
 {% else %}
-  <p class="guid-text color-orange">ログインすればレビューを投稿できるようになります。</p>
+  <a href="{% url 'account_login' %}">
+    <p class="guid-text color-orange">ログインすればレビューを投稿できるようになります。→</p>
+  </a>
 {% endif %}
 <p class="post-count">投稿数：{{ post_count }}件</p>
 {% if object_list %}
