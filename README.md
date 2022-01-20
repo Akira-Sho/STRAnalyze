@@ -19,7 +19,7 @@
 ## 使用した技術一覧
 - HTML5
 - CSS3
-- Bootstrap
+- Bootstrap5
 - JavaScript
 - JQuery
 - Python 3.8.10
