@@ -15,3 +15,15 @@
 - パスワード変更
 - メール送信(コンタクトフォームとパスワード変更)
 - アカウント削除
+
+## 使用した技術一覧
+- HTML5
+- CSS3
+- Bootstrap
+- JavaScript
+- JQuery
+- Python 3.8.10
+- Django3.2.7
+- AWS(EC2,Route53)
+- mysql  Ver 8.0.27-0ubuntu0.20.04.1 for Linux on x86_64 ((Ubuntu))
+- linux
