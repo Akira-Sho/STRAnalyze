@@ -31,3 +31,4 @@
 - linux
 - Gunicorn version 20.1.0
 - Nginx 1.18.0 (Ubuntu)
+- Git 2.25.1
