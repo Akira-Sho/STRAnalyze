@@ -29,5 +29,5 @@
 - AWS(EC2,Route53)
 - mysql  Ver 8.0.27-0ubuntu0.20.04.1 for Linux on x86_64 ((Ubuntu))
 - linux
-- Gunicorn(version 20.1.0)
-- Nginx
+- Gunicorn version 20.1.0
+- Nginx 1.18.0 (Ubuntu)
