@@ -2,19 +2,41 @@
 {% load static %}
 {% block title %}ホーム | STRANALYZE{% endblock %}
 {% block contents %}
-<article class="brand-button">
-  <form action="{% url 'timeline:index' %}" method="post">
-  {% csrf_token %}
-    <input type="submit" name="button_all" value="ALL"></input><br>
-    <input type="submit" name="button_yonex" value="YONEX"></input>
-    <input type="submit" name="button_mizuno" value="MIZUNO"></input>
-    <input type="submit" name="button_dunlop" value="DUNLOP"></input>
-    <input type="submit" name="button_srixon" value="SRIXON"></input>
-    <input type="submit" name="button_gosen" value="GOSEN"></input>
-  </form>
-</article>
+<form action="{% url 'timeline:index' %}" method="GET">
+<ul class="itemMenu">
+  <li><p>YONEX</p>
+  <ul class="sub">
+    <li><input type="submit" name="selected-name" value="YONEX"></input></li>
+    <li><input type="submit" name="selected-name" value="VOLTRAGE"></input></li>
+    <li><input type="submit" name="selected-name" value="GEOBREAK"></input></li>
+    <li><input type="submit" name="selected-name" value="F-LASER"></input></li>
+    <li><input type="submit" name="selected-name" value="YONEX_OTHERS"></input></li>
+  </ul>
+  </li>
+
+  <li><p>MIZUNO</p>
+  <ul class="sub">
+    <li><input type="submit" name="selected-name" value="MIZUNO"></input></li>
+    <li><input type="submit" name="selected-name" value="SCUD"></input></li>
+    <li><input type="submit" name="selected-name" value="DIOS"></input></li>
+    <li><input type="submit" name="selected-name" value="MIZUNO_OTHERS"></input></li>
+  </ul>
+  </li>
+
+  <li><p>DUNLOP</p>
+  <ul class="sub">
+    <li><input type="submit" name="selected-name" value="DUNLOP"></input></li>
+    <li><input type="submit" name="selected-name" value="GALAXEED"></input></li>
+    <li><input type="submit" name="selected-name" value="JETSTORM"></input></li>
+    <li><input type="submit" name="selected-name" value="DUNLOP_OTHERS"></input></li>
+  </ul>
+  </li>
+  </ul>
+</form>
+
+
 <article class="item-container">
-  {% for item in item_data %}
+  {% for item in item_objects %}
     <section class="item-box">
       <a href="{% url 'timeline:post_list' item.slug %}">
         <img src="
@@ -31,5 +53,4 @@
     </section>
   {% endfor %}
 </article>
-{% include 'pagination.html' %}
 {% endblock %}

@@ -25,29 +25,19 @@ def paginate_queryset(request, queryset, count):
 
 
 def Index(request):
-    if(request.method == 'POST'):
-        form = BrandSearchForm(request.POST)
-        if 'button_all' in request.POST: 
-            item_data = Item.objects.filter(display=True)
-        elif 'button_yonex' in request.POST: 
-            item_data = Item.objects.filter(brand_name='yonex',display=True)
-        elif 'button_mizuno' in request.POST:
-            item_data = Item.objects.filter(brand_name='mizuno',display=True)
-        elif 'button_dunlop' in request.POST:
-            item_data = Item.objects.filter(brand_name='dunlop',display=True)
-        elif 'button_srixon' in request.POST:
-            item_data = Item.objects.filter(brand_name='srixon',display=True)
-        elif 'button_gosen' in request.POST:
-            item_data = Item.objects.filter(brand_name='gosen',display=True)
+    global items
+    query = request.GET.get('selected-name')
+    if query:
+        if query == 'YONEX' or query == 'MIZUNO' or query == 'DUNLOP':
+            items = Item.objects.filter(brand_name = query) 
+        else:
+            items =Item.objects.filter(series_name = query)
     else:
-        form = BrandSearchForm()
-        item_data = Item.objects.filter(display=True)
-    paginate_count = paginate_queryset(request, item_data, 15)
+        items = Item.objects.all()
+       
 
     params = {
-        'form' : form,
-        'item_data' :  paginate_count.object_list,
-        'page_obj' :  paginate_count,
+        'item_objects' : items,
     }
     return render(request, 'index.html', params)
 

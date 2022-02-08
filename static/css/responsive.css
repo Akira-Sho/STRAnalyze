@@ -87,29 +87,29 @@
 }
 
 @media screen and (max-width: 500px) {
-    .brand-button {
-	width: 90%;
-	height:auto;
-	margin:0 auto;
-        padding: 10px 0;
+    .itemMenu li {    
+        width: 90px;
         font-size: 0.6rem;
-        font-weight: 300;
+        font-weight:normal;
+        text-shadow:0px 0px 1px rgba(0,0,0,0.45);
+        box-shadow: none;
     }
-}
-
-
-@media screen and (max-width: 400px) {
-    .brand-button {
+    .itemMenu li p {
+        padding: 3px 5px;
+    }
+    .itemMenu .sub {
+        top: 2px;
         font-size: 0.6rem;
     }
-}
+    .itemMenu li:hover ul.sub {
+        width: 90px;
+    }
 
-@media screen and (max-width: 340px) {
-    .brand-button {
-        font-size: 0.5rem;
+    .itemMenu .sub li:nth-of-type(1) {
+        margin-bottom: 20px;
+        top: 20px;
     }
 }
-
 
 @media screen and (max-width: 450px) {
     .item-box {

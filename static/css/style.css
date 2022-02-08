@@ -336,31 +336,109 @@ main {
 }
 
 /*index*/
-.brand-button {
-  padding: 20px 0;
-  font-size: 0.9rem;
+.itemMenu {
+  padding: 20px 0 0 0;
 }
 
-.brand-button input {
+.itemMenu li {
+  display: inline-block;
+  width: 130px;
+  font-size: 0.8rem;
+  font-weight:bold;
+  padding: 0;
+  text-align:center;
+  line-height: 1;
+  font-family: Tahoma, Geneva, sans-serif;
+  text-shadow:0px 0px 2px rgba(0,0,0,0.45);
+  box-shadow:1px 1px 3px rgba(0,0,0,0.4);
+  list-style: none;
+  position: relative;
+}
+
+.itemMenu:after {
+  content: “”;
+  display: block;
+}
+
+.itemMenu li p {
+  color: #666;
+  text-decoration: none;
+  margin: 0;
+  padding: 10px 15px;
+  display:block;
+  border:1px solid #AAA;
+  background-image:
+  linear-gradient(
+  rgb(255,255,255) 0%,
+  rgb(179,182,186) 70%,
+  rgb(169,173,184) 90%,
+  rgb(244,245,246) 100%);
+  background-color: #EEE;
+  text-shadow:0px 0px 0px rgba(255,255,255,0.2);
+  z-index: 4;
+  position:relative;
+}
+
+.itemMenu li p:hover {
+  background-image:
+  linear-gradient(
+  rgb(255,255,255) 0%,
+  rgb(169,176,215) 70%,
+  rgb(126,132,166) 90%,
+  rgb(255,255,255) 100%);
+  background-color: #a7b4fe;
+  border-top:1px solid #a7b4fe;
+  border-bottom:1px solid #a7b4fe;
+}
+
+.itemMenu .sub {
+  display: block;
+  height: 0;
+  width: 0;
+  overflow:hidden;
+  position:absolute;
+  z-index: 3;
+  top: 5px;
+  font-size: 0.7rem;
+  background: white;
+  border: 1px solid silver;
+  opacity: 0;
+  transition: opacity 300ms linear, top 0.5s ease-in;
+}
+
+.itemMenu li:hover ul.sub {
+  height: auto;
+  max-height:240px;
+  width: 130px;
+  padding: 0;
+  opacity: 1;
+}
+
+.itemMenu .sub li:nth-of-type(1) {
+  margin-bottom: 40px;
+  top: 40px;
+}
+
+.itemMenu .sub li input {
+  margin: 4px 0;
+  height: 25px;
+  font-size: 0.5rem;
   color: black;
-  background:whitesmoke;
-  border: 0;
-  border-bottom: 1px solid black;
-  border-radius: 0;
-  margin-bottom:3px;
-  transition: 0.15s;
-  -webkit-transform: skew(-15deg);
-  transform: skew(-15deg);
+  text-align: center;
+  line-height:20px;
+  padding: 0;
+  font-weight: normal;
+  background-color: white;
+  text-shadow:none;
+  border: none;
+  transition: 0.3s;
 }
 
-.brand-button input:hover,
-.brand-button input:active {
-  color: white;
-  background: #6600FF;
-  border: 0;
-  opacity: 0.5;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+.itemMenu .sub input:hover {
+  background-color: #a7b4fe;
+  border: none;
 }
+
 
 .item-container {
   display: flex;
