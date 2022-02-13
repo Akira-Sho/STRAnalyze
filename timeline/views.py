@@ -47,6 +47,7 @@ def Site_Information(request):
 def Post_List_View(request,slug):
     item_data = Item.objects.get(slug = slug)
     post_object_list = Post.objects.filter(item__slug = slug)
+    url_value = 'postlist'
     post_count = post_object_list.count()
     paginate_count = paginate_queryset(request, post_object_list, 10)
     liked_list = []
@@ -60,6 +61,7 @@ def Post_List_View(request,slug):
     params = {
         'item_data':item_data,
         'object_list':paginate_count.object_list,
+        'url_value':url_value,
         'post_count':post_count,
         'page_obj':paginate_count,
         'liked_list' :liked_list,
@@ -93,6 +95,7 @@ def LikeView(request):
 def Liked_PostListView(request,pk):
     like_data = Like.objects.filter(user=request.user)
     all_post = Post.objects.all()
+    url_value = 'liked'
     liked_list = []
     for post in all_post:
         liked = post.like_set.filter(user=request.user)
@@ -103,6 +106,7 @@ def Liked_PostListView(request,pk):
 
     params = {
         'object_list' :like_data,
+        'url_value':url_value,
         'liked_list' :liked_list,
         'page_obj':paginate_count,
     }
@@ -114,6 +118,20 @@ class MyPost_List_View(LoginRequiredMixin,generic.ListView):
     model = Post 
     paginate_by = 15
     
+    def get_context_data(self, **kwargs):
+        all_post = Post.objects.filter(author = self.request.user.id)
+        context = super().get_context_data(**kwargs)
+        liked_list = []
+        current_user = self.request.user
+        if (current_user.is_authenticated):
+            for post in all_post:
+                liked = post.like_set.filter(user=current_user)
+                if liked.exists():
+                    liked_list.append(post.pk)
+        context["liked_list"] = liked_list
+        context['url_value'] = 'mypost'
+        return context
+
     def get_queryset(self):
         return Post.objects.filter(author = self.request.user.id)
 
@@ -148,52 +166,36 @@ class Post_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('timeline:post_list',kwargs={'slug':self.object.item.slug})
-
-
-class MyPost_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView): 
-    model = Post
-    slug_field = "Item__slug"
-    form_class = PostForm
-    template_name = 'mypost_edit.html'
-    success_message = 'レビューを変更しました。'
-
-    def form_valid(self, form):
-        post = form.save(commit=False)
-        post.edited = "True"
-        post.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy('timeline:mypost_list',kwargs={'pk':self.request.user.pk})
+        referer = self.request.META['HTTP_REFERER']
+        if 'mypost' in referer:
+            return reverse_lazy('timeline:mypost_list',kwargs={'pk':self.request.user.pk})
+        elif 'liked' in referer:
+            return reverse_lazy('timeline:liked_post_list',kwargs={'pk':self.request.user.pk})
+        else:
+            return reverse_lazy('timeline:post_list',kwargs={'slug':self.object.item.slug})
 
 
 class Post_DeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Post
     slug_field = "slug"
     template_name = 'post_confirm_delete.html'
-    def get_success_url(self):
-        return reverse_lazy('timeline:post_list',kwargs={'slug':self.object.item.slug})    
+     
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         if self.object.author == request.user: 
             messages.success(self.request, 'レビューを削除しました。')
         return super().delete(request, *args, **kwargs)
     
-    
-class MyPost_DeleteView(LoginRequiredMixin, generic.DeleteView):
-    model = Post
-    slug_field = "slug"
-    template_name = 'mypost_confirm_delete.html'
     def get_success_url(self):
-        return reverse_lazy('timeline:mypost_list',kwargs={'pk':self.request.user.pk})
-        
-    def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        if self.object.author == request.user: 
-            messages.success(self.request, 'レビューを削除しました。')
-        return super().delete(request, *args, **kwargs)
-
+        referer = self.request.META['HTTP_REFERER']
+        if 'mypost' in referer:
+            return reverse_lazy('timeline:mypost_list',kwargs={'pk':self.request.user.pk})
+        elif 'liked' in referer:
+            return reverse_lazy('timeline:liked_post_list',kwargs={'pk':self.request.user.pk})
+        else:
+            return reverse_lazy('timeline:post_list',kwargs={'slug':self.object.item.slug})
+       
+       
 class ContactFormView(LoginRequiredMixin,SuccessMessageMixin,generic.FormView):
     template_name = 'contact_form.html'
     form_class = ContactForm

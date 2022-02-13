@@ -1,0 +1,12 @@
+<div class="like-area">
+    <form method="POST" action="{% url 'timeline:like' %}">
+      {% csrf_token %}
+      {% if post.pk in liked_list %}
+        <i class="fas fa-lg fa-star star-yellow" id="like" name="{{post.pk}}" 
+        ></i>
+      {% else %}
+        <i class="far fa-lg fa-star star-yellow" id="like" name="{{post.pk}}"></i>                  
+      {% endif %}
+    </form>
+    <p name="{{post.pk}}-count">{{ post.like_set.count }}</p>
+  </div>

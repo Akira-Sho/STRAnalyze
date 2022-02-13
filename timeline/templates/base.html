@@ -24,6 +24,11 @@
     crossorigin="anonymous">
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <!--font-->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
     <!--font awesome-->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
@@ -34,7 +39,7 @@
         <div class="drawer-open-mask" id="drawer-open-mask">
         </div>
         <header class="header">
-            <div class="logo"><a href="{% url 'timeline:index' %}">ヘッダーロゴ(仮)</a>
+            <div class="logo"><a href="{% url 'timeline:index' %}">STRAnalyze.</a>
             </div>
             <nav class="header-nav header-button">
                 <ul>
@@ -61,9 +66,9 @@
                         <li><a href="{% url 'accounts:mypage' user.pk %}">MYPAGE</a></li>
                         <li><a href="{% url 'account_logout' %}">LOGOUT</a></li>
                     {% else %}
-                        <li><a href="{% url 'timeline:index' %}">home</a></li>
-                        <li><a href="{% url 'account_login' %}">login</a></li>
-                        <li><a href="{% url 'account_signup' %}">sign up</a></li>
+                        <li><a href="{% url 'timeline:index' %}">HOME</a></li>
+                        <li><a href="{% url 'account_login' %}">LOGIN</a></li>
+                        <li><a href="{% url 'account_signup' %}">SIGNUP</a></li>
                     {% endif %}
                     </ul>
 		    <div class="sns-area">
@@ -121,5 +126,31 @@
             </nav>
         </footer>
    </div>
+<!--likejs-->
+<script type="text/javascript">
+  $(document).ready(function(event){
+    $(document).on('click', '#like', function(event){
+        event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'timeline:like' %}",
+                data: {
+                    'post_pk': $(this).attr('name'),
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                dataType: 'json',
+                success: function(response){
+                selector = document.getElementsByName(response.post_pk);
+                if(response.liked){
+                    $(selector).html("<i class='fas fa-lg fa-star star-yellow'></i>");
+                }else{
+                    $(selector).html("<i class='far fa-lg fa-star star-yellow'></i>");
+                }
+                selector2 = document.getElementsByName(response.post_pk + "-count");
+                $(selector2).text(response.count);
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>

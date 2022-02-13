@@ -7,6 +7,8 @@
 {% load widget_tweaks %}
 {% block title %}レビュー編集 | STRANALYZE{% endblock %}
 {% block contents %}
+{% if user.is_authenticated %}
+{% if post.author.id == user.id %}
 <h1 class="top-title">レビュー編集</h1>
 <article class="contents-box">
   <img src="
@@ -34,4 +36,8 @@
     </nav>
   </form>
 </article>
+{% else %}
+<p class="guid-text">投稿されたレビューはありません。</p>
+{% endif %}
+{% endif %}
 {% endblock %}

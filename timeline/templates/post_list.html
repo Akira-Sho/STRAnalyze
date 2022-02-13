@@ -78,22 +78,13 @@
           {% if post.author.id == user.id %}
             <nav class="button-area">
               <ul>
-                <li><a class="btn btn-outline-info btn-sm" href="{% url 'timeline:post_edit' item_data.slug post.pk %}">編集</a></li>
-                <li><a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:post_confirm_delete' item_data.slug post.pk %}">削除</a></li>
+                <li><a class="btn btn-outline-info btn-sm" href="{% url 'timeline:post_edit' item_data.slug post.pk url_value %}">編集</a></li>
+                <li><a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:post_confirm_delete' item_data.slug post.pk url_value %}">削除</a></li>
               </ul>
             </nav>
+	    {% include 'like.html' %}
           {% else %}
-            <div class="like-area">
-              <form method="POST">
-                {% csrf_token %}
-                {% if post.pk in liked_list %}
-                  <i class="fas fa-lg fa-star star-yellow" id="like" name="{{post.pk}}" ></i>
-                {% else %}
-                  <i class="far fa-lg fa-star star-yellow" id="like" name="{{post.pk}}" ></i>
-                {% endif %}
-              </form>
-              <p name="{{post.pk}}-count">{{ post.like_set.count }}</p>
-            </div>
+	    {% include 'like.html' %}
           {% endif %}
         {% endif %}
       </article>
@@ -103,30 +94,4 @@
 {% include 'pagination.html' %}
 {% else %}
 {% endif %}
-<!--likejs-->
-<script type="text/javascript">
-  $(document).ready(function(event){
-    $(document).on('click', '#like', function(event){
-        event.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'timeline:like' %}",
-                data: {
-                    'post_pk': $(this).attr('name'),
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'},
-                dataType: 'json',
-                success: function(response){
-                selector = document.getElementsByName(response.post_pk);
-                if(response.liked){
-                    $(selector).html("<i class='fas fa-lg fa-star star-yellow'></i>");
-                }else{
-                    $(selector).html("<i class='far fa-lg fa-star star-yellow'></i>");
-                }
-                selector2 = document.getElementsByName(response.post_pk + "-count");
-                $(selector2).text(response.count);
-            }
-        });
-    });
-});
-</script>
 {% endblock %}

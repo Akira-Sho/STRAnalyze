@@ -57,8 +57,9 @@
 
 @media screen and (max-width: 500px) {
     .header-drawer-nav {
-        padding: 50px 45px 20px;
-        height: 55%;
+        padding: 20px 45px;
+        height: 350px;
+        min-height:340px;
     }
     .header-drawer-nav a  {
         width: 100px;
@@ -89,7 +90,7 @@
 @media screen and (max-width: 500px) {
     .itemMenu li {    
         width: 90px;
-        font-size: 0.6rem;
+        font-size: 0.8rem;
         font-weight:normal;
         text-shadow:0px 0px 1px rgba(0,0,0,0.45);
         box-shadow: none;
@@ -99,7 +100,7 @@
     }
     .itemMenu .sub {
         top: 2px;
-        font-size: 0.6rem;
+        font-size: 0.7rem;
     }
     .itemMenu li:hover ul.sub {
         width: 90px;
@@ -111,10 +112,10 @@
     }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 650px) {
     .item-box {
-        width: calc(33% - 4px);
-        height: calc(33% - 4px);
+        width: calc(30% - 4px);
+        height: calc(30% - 4px);
 	margin: 2px 2px 13px;
 	padding: 1px;
     }
@@ -122,11 +123,11 @@
 
 @media screen and (max-width: 600px) {
     .item-title li {
-        font-size: 0.5rem; 
+        font-size: 0.6rem; 
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     .item-title li { 
         font-weight: 400;
     }
@@ -185,6 +186,9 @@
             linear-gradient(to right,
             #ffffff 1.5px, rgb(230, 230, 235) 1.5px);
         background-size: 10px 10px;
+    }
+    .right-content li:first-child {
+        font-size:clamp(0.7rem, 4.3vw, 0.9rem);
     }
 }
 

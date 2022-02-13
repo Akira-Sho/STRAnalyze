@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}投稿済みリスト | STRANALYZE{% endblock %}
 {% block contents %}
+{% if user.is_authenticated %}
 <h1 class="top-title">投稿済みリスト</h1>
 {% if object_list %}
   {% for post in object_list %}
@@ -38,13 +39,14 @@
           <nav class="button-area">
             <ul>
               <li>
-                <a class="btn btn-outline-info btn-sm" href="{% url 'timeline:mypost_edit' post.item.slug post.id %}">編集</a>
+                <a class="btn btn-outline-info btn-sm" href="{% url 'timeline:post_edit' post.item.slug post.id url_value %}">編集</a>
               </li>
               <li>
-                <a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:mypost_confirm_delete' post.item.slug post.id %}">削除</a>
+                <a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:post_confirm_delete' post.item.slug post.id url_value %}">削除</a>
               </li>
             </ul>
           </nav>
+	  {% include 'like.html' %}
         {% endif %}
       </article>
     </article>
@@ -52,5 +54,6 @@
 {% include 'pagination.html' %}
 {% else %}
 <p class="guid-text">投稿はありません。</p>
+{% endif %}
 {% endif %}
 {% endblock %}

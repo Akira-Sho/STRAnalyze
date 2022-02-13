@@ -3,6 +3,7 @@
 {% load bootstrap4 %}
 {% block title %}いいね済みリスト | STRANALYZE{% endblock %}
 {% block contents %}
+{% if user.is_authenticated %}
 <h1 class="top-title">いいね済みリスト</h1>
 {% if object_list %}
 {% for post in object_list %}
@@ -24,7 +25,7 @@
           <li>{{ post.post.created_at | date:"Y年n月j日 H時" }}</li>
         </ul>
       </nav>
-      {% if post.edited == True %}
+      {% if post.post.edited == True %}
       <div class="post-edited-text">（編集済み）
       </div>
       {% endif %}
@@ -38,18 +39,42 @@
       <img src="{{ post.post.post_photo.url }}">
     {% endif %}
   </article>
-  <article class="like-area">
-    <form method="POST" action="{% url 'timeline:like' %}">
-    {% csrf_token %}
-      {% if post.post.pk in liked_list %}
-        <fieldset id="like" name="{{ post.post.pk}}"><i class="fas fa-lg fa-star star-yellow"></i>
-        </fieldset>
+  <article>
+    {% if user.is_authenticated %}
+      {% if post.post.author.id == user.id %}
+        <nav class="button-area">
+          <ul>
+            <li><a class="btn btn-outline-info btn-sm" href="{% url 'timeline:post_edit' post.post.item.slug post.post.pk url_value %}">編集</a></li>
+            <li><a class="btn btn-outline-danger btn-sm" href="{% url 'timeline:post_confirm_delete' post.post.item.slug post.post.pk url_value %}">削除</a></li>
+          </ul>
+        </nav>
+        <div class="like-area">
+          <form method="POST" action="{% url 'timeline:like' %}">
+            {% csrf_token %}
+            {% if post.post.pk in liked_list %}
+              <i class="fas fa-lg fa-star star-yellow" id="like" name="{{post.post.pk}}" 
+              ></i>
+            {% else %}
+              <i class="far fa-lg fa-star star-yellow" id="like" name="{{post.post.pk}}"></i>                  
+            {% endif %}
+          </form>
+          <p name="{{post.post.pk}}-count">{{ post.post.like_set.count }}</p>
+      </div>
       {% else %}
-        <fieldset id="like" name="{{ post.post.pk}}"><i class="far fa-lg fa-star star-yellow"></i>
-        </fieldset>      
+      <div class="like-area">
+        <form method="POST" action="{% url 'timeline:like' %}">
+          {% csrf_token %}
+          {% if post.post.pk in liked_list %}
+            <i class="fas fa-lg fa-star star-yellow" id="like" name="{{post.post.pk}}" 
+            ></i>
+          {% else %}
+            <i class="far fa-lg fa-star star-yellow" id="like" name="{{post.post.pk}}"></i>                  
+          {% endif %}
+        </form>
+        <p name="{{post.post.pk}}-count">{{ post.post.like_set.count }}</p>
+      </div>
       {% endif %}
-    </form>
-    <p name="{{ post.post.pk}}-count">{{ post.post.like_set.count }}</p>
+    {% endif %}
   </article>
 </article>
 {% endfor %}
@@ -57,29 +82,5 @@
 {% else %}
 <p class="guid-text">お気に入りした投稿はありません。</p>
 {% endif %}
-<script type="text/javascript">
-  $(document).ready(function(event){
-    $(document).on('click', '#like', function(event){
-        event.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'timeline:like' %}",
-                data: {
-                    'post_pk': $(this).attr('name'),
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'},
-                dataType: 'json',
-                success: function(response){
-                selector = document.getElementsByName(response.post_pk);
-                if(response.liked){
-                    $(selector).html("<i class='fas fa-lg fa-star star-yellow'></i>");
-                }else{
-                    $(selector).html("<i class='far fa-lg fa-star star-yellow'></i>");
-                }
-                selector2 = document.getElementsByName(response.post_pk + "-count");
-                $(selector2).text(response.count);
-            }
-        });
-    });
-});
-</script>
+{% endif %}
 {% endblock %}
