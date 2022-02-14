@@ -10,19 +10,19 @@
       {% endif %}">
   </div>
   <div class="right-content">
+    <div class="right-square">
     <ul>
       <li>{{ item_data.item_name }}</li>
       <li>{{ item_data.brand_name }}</li>
       <li>{{ item_data.item_position }}</li>
     </ul>
+    </div>
   </div>
 </article>
 {% if user.is_authenticated %}
   <p class="review-link"><a href="{% url 'timeline:post_create' item_data.slug  %}">レビューを投稿する→</a></p>
 {% else %}
-  <a href="{% url 'account_login' %}">
-    <p class="guid-text color-orange">ログインすればレビューを投稿できるようになります。→</p>
-  </a>
+  <p class="guid-text color-orange">ログインすればレビューを投稿できるようになります。</p>
 {% endif %}
 <p class="post-count">投稿数：{{ post_count }}件</p>
 {% if object_list %}

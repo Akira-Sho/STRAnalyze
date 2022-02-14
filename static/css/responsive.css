@@ -7,7 +7,7 @@
 
 @media screen and (max-width: 500px) {
     .logo {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
     }
 }
 
@@ -170,7 +170,6 @@
 
 @media screen and (max-width: 700px) {
     .right-content {
-        margin-top: 20px;
         padding: 0;
     }
 }
@@ -180,11 +179,9 @@
         background-color: #e3e3e3;
         margin: 0;
         min-height: 50px;
-        background-image: 
-            linear-gradient(#ffffff 1.5px, 
-                transparent 1.5px ),
-            linear-gradient(to right,
-            #ffffff 1.5px, rgb(230, 230, 235) 1.5px);
+        background-color: #ECECEC;
+        background-image: -webkit-gradient(linear, 0 0, 100% 100%,color-stop(.25, #F9F9F9), color-stop(.25, transparent),color-stop(.5, transparent), color-stop(.5, #F9F9F9),color-stop(.75, #F9F9F9), color-stop(.75, transparent),to(transparent));
+        -webkit-background-size: 14px 14px;
         background-size: 10px 10px;
     }
     .right-content li:first-child {
@@ -202,30 +199,36 @@
 /*700px以上の時*/
 @media screen and (min-width: 700px) {
     .right-content li {
-        font-size: 1.6rem;
-        margin: 15px 0;
+        margin: 7px 0;
     }
 }
 
 /*700px以下の時*/
 @media screen and (max-width: 700px) {
-    .right-content li {
-        font-size: 1.4rem;
-        margin: 5px  0 10px;
-    }
+    .right-content ul {
+        transform: translate(-50%,20%);
+    }   
 }
 
 @media screen and (max-width: 550px) {
+    .right-content ul {
+        transform: translate(-50%,20%);
+    }
     .right-content li {
-        font-size: 1.1rem;
-        margin: 5px 0 10px;
+        margin: 0;
     }
 }
 
 @media screen and (max-width: 439px) {
+    .right-content .right-square {
+        padding: -50%;
+    }
+    .right-content ul {
+        transform: translate(-50%,20%);
+    }
     .right-content li {
         font-size: 0.7rem;
-        margin: 3px 0 3px;
+        margin: 0;
         padding-bottom: 0px;
     }
 }
