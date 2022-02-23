@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import environ
+import django
+from django.utils.encoding import force_str
+django.utils.encoding.force_text = force_str
+
 
 from django.contrib.messages import constants as messages
 
@@ -50,6 +54,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'bootstrap4',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

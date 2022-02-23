@@ -49,6 +49,10 @@ a:link, a:visited, a:hover, a:active {
   color: #665;
 }
 
+.logo a:hover {
+  color: #660000;
+}
+
 .header-nav {
   height: 30px;
   margin: auto 0;
@@ -795,7 +799,7 @@ rgba(28, 26, 143, 0.1) 7px 7px;
 }
 
 .description-border {
-  border:6px silver inset;
+  border:6px black inset;
   border-radius: 10px;
 }
 
