@@ -23,9 +23,10 @@
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
         </fieldset>
       {% endif %}
-      <nav class="button-area">
+      <nav class="button-area mt-1">
         <ul>
-          <li><input class="btn btn-outline-info btn-sm mt-1" type="submit" value="登録する"></input></li>
+          <li><input class="btn btn-outline-info btn-sm" type="submit" value="登録する"></input></li>
+          <li><a class="btn btn-outline-primary btn-sm" href="{{ request.META.HTTP_REFERER }}">戻る</a></li>
         </ul>
       </nav>    
     </form>

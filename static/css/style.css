@@ -233,6 +233,10 @@ a:link, a:visited, a:hover, a:active {
   margin: 10px;
 }
 
+.site-information-area {
+  border-radius: 8px;
+}
+
 .site-information-link {
   position: relative;
   background-color: silver;
@@ -242,10 +246,10 @@ a:link, a:visited, a:hover, a:active {
   display: inline-block;
   font-size: 1.1rem;
   padding: 10px;
-  border-radius: 8px;
   text-align: center;
   outline: none;   
   transition: ease .2s;
+  border-radius: 8px;
 }
 
 .site-information-link span {
@@ -270,10 +274,12 @@ a:link, a:visited, a:hover, a:active {
   transition: transform .6s cubic-bezier(0.8, 0, 0.2, 1) 0s;
   transform: scale(0, 1);
   transform-origin: right top;
+  border-radius: 8px;
 }
 
 .bgleft:hover:before{
   transform-origin:left top;
+  border-radius: 8px;
   transform:scale(1, 1);
 }
 
@@ -539,8 +545,7 @@ rgba(28, 26, 143, 0.1) 7px 7px;
 .left-content img {
   width: 100%;
   min-width: 180px;
-  height: 100%;
-  border-radius: 5px;
+  height: 100%;;
 }
 
 .right-content {
