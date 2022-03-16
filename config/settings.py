@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'bootstrap4',
     'django_extensions',
+ #   'storages',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +67,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 ROOT_URLCONF = 'config.urls'
 
@@ -151,7 +151,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'app/static'),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 #STATICFILES_DIRS = [
@@ -206,3 +206,9 @@ FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO','https')
 #SECURE_SSL_REDIRECT = True
 
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#AWS_STORAGE_BUCKET_NAME = 'stranalyze-s3'
+#AWS_S3_REGION_NAME = 'ap-northeast-1'
+
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')

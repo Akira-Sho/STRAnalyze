@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
+import uuid
 from django.core.validators import MaxValueValidator
 from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFill
@@ -41,6 +42,7 @@ AREA_CHOICES = [('北海道', '北海道'), ('東北', '東北'), ('関東', '�
 POSITION_CHOICES = [('後衛','後衛'),('前衛','前衛')] 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     username = models.CharField(
         verbose_name='username',
         max_length=15,

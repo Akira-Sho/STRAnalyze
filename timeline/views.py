@@ -142,8 +142,11 @@ def Post_Create_View(request,slug): #レビュー作成関数
         form = PostForm(request.POST,request.FILES) 
         if form.is_valid():
             post = form.save(commit = False)#フォームに入力された内容を一時的に保持
-            post.author = request.user #postテーブルのauthorにリクエストされてきたログインユーザーpkを格納
-            post.item = Item.objects.get(slug = slug) 
+            try:
+                post.author = request.user #postテーブルのauthorにリクエストされてきたログインユーザーpkを格納
+                post.item = Item.objects.get(slug = slug) 
+            except IntegrityError:
+                    return post
             post.save() 
             messages.success(request, 'レビューを作成しました。')
             return redirect('timeline:post_list',slug = slug)
@@ -164,6 +167,10 @@ class Post_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
         post.edited = "True"
         post.save()
         return super().form_valid(form)
+    
+    def form_invalid(self,form):
+        messages.error(self.request,"変更に失敗しました。")
+        return super().form_invalid(form)
 
     def get_success_url(self):
         referer = self.request.META['HTTP_REFERER']

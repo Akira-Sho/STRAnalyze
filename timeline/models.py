@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 from django.utils import timezone
 from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFill, ResizeToFit
@@ -11,29 +12,31 @@ SERIES_CHOICES =[('VOLTRAGE','VOLTRAGE'),('GEOBREAK','GEOBREAK'),('F-LASER','F-L
 
 
 class Post(models.Model):
-	author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
-	item = models.ForeignKey('timeline.Item', on_delete=models.CASCADE)
-	text = models.TextField(verbose_name='本文',max_length=200,)
-	photo = models.ImageField(verbose_name='写真', blank=True, null=True, upload_to='images/')
-	post_photo = ImageSpecField(source='photo',processors=[ResizeToFit(1080, 1080)],format='JPEG',options={'quality':60})
-	created_at = models.DateTimeField(default=timezone.now)
-	edited = models.BooleanField(default=False,verbose_name='編集済み')
+        id = models.UUIDField(default=uuid.uuid4,primary_key=True, editable=False)
+        author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
+        item = models.ForeignKey('timeline.Item', on_delete=models.CASCADE)
+        text = models.TextField(verbose_name='本文',max_length=200,)
+        photo = models.ImageField(verbose_name='写真', blank=True, null=True, upload_to='images/')
+        post_photo = ImageSpecField(source='photo',processors=[ResizeToFit(1080, 1080)],format='JPEG',options={'quality':60})
+        created_at = models.DateTimeField(default=timezone.now)
+        edited = models.BooleanField(default=False,verbose_name='編集済み')
 
-	def __str__(self):
-    	    return f"{self.author.username} {self.item.item_name}"
+        def __str__(self):
+            return f"{self.author.username} {self.item.item_name}"
 
-	class Meta:
+        class Meta:
             ordering = ['-created_at']
 
 
 class Like(models.Model):
-	user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
-	post = models.ForeignKey('Post', on_delete=models.CASCADE)
-	timestamp = models.DateTimeField(verbose_name='日付',default=timezone.now)
+        id = models.UUIDField(default=uuid.uuid4,primary_key=True, editable=False)
+        user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
+        post = models.ForeignKey('Post', on_delete=models.CASCADE)
+        timestamp = models.DateTimeField(verbose_name='日付',default=timezone.now)
 
-	class Meta:
-		unique_together = ('user', 'post')
-		ordering = ['-timestamp']
+        class Meta:
+                unique_together = ('user', 'post')
+                ordering = ['-timestamp']
 
   
 class Item(models.Model):
