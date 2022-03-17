@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import PostForm,BrandSearchForm,ContactForm
+from .forms import PostForm,ContactForm
 from .models import Post, Like,Item
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -12,6 +12,7 @@ from django.http.response import JsonResponse
 from django import forms
 
 
+#ページネーション機能関数
 def paginate_queryset(request, queryset, count):
     paginator = Paginator(queryset, count)
     page = request.GET.get('page')
@@ -23,7 +24,7 @@ def paginate_queryset(request, queryset, count):
         paginate_count = paginator.page(paginator.num_pages)
     return paginate_count
 
-
+#トップページビュー
 def Index(request):
     global items
     query = request.GET.get('selected-name')
@@ -34,16 +35,18 @@ def Index(request):
             items =Item.objects.filter(series_name = query)
     else:
         items = Item.objects.all()
-       
 
     params = {
         'item_objects' : items,
     }
     return render(request, 'index.html', params)
 
+#サイト案内ページビュー
 def Site_Information(request):
     return render(request, 'site_information.html')
 
+
+#レビュー一覧ページビュー
 def Post_List_View(request,slug):
     item_data = Item.objects.get(slug = slug)
     post_object_list = Post.objects.filter(item__slug = slug)
@@ -69,6 +72,7 @@ def Post_List_View(request,slug):
     return render(request, 'post_list.html',params)
 
 
+#お気に入り機能ビュー
 @login_required
 def LikeView(request):
     if request.method =="POST":
@@ -90,7 +94,7 @@ def LikeView(request):
     if request.is_ajax():
         return JsonResponse(context)
 
-
+#お気に入りリストページビュー
 @login_required
 def Liked_PostListView(request,pk):
     like_data = Like.objects.filter(user=request.user)
@@ -113,6 +117,7 @@ def Liked_PostListView(request,pk):
     return render(request, 'liked_post_list.html',params)
 
 
+#自分のレビューページ一覧ビュー
 class MyPost_List_View(LoginRequiredMixin,generic.ListView):
     template_name = 'mypost_list.html'
     model = Post 
@@ -136,8 +141,9 @@ class MyPost_List_View(LoginRequiredMixin,generic.ListView):
         return Post.objects.filter(author = self.request.user.id)
 
 
+#レビュー作成ページビュー
 @login_required
-def Post_Create_View(request,slug): #レビュー作成関数
+def Post_Create_View(request,slug):
     if (request.method == "POST"):
         form = PostForm(request.POST,request.FILES) 
         if form.is_valid():
@@ -155,6 +161,8 @@ def Post_Create_View(request,slug): #レビュー作成関数
     return render(request, 'post_create.html', {'form': form})
 
 
+
+#レビュー編集ページビュー
 class Post_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
     model = Post
     slug_field = "Item__slug"
@@ -171,7 +179,8 @@ class Post_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
     def form_invalid(self,form):
         messages.error(self.request,"変更に失敗しました。")
         return super().form_invalid(form)
-
+    #変更処理に成功したら、直前のURLを取得し、それに基づいて遷移先を分岐させています。
+    #これによりレビュー編集処理を複数書く必要がなくなりました。
     def get_success_url(self):
         referer = self.request.META['HTTP_REFERER']
         if 'mypost' in referer:
@@ -182,6 +191,7 @@ class Post_EditView(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
             return reverse_lazy('timeline:post_list',kwargs={'slug':self.object.item.slug})
 
 
+#レビュー削除ページビュー
 class Post_DeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Post
     slug_field = "slug"
@@ -193,6 +203,7 @@ class Post_DeleteView(LoginRequiredMixin, generic.DeleteView):
             messages.success(self.request, 'レビューを削除しました。')
         return super().delete(request, *args, **kwargs)
     
+    #レビュー編集ビューと同様です。
     def get_success_url(self):
         referer = self.request.META['HTTP_REFERER']
         if 'mypost' in referer:
@@ -202,7 +213,8 @@ class Post_DeleteView(LoginRequiredMixin, generic.DeleteView):
         else:
             return reverse_lazy('timeline:post_list',kwargs={'slug':self.object.item.slug})
        
-       
+
+#コンタクトフォームページビュー
 class ContactFormView(LoginRequiredMixin,SuccessMessageMixin,generic.FormView):
     template_name = 'contact_form.html'
     form_class = ContactForm

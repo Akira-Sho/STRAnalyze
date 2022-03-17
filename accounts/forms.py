@@ -11,6 +11,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from timeline.widget import Image_Preview
 
 
+#ログインフォーム
 class MyLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -20,6 +21,9 @@ def get_activate_url(user):
     token = default_token_generator.make_token(user)
     return settings.FRONTEND_URL + "/activate/{}/{}/".format(uid, token)
 
+
+
+#新規会員登録フォーム
 class MySignUpForm(SignupForm):    
     class Meta:
             model = CustomUser

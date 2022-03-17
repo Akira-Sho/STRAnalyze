@@ -6,6 +6,8 @@ from django.conf import settings
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse
 
+
+#レビュー投稿フォーム
 class PostForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PostForm, self). __init__(*args,**kwargs)
@@ -18,13 +20,9 @@ class PostForm(forms.ModelForm):
             'text' : forms.Textarea(attrs={'placeholder': '投稿内容を入力してください','rows':4, 'cols':15,}),
             'photo': Image_Preview(include_preview=False),
         }
-        
-    
-class BrandSearchForm(forms.ModelForm):
-    class Meta:
-        model = Item
-        fields = ('brand_name',)
 
+
+#コンタクト送信フォーム
 class ContactForm(forms.Form):
     name = forms.CharField(
         label='',

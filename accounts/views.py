@@ -7,11 +7,14 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 
 
+#新規会員登録ページビュー
 class SignUpView(generic.CreateView):
     form_class = MySignUpForm
     success_url = reverse_lazy('accounts:login')
     template_name = 'accounts/signup.html'
-    
+
+
+#マイページビュー
 class MypageView(LoginRequiredMixin, generic.DetailView):
     model = CustomUser
     template_name = 'account/mypage.html'
@@ -19,6 +22,8 @@ class MypageView(LoginRequiredMixin, generic.DetailView):
     def get_queryset(self):
         return CustomUser.objects.filter(pk = self.request.user.id)
 
+
+#プロフィール編集ビュー
 class Mypage_Edit(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView): 
     model = CustomUser
     form_class = ProfileForm
@@ -32,6 +37,7 @@ class Mypage_Edit(LoginRequiredMixin,SuccessMessageMixin,generic.UpdateView):
         return reverse_lazy('accounts:mypage',kwargs={'pk':self.kwargs['pk']})
     
     
+#レビュー投稿者ページビュー
 class ReviewerView(LoginRequiredMixin,generic.DetailView):
     model = CustomUser
     template_name = 'account/reviewer.html'
