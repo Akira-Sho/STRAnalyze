@@ -9,7 +9,7 @@
         <article>
             <img src="
                 {% if object.thumbnail %}{{ object.thumbnail.url }}
-                {% else %}{% static 'images/no_photo.png' %}
+                {% else %}{% static 'images/no_photo.webp' %}
                 {% endif %}" class="mypage-photo">
             <p class="mypage-email">{{ object.email }}</p>
         </article>

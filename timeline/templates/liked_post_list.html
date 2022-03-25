@@ -13,7 +13,7 @@
       <a href="{% url 'accounts:reviewer' post.post.author.id %}" >
         <img src="
           {% if post.post.author.thumbnail %}{{ post.post.author.thumbnail.url }}
-          {% else %}{% static 'images/no_photo.png' %}
+          {% else %}{% static 'images/no_photo.webp' %}
           {% endif %}" >
       </a>
     </div>
@@ -79,13 +79,13 @@
 </article>
 {% endfor %}
 {% include 'pagination.html' %}
-<nav class="button-area">
-  <ul>
-    <li><a class="btn btn-outline-primary btn-sm" href="{{ request.META.HTTP_REFERER }}">戻る</a></li>
-  </ul>
-</nav>
 {% else %}
 <p class="guid-text">お気に入りした投稿はありません。</p>
 {% endif %}
 {% endif %}
+<nav class="button-area">
+  <ul>
+    <li><a class="btn btn-outline-primary btn-sm" href="{% url 'accounts:mypage' user.pk %}">MYPAGEに戻る</a></li>
+  </ul>
+</nav>
 {% endblock %}

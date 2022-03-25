@@ -2,7 +2,9 @@
 {% load static %}
 {% block title %}投稿済みリスト | STRANALYZE{% endblock %}
 {% block contents %}
-{% if user.is_authenticated %} <h1 class="top-title">投稿済みリスト</h1> {% if object_list %}
+{% if user.is_authenticated %}
+<h1 class="top-title">投稿済みリスト</h1>
+{% if object_list %}
   {% for post in object_list %}
     <article class="contents-box">
       <article class="post-header">
@@ -50,16 +52,13 @@
     </article>
   {% endfor %}
 {% include 'pagination.html' %}
+<nav class="button-area">
+  <ul>
+    <li><a class="btn btn-outline-primary btn-sm" href="{{ request.META.HTTP_REFERER }}">戻る</a></li>
+  </ul>
+</nav>
 {% else %}
 <p class="guid-text">投稿はありません。</p>
 {% endif %}
 {% endif %}
-<nav class="button-area">
-  <ul>
-    <li><a class="btn btn-outline-primary btn-sm" href="{% url 'accounts:mypage' user.pk %}">MYPAGEに戻る</a></li>
-  </ul>
-</nav>
-<!--jQuery-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 {% endblock %}

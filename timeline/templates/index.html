@@ -4,6 +4,9 @@
 {% block contents %}
 <form action="{% url 'timeline:index' %}" method="GET">
 <ul class="itemMenu">
+<script>
+document.addEventListener('touchstart', function() {}, {passive: true});
+</script>
   <li><p>YONEX</p>
   <ul class="sub">
     <li><input type="submit" name="selected-name" value="YONEX"></input></li>
@@ -41,7 +44,7 @@
       <a href="{% url 'timeline:post_list' item.slug %}">
         <img src="
           {% if item.item_photo %}{{ item.item_photo.url}}
-          {% else %}{% static 'images/no_str_image.jpeg' %}
+          {% else %}{% static 'images/no_str_image.webp' %}
           {% endif %}">
         <nav class="item-title">
           <ul>

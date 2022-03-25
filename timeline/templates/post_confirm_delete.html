@@ -9,7 +9,7 @@
 <article class="contents-box">
   <article class="post-header">
     <img src="{% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
-      {% else %}{% static 'images/no_photo.png' %}
+      {% else %}{% static 'images/no_photo.webp' %}
       {% endif %}">
     <nav class="post-header-info">
       <ul>
@@ -45,4 +45,6 @@
 <p class="guid-text">投稿はありません。</p>
 {% endif %}
 {% endif %}
+<!--jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}

@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'bootstrap4',
+    'django_cleanup',
     'django_extensions',
  #   'storages',
 ]

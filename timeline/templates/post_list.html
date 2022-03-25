@@ -6,7 +6,7 @@
   <div class="left-content">
     <img src="
       {% if item_data.item_photo %}{{ item_data.item_photo.url}}
-      {% else %}{% static 'images/no_str_image.jpeg' %}
+      {% else %}{% static 'images/no_str_image.webp' %}
       {% endif %}">
   </div>
   <div class="right-content">
@@ -33,7 +33,7 @@
           <a href="{% url 'accounts:reviewer' post.author.id %}">
             <img src="
               {% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
-              {% else %}{% static 'images/no_photo.png' %}
+              {% else %}{% static 'images/no_photo.webp' %}
               {% endif %}">
           </a>
           <nav class="post-header-info">
@@ -49,7 +49,7 @@
         {% else %}
           <img src="
             {% if post.author.thumbnail %}{{ post.author.thumbnail.url }}
-            {% else %}{% static 'images/no_photo.png' %}
+            {% else %}{% static 'images/no_photo.webp' %}
             {% endif %}">
           <nav class="post-header-info">
             <ul>
@@ -92,11 +92,8 @@
   {% endfor %}
 <!--Pagination-->
 {% include 'pagination.html' %}
-<nav class="button-area">
-  <ul>
-    <li><a class="btn btn-outline-primary btn-sm" href="{{ request.META.HTTP_REFERER }}">戻る</a></li>
-  </ul>
-</nav>
 {% else %}
 {% endif %}
+<!--jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}

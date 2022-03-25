@@ -8,29 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <!--JavaScript-->
-    <script src="{% static 'js/drawer-menu.js' %}"></script>
-    <script src="{% static 'js/top-scroll.js' %}"></script>
-    <!--jQuery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" rel="preload" href="{% static 'css/style.css' %}" as="style">
+    <link rel="stylesheet" rel="preload" href="{% static 'css/reset.css' %}" as="style">
+    <link rel="stylesheet" rel="preload" href="{% static 'css/responsive.css' %}" as="style">
     <!-- Icon -->
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" 
-    crossorigin="anonymous">
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" as="style">
     <!--font-->
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+    <link rel="stylesheet" rel="preload" href="https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap" as="style">
+    <link rel="stylesheet" rel="preload" href="https://fonts.googleapis.com/css?family=Kaushan+Script:400,700&display=swap" as="font">
+    <link rel="stylesheet" rel="preload" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" as="font">
+    <link rel="stylesheet" rel="preload" href="https://fonts.googleapis.com/earlyaccess/hannari.css" as="style">
     <!--font awesome-->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" rel="preload" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" as="style">
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
     <title>{% block title %}{% endblock %}</title>
 </head>
@@ -73,10 +64,10 @@
                     </ul>
 		    <div class="sns-area">
                         <a href="https://twitter.com/STRanalyze" class="color-blue">
-                            <i class="fab fa-twitter fa-lg"></i>
+                            <img src="{% static 'images/sns-t.webp' %}">
                         </a>
                         <a href="https://www.instagram.com/stranalyze_official/" class="color-orange">
-                            <i class="fab fa-instagram fa-lg"></i>
+                            <img src="{% static 'images/sns-i.webp' %}">
                         </a>
                     </div>
                 </nav>    
@@ -87,10 +78,10 @@
             {% endif %}
             <div class="sns-area">
                 <a href="https://twitter.com/STRanalyze" class="color-blue">
-                    <i class="fab fa-twitter fa-lg"></i>
+                    <img src="{% static 'images/sns-t.webp' %}">
                 </a>
                 <a href="https://www.instagram.com/stranalyze_official/" class="color-orange">
-                    <i class="fab fa-instagram  fa-lg"></i>
+                    <img src="{% static 'images/sns-i.webp' %}">
                 </a>
             </div>
         </div>
@@ -126,6 +117,11 @@
             </nav>
         </footer>
    </div>
+<!--JavaScript-->
+<script defer src="{% static 'js/drawer-menu.js' %}"></script>
+<script defer src="{% static 'js/top-scroll.js' %}"></script>
+<!--jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!--likejs-->
 <script type="text/javascript">
   $(document).ready(function(event){
@@ -151,6 +147,6 @@
         });
     });
 });
-</script>
+</script>    
 </body>
 </html>
