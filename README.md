@@ -10,7 +10,7 @@ https://stranalyze.com/
 - パスワード/test1pass
 ## 基本的な利用方法
 <img width="227" alt="stranalyze_index" src="https://user-images.githubusercontent.com/68769474/158541949-bd39a141-5c9b-4c9e-8859-635516846cab.png">  <img width="227" alt="stranalyze_postlist" src="https://user-images.githubusercontent.com/68769474/158543788-3bea448e-24c5-435f-bf99-6013240d8aad.png">  <img width="227" alt="stranalyze_createpost" src="https://user-images.githubusercontent.com/68769474/158543794-ce5859c6-707a-400f-9b7b-ab72f654cfe6.png">  <img width="190" alt="スクリーンショット 2022-03-16 16 19 38" src="https://user-images.githubusercontent.com/68769474/158543801-e2264523-c2e6-4a60-924a-cb5a058cea24.png">  <img width="227" alt="stranalyze_mypage" src="https://user-images.githubusercontent.com/68769474/158547223-ca4f46ec-35a6-4722-8c69-4f97f95d1230.png">
-
+- ※著作権等の都合上、ラケットの画像は管理者が所有するもののみ使用しております。
 1. ログイン後、いずれかのアイテムを選択します。
 1. 投稿リスト一覧ページの「レビューを投稿する→」を選択します。
 1. 投稿ページのテキストと画像を入力して投稿ボタンを選択すれば、一覧ページ上部に投稿が表示されます。(テキストのみでも可能)
